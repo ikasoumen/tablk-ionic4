@@ -1,5 +1,7 @@
 {
   "name": "ionic4-tabs",
   "type": "angular",
-  "integrations": {}
+  "integrations": {},
+  "app_id": "",
+  "hooks": {}
 }
