@@ -14,7 +14,12 @@ import { AppearancesStore } from './stores/appearances.store';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(
+    {
+      mode: 'ios',
+      iconMode: 'ios',
+    }
+  ), AppRoutingModule],
   providers: [
     AppearancesActions,
     AppDispatcher,

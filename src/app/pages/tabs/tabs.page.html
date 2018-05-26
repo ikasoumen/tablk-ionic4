@@ -1,5 +1,15 @@
-<div *ngIf="appearnce.getPaneSplitted$() | async">
-  <ion-tabs>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs
+    tabbarLayout="icon-hide"
+    tabbarPlacement="top"
+    tabbarHighlight="true"
+  >
     <ion-tab label="Home" icon="home" href="/tabs/(home:home)">
       <ion-router-outlet name="home"></ion-router-outlet>
     </ion-tab>
@@ -10,4 +20,4 @@
       <ion-router-outlet name="contact"></ion-router-outlet>
     </ion-tab>
   </ion-tabs>
-</div>
+</ion-content>
