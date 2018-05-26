@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppearancesStore } from '../../stores/appearances.store';
 
 @Component({
   selector: 'app-page-tabs',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  constructor() {}
+  constructor(
+    public appearnce: AppearancesStore,
+  ) {}
 }
