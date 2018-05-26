@@ -5,10 +5,10 @@ import { AppearancesStore } from '../../stores/appearances.store';
 
 @Component({
   selector: 'app-page-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  templateUrl: 'talk.page.html',
+  styleUrls: ['talk.page.scss']
 })
-export class HomePage {
+export class TalkPage {
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -16,7 +16,7 @@ export class HomePage {
     public appearnce: AppearancesStore,
   ) {}
 
-  public async pushHomePage() {
+  public async pushTalkPage() {
     // this.navCtrl.goForward('about');
     console.log('comes here');
     const modal = await this.modalCtrl.create({ component: AboutPage });

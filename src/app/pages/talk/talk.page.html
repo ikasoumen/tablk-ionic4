@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="appearnce.getPaneSplitted() | async">
   <ion-toolbar>
     <ion-title>Home</ion-title>
   </ion-toolbar>
@@ -7,7 +7,7 @@
 <ion-content padding>
   The world is your oyster.
   <p>If you get lost, the <a target="_blank" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
-  <button (click)="pushHomePage()">
+  <button (click)="pushTalkPage()">
     Go to about
   </button>
   {{ appearnce.getPaneSplitted$() | async }}
