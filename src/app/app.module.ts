@@ -9,6 +9,7 @@ import { AppearancesActions } from './actions/appearances.actions';
 import { AppComponent } from './app.component';
 import { AppDispatcher } from './app.dispatcher';
 import { AppStore } from './app.store';
+import { AppearancesStore } from './stores/appearances.store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { AppStore } from './app.store';
     AppearancesActions,
     AppDispatcher,
     AppStore,
+    AppearancesStore,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
