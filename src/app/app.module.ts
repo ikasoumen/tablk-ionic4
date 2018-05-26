@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
-import { AppActions } from './app.actions';
+import { AppearancesActions } from './actions/appearances.actions';
 import { AppComponent } from './app.component';
 import { AppDispatcher } from './app.dispatcher';
 import { AppStore } from './app.store';
@@ -15,7 +15,7 @@ import { AppStore } from './app.store';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
-    AppActions,
+    AppearancesActions,
     AppDispatcher,
     AppStore,
     StatusBar,
