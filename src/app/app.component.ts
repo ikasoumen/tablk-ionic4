@@ -23,4 +23,8 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  public splitPaneSubscribe (event: CustomEvent) {
+    const visibility = event.detail.visible as boolean;
+  }
 }

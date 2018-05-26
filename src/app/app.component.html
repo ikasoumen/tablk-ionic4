@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane>
+  <ion-split-pane (ionChange)="splitPaneSubscribe($event)">
     <ion-menu>
       <ion-header>
         <ion-toolbar>
