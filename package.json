@@ -27,6 +27,7 @@
     "@ionic/schematics-angular": "latest",
     "core-js": "^2.5.3",
     "rxjs": "6.1.0",
+    "walts": "git+https://github.com/ikasoumen/walts#patch/rxjs-6.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
