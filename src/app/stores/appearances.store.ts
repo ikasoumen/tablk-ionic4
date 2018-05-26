@@ -14,7 +14,7 @@ export class AppearancesStore {
    *
    * @param paneSplitted true ならば 2カラム表示されている
    */
-  getPaneSplitted(): Observable<boolean> {
+  getPaneSplitted$(): Observable<boolean> {
     return this.store.observable.pipe(
       map((state) => state.appearances.paneSplitted),
       distinctUntilChanged(),
