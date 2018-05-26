@@ -15,7 +15,8 @@ export class AppearancesActions extends Actions<AppState> {
    */
   setPaneSplitted(paneSplitted: boolean): Action<AppState> {
     return _state => {
-      return { ..._state, paneSplitted };
+      _state.appearances.paneSplitted = paneSplitted;
+      return _state;
     };
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, AlertController } from '@ionic/angular';
 import { AboutPage } from '../about/about.page';
+import { AppearancesStore } from '../../stores/appearances.store';
 
 @Component({
   selector: 'app-page-home',
@@ -12,6 +13,7 @@ export class HomePage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public appearnce: AppearancesStore,
   ) {}
 
   public async pushHomePage() {
