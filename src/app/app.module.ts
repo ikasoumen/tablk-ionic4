@@ -16,8 +16,8 @@ import { AppearancesStore } from './stores/appearances.store';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(
     {
-      mode: 'ios',
-      iconMode: 'ios',
+      mode: 'md',
+      iconMode: 'md',
     }
   ), AppRoutingModule],
   providers: [

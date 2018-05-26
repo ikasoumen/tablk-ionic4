@@ -1,10 +1,10 @@
-<ion-header>
+<ion-header *ngIf="appearnce.getPaneSplitted$() | async">
   <ion-toolbar>
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="appearnce.getPaneSplitted$() | async">
   <ion-tabs
     tabbarLayout="icon-hide"
     tabbarPlacement="top"
