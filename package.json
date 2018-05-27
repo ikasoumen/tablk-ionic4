@@ -9,7 +9,8 @@
     "build": "ionic build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "precommit": "npx pretty-quick --staged"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,8 @@
     "@ionic/angular": "4.0.0-alpha.7",
     "@ionic/schematics-angular": "latest",
     "core-js": "^2.5.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.6.0",
     "rxjs": "6.1.0",
     "walts": "git+https://github.com/ikasoumen/walts#patch/rxjs-6.0",
     "zone.js": "^0.8.26"
@@ -45,6 +48,7 @@
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "ionic": "^4.0.0-rc.6",
+    "husky": "^0.14.3",
     "karma": "~1.7.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~1.4.2",
