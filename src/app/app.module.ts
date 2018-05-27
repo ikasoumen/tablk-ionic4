@@ -10,6 +10,16 @@ import { AppComponent } from "./app.component";
 import { AppDispatcher } from "./app.dispatcher";
 import { AppStore } from "./app.store";
 import { AppearancesStore } from "./stores/appearances.store";
+import { ApiModule, Configuration, ConfigurationParameters } from "./http";
+import { environment } from "../environments/environment";
+
+export function apiConfigFactory(): Configuration {
+  const params: ConfigurationParameters = {
+    apiKeys: { "X-API-KEY": "hogehogehoge" },
+    basePath: environment.API_BASE_PATH
+  };
+  return new Configuration(params);
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +30,8 @@ import { AppearancesStore } from "./stores/appearances.store";
       mode: "md",
       iconMode: "md"
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    ApiModule.forRoot(apiConfigFactory)
   ],
   providers: [
     AppearancesActions,
