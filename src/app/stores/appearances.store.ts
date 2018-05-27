@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
-import { AppStore } from '../app.store';
-import { Observable } from 'rxjs';
-import { map, distinctUntilChanged } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { AppStore } from "../app.store";
+import { Observable } from "rxjs";
+import { map, distinctUntilChanged } from "rxjs/operators";
 
 @Injectable()
 export class AppearancesStore {
-  constructor (
-    private store: AppStore
-  ) {}
+  constructor(private store: AppStore) {}
 
   /**
    * サイドメニューとの 2カラム構成になっているかどうか
@@ -16,9 +14,8 @@ export class AppearancesStore {
    */
   getPaneSplitted$(): Observable<boolean> {
     return this.store.observable.pipe(
-      map((state) => state.appearances.paneSplitted),
-      distinctUntilChanged(),
+      map(state => state.appearances.paneSplitted),
+      distinctUntilChanged()
     );
   }
 }
-

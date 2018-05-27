@@ -1,16 +1,16 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TalkPage } from './talk.page';
+import { TalkPage } from "./talk.page";
 
-describe('TalkPage', () => {
+describe("TalkPage", () => {
   let component: TalkPage;
   let fixture: ComponentFixture<TalkPage>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [TalkPage],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
@@ -20,7 +20,7 @@ describe('TalkPage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
