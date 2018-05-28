@@ -1,0 +1,34 @@
+<ion-header fade-header [isHidden]="pageTitleUnderHeader">
+  <ion-navbar>
+    <ion-title>
+      {{ translatedTitle }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="pushLoginPage()">
+        ログイン
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></page-title>
+    <div class="description">
+      あなたの大事なデータを保存しておくために、<br>
+      ユーザー登録が必要です。
+    </div>
+    <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label color="primary" stacked>メールアドレス</ion-label>
+          <ion-input type="text" [(ngModel)]="params.email" name="email" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+          required placeholder="user@example.com"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button type="submit" block>登録する！</button>
+    </form>
+  </div>
+</ion-content>
+
+

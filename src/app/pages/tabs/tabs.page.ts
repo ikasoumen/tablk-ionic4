@@ -15,7 +15,6 @@ export class TabsPage {
   }
 
   public AfterViewInit() {
-    debugger;
     const session = this.api.sessionsSessionIdGet(1);
     console.log(session);
   }

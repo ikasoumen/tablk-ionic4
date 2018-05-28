@@ -1,0 +1,28 @@
+<ion-header fade-header [isHidden]="pageTitleUnderHeader">
+  <ion-navbar>
+    <ion-title>
+      {{ translatedTitle }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></page-title>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label color="primary" stacked>メールアドレス</ion-label>
+          <ion-input type="text" [(ngModel)]="params.email" name="email" spellcheck="false" autocapitalize="off"
+          required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked>パスワード</ion-label>
+          <ion-input type="password" [(ngModel)]="params.password" name="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button type="submit" block>ログイン</button>
+    </form>
+  </div>
+</ion-content>
+
