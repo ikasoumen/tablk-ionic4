@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Time } from "app/constants";
-import { ToastController } from "ionic-angular";
+import { ToastController } from "@ionic/angular";
 
 export enum ToastCssType {
   Error = "toast-error",
