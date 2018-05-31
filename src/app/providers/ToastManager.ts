@@ -12,14 +12,12 @@ export enum ToastCssType {
 export class ToastManager {
   constructor(private toastCtrl: ToastController) {}
 
-  public present(message: string, type: ToastCssType) {
-    this.toastCtrl
-      .create({
-        message: message,
-        cssClass: type,
-        duration: Time.msec500,
-        position: "top"
-      })
-      .present();
+  public async present(message: string, type: ToastCssType) {
+    await this.toastCtrl.create({
+      message: message,
+      cssClass: type,
+      duration: Time.msec500,
+      position: "top"
+    });
   }
 }

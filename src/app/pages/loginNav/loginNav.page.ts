@@ -9,9 +9,7 @@ import { AuthManager } from "app/providers/AuthManager";
   templateUrl: "SignupNavPage.html",
   encapsulation: ViewEncapsulation.Emulated
 })
-export class SignupNavPage {
-  public rootPage = "SignupPage";
-
+export class LoginNavRoot {
   constructor(private authManager: AuthManager) {
     return;
   }

@@ -1,15 +1,9 @@
 import { NgModule } from "@angular/core";
-import { PageTitleModule } from "components/PageTitle/PageTitle.module";
-import { FadeHeaderModule } from "directives/FadeHeader/FadeHeader.module";
-import { IonicPageModule } from "ionic-angular";
-import { SignupPage } from "./SignupPage";
+import { SignupPage } from "./signupMail.page";
+import { PageTitleModule } from "app/components/pageTitle/pageTitle.component.module";
 
 @NgModule({
   declarations: [SignupPage],
-  imports: [
-    IonicPageModule.forChild(SignupPage),
-    PageTitleModule,
-    FadeHeaderModule
-  ]
+  imports: [PageTitleModule]
 })
 export class SignupPageModule {}

@@ -1,10 +1,9 @@
 import { NgModule } from "@angular/core";
+import { LoginNavRoot } from "./loginNav.page";
 import { ParticlesModule } from "angular-particle";
-import { IonicPageModule } from "ionic-angular";
-import { LoginNavRoot } from "./LoginNavRoot";
 
 @NgModule({
   declarations: [LoginNavRoot],
-  imports: [IonicPageModule.forChild(LoginNavRoot), ParticlesModule]
+  imports: [ParticlesModule]
 })
 export class LoginNavRootModule {}

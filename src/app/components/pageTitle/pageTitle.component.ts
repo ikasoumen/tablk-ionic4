@@ -1,6 +1,5 @@
 import { Component, Input } from "@angular/core";
 import { ElementRef } from "@angular/core";
-import { PageWithTitle } from "components/PageWithTitle/PageWithTitle";
 
 /**
  * Generated class for the SectionHeadingComponent component.
@@ -9,12 +8,12 @@ import { PageWithTitle } from "components/PageWithTitle/PageWithTitle";
  * Components.
  */
 @Component({
-  selector: "page-title",
+  selector: "app-page-title",
   templateUrl: "PageTitle.html"
 })
 export class PageTitle implements ElementRef {
-  @Input() public title: string = "";
-  @Input() public translatedTitle: string = "";
+  @Input() public title = "";
+  @Input() public translatedTitle = "";
 
   constructor(private elementRef: ElementRef) {
     return;
