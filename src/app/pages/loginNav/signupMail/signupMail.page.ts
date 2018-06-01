@@ -11,7 +11,7 @@ import { NgForm } from "@angular/forms";
 import { LoginPage } from "app/pages/loginNav/login/login.page";
 import { NavController } from "@ionic/angular";
 import { ToastManager, ToastCssType } from "app/providers/ToastManager";
-import { AuthManager } from "app/providers/AuthManager";
+import { AuthManager } from "app/providers/authManager/authManager";
 import { SignupPostInput } from "app/http";
 
 @Component({

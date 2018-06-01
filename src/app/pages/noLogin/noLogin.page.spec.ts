@@ -3,19 +3,19 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NoLoginPage } from "./noLogin.page";
 
-describe("noLoginPage", () => {
-  let component: noLoginPage;
-  let fixture: ComponentFixture<noLoginPage>;
+describe("NoLoginPage", () => {
+  let component: NoLoginPage;
+  let fixture: ComponentFixture<NoLoginPage>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [noLoginPage],
+      declarations: [NoLoginPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(noLoginPage);
+    fixture = TestBed.createComponent(NoLoginPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,7 +8,7 @@ import {
 import { NgForm } from "@angular/forms";
 import { ApiKeyInput } from "app/http";
 import { ToastManager, ToastCssType } from "app/providers/ToastManager";
-import { AuthManager } from "app/providers/AuthManager";
+import { AuthManager } from "app/providers/authManager/authManager";
 import { NavController } from "@ionic/angular";
 
 @Component({

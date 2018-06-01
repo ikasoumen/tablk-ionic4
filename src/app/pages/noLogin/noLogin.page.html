@@ -1,20 +1,35 @@
-<ion-header *ngIf="appearnce.getPaneSplitted$() | async">
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
-  <button (click)="pushTalkPage()">
-    Go to about
-  </button>
-  {{ appearnce.getPaneSplitted$() | async }}
+  <ion-slides>
+    <ion-slide>
+      <h1>Tablk</h1>
+      スマホのブラウザでも楽しめる、テーブルトークRPG向けのチャットアプリ
+    </ion-slide>
+    <ion-slide>
+      「テーブルトークRPG」という、
+      みんなでわいわいとテーブルを囲んで、
+      別の世界の人物になりきってお話ししながら、
+      すすめていくゲームがあります。
+    </ion-slide>
+    <ion-slide>
+      もちろん、ゲームに必要なほかの道具たち、
+      紙や、えんぴつ、サイコロも準備して、
+      みなさんが席につくのをお待ちしています。
+      あとはゲームの決まりごとが書かれた、
+      「ルールブック」を買って、
+      いっしょにあそぶ仲間を見つけるだけ。
+      テーブルという舞台ではじまる、
+      あなたと、仲間と、登場人物たちの
+      物語をつくりあげてみませんか？
+    </ion-slide>
+  </ion-slides>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-buttons start>
+      <ion-button clear (click)="pushTalkPage()">
+        ログイン
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-footer>
