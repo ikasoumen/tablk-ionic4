@@ -8,7 +8,7 @@
 
 <ion-content>
   <div padding>
-    <page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></page-title>
+    <app-page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></app-page-title>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
       <ion-list>
         <ion-item>

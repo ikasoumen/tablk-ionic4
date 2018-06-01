@@ -1,5 +1,12 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, ChangeDetectorRef } from "@angular/core";
 import { AuthManager } from "app/providers/authManager/authManager";
+import { ApiKeyInput } from "app/http";
+import {
+  ToastManager,
+  ToastCssType
+} from "app/providers/toastManager/toastManager";
+import { NgForm } from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
 
 /**
  * Login と Signup を modal 上で切り替えるための nav を持ったページ
@@ -10,7 +17,36 @@ import { AuthManager } from "app/providers/authManager/authManager";
   encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginNavRoot {
-  constructor(private authManager: AuthManager) {
-    return;
+  public params: ApiKeyInput = { email: "", password: "" };
+  public submitted = false;
+  public title = "Login";
+  public translatedTitle = "ログイン";
+
+  constructor(
+    private authManager: AuthManager,
+    private toastManager: ToastManager,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {}
+
+  public async onLogin(form: NgForm) {
+    this.submitted = true;
+
+    if (form.valid) {
+      try {
+        await this.authManager.login(this.params);
+        // flux で onLoginComplete の発火
+      } catch (e) {
+        const error: HttpErrorResponse = e;
+        this.toastManager.present(
+          error.error.error || error.message,
+          ToastCssType.Error
+        );
+      }
+    } else {
+      this.toastManager.present(
+        "メールアドレスとパスワードを\n両方とも入力してください",
+        ToastCssType.Error
+      );
+    }
   }
 }

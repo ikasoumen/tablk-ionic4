@@ -1,5 +1,28 @@
-<ion-content>
-  <particles [params]="params"></particles>
-</ion-content>
+<ion-header no-border>
+  <ion-toolbar no-border>
+    <ion-title>
+      {{ translatedTitle }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content>
+  <div padding>
+    <app-page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></app-page-title>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label color="primary" position="stacked">メールアドレス</ion-label>
+          <ion-input type="text" [(ngModel)]="params.email" name="email" spellcheck="false" autocapitalize="off"
+          required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" position="stacked">パスワード</ion-label>
+          <ion-input type="password" [(ngModel)]="params.password" name="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button type="submit" block>ログイン</ion-button>
+    </form>
+  </div>
+</ion-content>
 

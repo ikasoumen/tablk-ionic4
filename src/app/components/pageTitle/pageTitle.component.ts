@@ -9,7 +9,7 @@ import { ElementRef } from "@angular/core";
  */
 @Component({
   selector: "app-page-title",
-  templateUrl: "PageTitle.html"
+  templateUrl: "pageTitle.component.html"
 })
 export class PageTitle implements ElementRef {
   @Input() public title = "";

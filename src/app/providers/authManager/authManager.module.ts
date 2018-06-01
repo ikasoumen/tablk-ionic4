@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { AuthManager } from "./AuthManager";
+import { AuthManager } from "./authManager";
 
 @NgModule({
   imports: [],
