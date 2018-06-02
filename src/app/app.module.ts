@@ -19,6 +19,8 @@ import {
 import { environment } from "../environments/environment";
 import { LoginActions } from "./actions/login.action";
 import { LoginStore } from "./stores/login.store";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { Interceptor } from "app/http/intercepter";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -50,7 +52,12 @@ export function apiConfigFactory(): Configuration {
     LoginStore,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

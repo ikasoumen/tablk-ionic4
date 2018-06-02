@@ -8,7 +8,6 @@ import {
   ViewEncapsulation
 } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { LoginPage } from "app/pages/loginNav/login/login.page";
 import { NavController } from "@ionic/angular";
 import {
   ToastManager,
