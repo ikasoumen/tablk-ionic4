@@ -31,10 +31,6 @@ export class AuthManager {
     this.setApikeyToLocalStorage(response);
   }
 
-  public logout() {
-    this.unsetApikeyFromLocalStorage();
-  }
-
   public get observablelastLoginUser() {
     return this.lastLoginUser.asObservable();
   }
@@ -42,10 +38,6 @@ export class AuthManager {
   public async registration(param: SignupFormInput) {
     const response = await this.api.signupRegistrationPost(param).toPromise();
     this.setApikeyToLocalStorage(response);
-  }
-
-  public get isLogin() {
-    return getFromLocalStrage<LocalStorageKeys, "apiKey">("apiKey");
   }
 
   public get userAvatarUrl(): string {
