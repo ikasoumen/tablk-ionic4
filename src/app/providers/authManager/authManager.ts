@@ -26,10 +26,10 @@ export class AuthManager {
     );
   }
 
-  public async login(param: ApiKeyInput) {
-    const response = await this.api.authApiKeyPost(param).toPromise();
-    this.setApikeyToLocalStorage(response);
-  }
+  // public async login(param: ApiKeyInput) {
+  //   const response = await this.api.authApiKeyPost(param).toPromise();
+  //   this.setApikeyToLocalStorage(response);
+  // }
 
   public get observablelastLoginUser() {
     return this.lastLoginUser.asObservable();

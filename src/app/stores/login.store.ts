@@ -10,11 +10,11 @@ export class LoginStore {
   /**
    * ログインしているかどうか
    *
-   * @return boolean$ true ならば 2カラム表示されている
+   * @return boolean$
    */
-  getPaneSplitted$(): Observable<boolean> {
+  isLogined$(): Observable<boolean> {
     return this.store.observable.pipe(
-      map(state => state.appearances.paneSplitted),
+      map(state => state.login.apiKey != null),
       distinctUntilChanged()
     );
   }

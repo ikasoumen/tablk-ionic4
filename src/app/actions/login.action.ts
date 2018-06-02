@@ -25,6 +25,10 @@ export class LoginActions extends Actions<AppState> {
         const { apiKey, user } = await this.api
           .authApiKeyPost({ email, password })
           .toPromise();
+        if (apiKey == null) {
+          throw Error("空の api_key が返ってきました");
+        }
+
         setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
           "lastLoginUser",
           user

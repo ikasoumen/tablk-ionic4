@@ -7,6 +7,8 @@ import {
 } from "app/providers/toastManager/toastManager";
 import { NgForm } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
+import { LoginActions } from "../../actions/login.action";
+import { AppDispatcher } from "app/app.dispatcher";
 
 /**
  * Login と Signup を modal 上で切り替えるための nav を持ったページ
@@ -23,8 +25,9 @@ export class LoginNavRoot {
   public translatedTitle = "ログイン";
 
   constructor(
-    private authManager: AuthManager,
+    private loginActions: LoginActions,
     private toastManager: ToastManager,
+    private dispatcher: AppDispatcher,
     public changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -32,16 +35,8 @@ export class LoginNavRoot {
     this.submitted = true;
 
     if (form.valid) {
-      try {
-        await this.authManager.login(this.params);
-        // flux で onLoginComplete の発火
-      } catch (e) {
-        const error: HttpErrorResponse = e;
-        this.toastManager.present(
-          error.error.error || error.message,
-          ToastCssType.Error
-        );
-      }
+      const { email, password } = this.params;
+      this.dispatcher.emit(this.loginActions.login(email, password));
     } else {
       this.toastManager.present(
         "メールアドレスとパスワードを\n両方とも入力してください",

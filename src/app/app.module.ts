@@ -10,8 +10,15 @@ import { AppComponent } from "./app.component";
 import { AppDispatcher } from "./app.dispatcher";
 import { AppStore } from "./app.store";
 import { AppearancesStore } from "./stores/appearances.store";
-import { ApiModule, Configuration, ConfigurationParameters } from "./http";
+import {
+  ApiModule,
+  Configuration,
+  ConfigurationParameters,
+  DefaultService
+} from "./http";
 import { environment } from "../environments/environment";
+import { LoginActions } from "./actions/login.action";
+import { LoginStore } from "./stores/login.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -38,6 +45,9 @@ export function apiConfigFactory(): Configuration {
     AppDispatcher,
     AppStore,
     AppearancesStore,
+    DefaultService,
+    LoginActions,
+    LoginStore,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

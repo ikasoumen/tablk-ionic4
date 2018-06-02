@@ -13,7 +13,6 @@ import { ToastManagerModule } from "../../providers/toastManager/toastManager.mo
   imports: [
     ParticlesModule,
     IonicModule,
-    AuthManagerModule,
     PageTitleModule,
     FormsModule,
     ToastManagerModule
