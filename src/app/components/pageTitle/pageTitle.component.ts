@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ViewEncapsulation } from "@angular/core";
 import { ElementRef } from "@angular/core";
 
 /**
@@ -9,7 +9,9 @@ import { ElementRef } from "@angular/core";
  */
 @Component({
   selector: "app-page-title",
-  templateUrl: "pageTitle.component.html"
+  templateUrl: "pageTitle.component.html",
+  styleUrls: ["pageTitle.component.scss"],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class PageTitle implements ElementRef {
   @Input() public title = "";
