@@ -9,6 +9,7 @@ import { NgForm } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import { LoginActions } from "../../actions/login.action";
 import { AppDispatcher } from "app/app.dispatcher";
+import { ModalController } from "@ionic/angular";
 
 /**
  * Login と Signup を modal 上で切り替えるための nav を持ったページ
@@ -27,9 +28,14 @@ export class LoginNavRoot {
   constructor(
     private loginActions: LoginActions,
     private toastManager: ToastManager,
+    private modalCtrl: ModalController,
     private dispatcher: AppDispatcher,
     public changeDetectorRef: ChangeDetectorRef
   ) {}
+
+  public OnInit() {
+    this.modalCtrl.dismiss();
+  }
 
   public async onLogin(form: NgForm) {
     this.submitted = true;

@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane (ionChange)="splitPaneSubscribe($event)">
-    <ion-menu>
+    <ion-menu *ngIf="login.isLogined$() | async">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu {{ appearnce.getPaneSplitted$() | async }}</ion-title>

@@ -6,6 +6,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppDispatcher } from "./app.dispatcher";
 import { AppearancesActions } from "./actions/appearances.actions";
 import { AppearancesStore } from "./stores/appearances.store";
+import { LoginStore } from "./stores/login.store";
 
 @Component({
   selector: "app-root",
@@ -18,7 +19,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private dispatcher: AppDispatcher,
     private appearanceActions: AppearancesActions,
-    public appearnce: AppearancesStore
+    public appearnce: AppearancesStore,
+    public login: LoginStore
   ) {
     this.initializeApp();
   }
