@@ -11,7 +11,7 @@ export class LoginGuard implements CanActivate {
     return this.loginStore.isLogined$().pipe(
       map(isLogin => !isLogin),
       map(allowed => {
-        if (allowed) {
+        if (!allowed) {
           this.router.navigate(["/noLogin"]);
         }
         return allowed;

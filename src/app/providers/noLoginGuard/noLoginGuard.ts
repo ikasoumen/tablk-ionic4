@@ -10,7 +10,7 @@ export class NoLoginGuard implements CanActivate {
   canActivate() {
     return this.loginStore.isLogined$().pipe(
       map(allowed => {
-        if (allowed) {
+        if (!allowed) {
           this.router.navigate(["/dashBoard"]);
         }
         return allowed;
