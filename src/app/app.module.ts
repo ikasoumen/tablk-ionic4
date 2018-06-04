@@ -21,6 +21,8 @@ import { LoginActions } from "./actions/login.action";
 import { LoginStore } from "./stores/login.store";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interceptor } from "app/http/intercepter";
+import { LoginGuard } from "./providers/loginGuard/loginGuard";
+import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -57,7 +59,9 @@ export function apiConfigFactory(): Configuration {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
-    }
+    },
+    LoginGuard,
+    NoLoginGuard
   ],
   bootstrap: [AppComponent]
 })
