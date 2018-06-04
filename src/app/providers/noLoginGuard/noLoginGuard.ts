@@ -11,7 +11,7 @@ export class NoLoginGuard implements CanActivate {
     return this.loginStore.isLogined$().pipe(
       map(allowed => {
         if (allowed) {
-          this.router.navigate(["/joinedSessions"]);
+          this.router.navigate(["/dashBoard"]);
         }
         return allowed;
       })

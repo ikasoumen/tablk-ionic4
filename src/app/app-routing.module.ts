@@ -14,6 +14,11 @@ const routes: Routes = [
     path: "noLogin",
     loadChildren: "./pages/noLogin/noLogin.module#NoLoginPageModule",
     canActivate: [LoginGuard]
+  },
+  {
+    path: "dashBoard",
+    loadChildren: "./pages/dashBoard/dashBoard.module#DashBoardPageModule",
+    canActivate: [NoLoginGuard]
   }
 ];
 @NgModule({
