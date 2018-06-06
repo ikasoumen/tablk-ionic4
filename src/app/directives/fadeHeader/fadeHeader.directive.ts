@@ -5,4 +5,9 @@ import { Directive } from "@angular/core";
 })
 export class FadeHeaderDirective {
   constructor() {}
+
+  public OnInit() {
+    console.log("hoge");
+    debugger;
+  }
 }

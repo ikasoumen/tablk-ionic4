@@ -1,4 +1,4 @@
-import { FadeHeaderDirective } from "./fade-header.directive";
+import { FadeHeaderDirective } from "./fadeHeader.directive";
 
 describe("FadeHeaderDirective", () => {
   it("should create an instance", () => {
