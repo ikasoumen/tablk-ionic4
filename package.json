@@ -29,6 +29,7 @@
     "@ionic/schematics-angular": "latest",
     "angular-particle": "^1.0.4",
     "core-js": "^2.5.3",
+    "intersection-observer": "^0.5.0",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.6.0",
     "rxjs": "6.1.0",

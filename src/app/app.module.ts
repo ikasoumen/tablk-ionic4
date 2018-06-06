@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interceptor } from "app/http/intercepter";
 import { LoginGuard } from "./providers/loginGuard/loginGuard";
 import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
+import { FadeHeaderDirective } from "./directives/fade-header.directive";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -33,7 +34,7 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FadeHeaderDirective],
   entryComponents: [],
   imports: [
     BrowserModule,
