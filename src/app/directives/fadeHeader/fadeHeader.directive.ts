@@ -8,6 +8,5 @@ export class FadeHeaderDirective {
 
   public OnInit() {
     console.log("hoge");
-    debugger;
   }
 }

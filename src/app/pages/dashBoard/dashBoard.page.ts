@@ -8,4 +8,8 @@ import { Component, ElementRef, ChangeDetectorRef } from "@angular/core";
 export class DashBoardPage {
   public translatedTitle = "ダッシュボード";
   public title = "Dashboard";
+
+  constructor() {}
+
+  OnInit() {}
 }
