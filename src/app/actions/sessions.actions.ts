@@ -23,9 +23,19 @@ export class SessionActions extends Actions<AppState> {
   getJoinedSessions(): DelayedAction<AppState> {
     return st => {
       return this.delayed(async apply => {
-        const { sessions } = await this.api.sessionsGet().toPromise();
+        const {
+          sessions,
+          members,
+          characters,
+          users,
+          notes
+        } = await this.api.sessionsGet().toPromise();
         apply(_st => {
           _st.sessions = _st.sessions.addSome(sessions);
+          _st.characters = _st.characters.addSome(characters);
+          _st.notes = _st.notes.addSome(notes);
+          _st.users = _st.users.addSome(users);
+          _st.members = _st.members.addSome(members);
           return _st;
         });
       });
