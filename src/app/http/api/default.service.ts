@@ -24,7 +24,7 @@ import { CustomHttpUrlEncodingCodec } from "../encoder";
 import { Observable } from "rxjs/Observable";
 
 import { ApiKeyResponse } from "../model/apiKeyResponse";
-import { ApikeyInput } from "../model/apikeyInput";
+import { ApikeyInput } from "../model/apiKeyInput";
 import { ErrorResponse } from "../model/errorResponse";
 import { SessionCreateInput } from "../model/sessionCreateInput";
 import { SessionDeleteInput } from "../model/sessionDeleteInput";

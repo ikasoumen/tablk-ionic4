@@ -15,11 +15,11 @@ export class AppState extends State {
   appearances: {
     paneSplitted: boolean;
   };
-  sessions: KeySet<Session, "id">;
-  characters: KeySet<Character, "id">;
-  notes: KeySet<Note, "id">;
-  users: KeySet<User, "id">;
-  members: KeySet<Member, "id">;
+  sessions: { [key: string]: Session };
+  characters: { [key: string]: Character };
+  notes: { [key: string]: Note };
+  users: { [key: string]: User };
+  members: { [key: string]: Member };
 }
 
 const INIT_STATE: AppState = {
@@ -32,11 +32,11 @@ const INIT_STATE: AppState = {
   appearances: {
     paneSplitted: false
   },
-  sessions: new KeySet<Session, "id">("id"),
-  characters: new KeySet<Character, "id">("id"),
-  notes: new KeySet<Note, "id">("id"),
-  users: new KeySet<User, "id">("id"),
-  members: new KeySet<Member, "id">("id")
+  sessions: {},
+  characters: {},
+  notes: {},
+  users: {},
+  members: {}
 };
 
 @Injectable()

@@ -3,7 +3,8 @@ import { Actions, Action } from "walts";
 
 import { AppState } from "../app.store";
 import { DelayedAction } from "walts/src/actions";
-import { DefaultService } from "../http";
+import { DefaultService, SessionsResponse } from "../http";
+import { keyBy } from "lodash";
 
 @Injectable()
 /**
@@ -29,14 +30,16 @@ export class SessionActions extends Actions<AppState> {
           characters,
           users,
           notes
-        } = await this.api.sessionsGet().toPromise();
+        } = (await this.api.sessionsGet().toPromise()) as SessionsResponse;
         apply(_st => {
-          _st.sessions = _st.sessions.addSome(sessions);
-          _st.characters = _st.characters.addSome(characters);
-          _st.notes = _st.notes.addSome(notes);
-          _st.users = _st.users.addSome(users);
-          _st.members = _st.members.addSome(members);
-          return _st;
+          return {
+            ..._st,
+            sessions: { ..._st.sessions, ...keyBy(sessions, "id") },
+            members: { ..._st.members, ...keyBy(members, "id") },
+            characters: { ..._st.characters, ...keyBy(characters, "id") },
+            users: { ..._st.users, ...keyBy(users, "id") },
+            notes: { ..._st.notes, ...keyBy(notes, "id") }
+          } as AppState;
         });
       });
     };
