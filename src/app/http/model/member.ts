@@ -12,6 +12,7 @@
 
 export interface Member {
   id: number;
+  sessionId: number;
   userId: number;
   imageUrl: string;
   /**

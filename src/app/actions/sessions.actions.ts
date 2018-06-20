@@ -25,7 +25,7 @@ export class SessionActions extends Actions<AppState> {
       return this.delayed(async apply => {
         const { sessions } = await this.api.sessionsGet().toPromise();
         apply(_st => {
-          _st.sessions = { ..._st.sessions, sessions };
+          _st.sessions = _st.sessions.addSome(sessions);
           return _st;
         });
       });

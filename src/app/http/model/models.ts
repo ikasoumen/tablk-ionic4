@@ -15,7 +15,6 @@ export * from "./noteKey";
 export * from "./session";
 export * from "./sessionCreateInput";
 export * from "./sessionDeleteInput";
-export * from "./sessionResponse";
 export * from "./sessionTokens";
 export * from "./sessionTokensResponse";
 export * from "./sessionsResponse";

@@ -21,14 +21,13 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Observable";
 
 import { ApiKeyResponse } from "../model/apiKeyResponse";
-import { ApiKeyInput } from "../model/apiKeyInput";
+import { ApikeyInput } from "../model/apikeyInput";
 import { ErrorResponse } from "../model/errorResponse";
 import { SessionCreateInput } from "../model/sessionCreateInput";
 import { SessionDeleteInput } from "../model/sessionDeleteInput";
-import { SessionResponse } from "../model/sessionResponse";
 import { SessionsResponse } from "../model/sessionsResponse";
 import { SignupFormInput } from "../model/signupFormInput";
 import { SignupPostInput } from "../model/signupPostInput";
@@ -65,7 +64,7 @@ export class DefaultService {
    */
   private canConsumeForm(consumes: string[]): boolean {
     const form = "multipart/form-data";
-    for (const consume of consumes) {
+    for (let consume of consumes) {
       if (form === consume) {
         return true;
       }
@@ -81,22 +80,22 @@ export class DefaultService {
    * @param reportProgress flag to report request and response progress.
    */
   public authApiKeyPost(
-    apiKeyInput: ApiKeyInput,
+    apiKeyInput: ApikeyInput,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<ApiKeyResponse>;
   public authApiKeyPost(
-    apiKeyInput: ApiKeyInput,
+    apiKeyInput: ApikeyInput,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<ApiKeyResponse>>;
   public authApiKeyPost(
-    apiKeyInput: ApiKeyInput,
+    apiKeyInput: ApikeyInput,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<ApiKeyResponse>>;
   public authApiKeyPost(
-    apiKeyInput: ApiKeyInput,
+    apiKeyInput: ApikeyInput,
     observe: any = "body",
     reportProgress: boolean = false
   ): Observable<any> {
@@ -109,20 +108,20 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 
@@ -163,16 +162,16 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
+    let consumes: string[] = ["application/json"];
 
     return this.httpClient.get<SessionsResponse>(`${this.basePath}/sessions`, {
       withCredentials: this.configuration.withCredentials,
@@ -193,17 +192,17 @@ export class DefaultService {
     sessionCreateInput: SessionCreateInput,
     observe?: "body",
     reportProgress?: boolean
-  ): Observable<SessionResponse>;
+  ): Observable<SessionsResponse>;
   public sessionsPost(
     sessionCreateInput: SessionCreateInput,
     observe?: "response",
     reportProgress?: boolean
-  ): Observable<HttpResponse<SessionResponse>>;
+  ): Observable<HttpResponse<SessionsResponse>>;
   public sessionsPost(
     sessionCreateInput: SessionCreateInput,
     observe?: "events",
     reportProgress?: boolean
-  ): Observable<HttpEvent<SessionResponse>>;
+  ): Observable<HttpEvent<SessionsResponse>>;
   public sessionsPost(
     sessionCreateInput: SessionCreateInput,
     observe: any = "body",
@@ -218,24 +217,24 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 
-    return this.httpClient.post<SessionResponse>(
+    return this.httpClient.post<SessionsResponse>(
       `${this.basePath}/sessions`,
       sessionCreateInput,
       {
@@ -293,20 +292,20 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 
@@ -332,17 +331,17 @@ export class DefaultService {
     sessionId: number,
     observe?: "body",
     reportProgress?: boolean
-  ): Observable<SessionResponse>;
+  ): Observable<SessionsResponse>;
   public sessionsSessionIdGet(
     sessionId: number,
     observe?: "response",
     reportProgress?: boolean
-  ): Observable<HttpResponse<SessionResponse>>;
+  ): Observable<HttpResponse<SessionsResponse>>;
   public sessionsSessionIdGet(
     sessionId: number,
     observe?: "events",
     reportProgress?: boolean
-  ): Observable<HttpEvent<SessionResponse>>;
+  ): Observable<HttpEvent<SessionsResponse>>;
   public sessionsSessionIdGet(
     sessionId: number,
     observe: any = "body",
@@ -357,18 +356,18 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
+    let consumes: string[] = ["application/json"];
 
-    return this.httpClient.get<SessionResponse>(
+    return this.httpClient.get<SessionsResponse>(
       `${this.basePath}/sessions/${encodeURIComponent(String(sessionId))}`,
       {
         withCredentials: this.configuration.withCredentials,
@@ -392,19 +391,19 @@ export class DefaultService {
     sessionCreateInput: SessionCreateInput,
     observe?: "body",
     reportProgress?: boolean
-  ): Observable<SessionResponse>;
+  ): Observable<SessionsResponse>;
   public sessionsSessionIdPatch(
     sessionId: number,
     sessionCreateInput: SessionCreateInput,
     observe?: "response",
     reportProgress?: boolean
-  ): Observable<HttpResponse<SessionResponse>>;
+  ): Observable<HttpResponse<SessionsResponse>>;
   public sessionsSessionIdPatch(
     sessionId: number,
     sessionCreateInput: SessionCreateInput,
     observe?: "events",
     reportProgress?: boolean
-  ): Observable<HttpEvent<SessionResponse>>;
+  ): Observable<HttpEvent<SessionsResponse>>;
   public sessionsSessionIdPatch(
     sessionId: number,
     sessionCreateInput: SessionCreateInput,
@@ -425,24 +424,24 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 
-    return this.httpClient.patch<SessionResponse>(
+    return this.httpClient.patch<SessionsResponse>(
       `${this.basePath}/sessions/${encodeURIComponent(String(sessionId))}`,
       sessionCreateInput,
       {
@@ -490,20 +489,20 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 
@@ -555,20 +554,20 @@ export class DefaultService {
     let headers = this.defaultHeaders;
 
     // to determine the Accept header
-    const httpHeaderAccepts: string[] = ["application/json"];
-    const httpHeaderAcceptSelected:
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
       | string
       | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected !== undefined) {
+    if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set("Accept", httpHeaderAcceptSelected);
     }
 
     // to determine the Content-Type header
-    const consumes: string[] = ["application/json"];
-    const httpContentTypeSelected:
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
       | string
       | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected !== undefined) {
+    if (httpContentTypeSelected != undefined) {
       headers = headers.set("Content-Type", httpContentTypeSelected);
     }
 

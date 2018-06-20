@@ -9,20 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { CharacterKey } from "./characterKey";
-import { MemberKey } from "./memberKey";
-import { NoteKey } from "./noteKey";
-import { UserKey } from "./userKey";
 
 export interface Session {
   id: number;
+  userId: number;
   name: string;
   imageUrl: string;
   description: string;
   catchphrase: string;
   scenarioName: string;
-  memberIds: Array<MemberKey>;
-  characterIds: Array<CharacterKey>;
-  userIds: Array<UserKey>;
-  noteIds: Array<NoteKey>;
 }

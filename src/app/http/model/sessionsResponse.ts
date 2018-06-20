@@ -9,8 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { SessionResponse } from "./sessionResponse";
+import { Character } from "./character";
+import { Member } from "./member";
+import { Note } from "./note";
+import { Session } from "./session";
+import { User } from "./user";
 
 export interface SessionsResponse {
-  sessions: Array<SessionResponse>;
+  sessions: Array<Session>;
+  members: Array<Member>;
+  characters: Array<Character>;
+  users: Array<User>;
+  notes: Array<Note>;
 }
