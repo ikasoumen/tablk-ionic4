@@ -24,18 +24,8 @@ export class SessionActions extends Actions<AppState> {
     return st => {
       return this.delayed(async apply => {
         const { sessions } = await this.api.sessionsGet().toPromise();
-        if (apiKey == null) {
-          throw Error("空の api_key が返ってきました");
-        }
-
-        setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
-          "lastLoginUser",
-          user
-        );
-        setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", apiKey);
         apply(_st => {
-          _st.login.apiKey = apiKey;
-          _st.login.lastLoginUser = user;
+          _st.sessions = { ..._st.sessions, sessions };
           return _st;
         });
       });

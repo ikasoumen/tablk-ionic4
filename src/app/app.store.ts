@@ -2,9 +2,10 @@ import { Injectable } from "@angular/core";
 import { State, Store } from "walts";
 
 import { AppDispatcher } from "./app.dispatcher";
-import { User } from "./http";
+import { User, Session } from "./http";
 import { getFromLocalStrage } from "app/helpers/localStorageKey";
 import { LocalStorageKeys } from "./constants";
+import { KeySet } from "./helpers/keySet";
 
 export class AppState extends State {
   login: {
@@ -14,6 +15,7 @@ export class AppState extends State {
   appearances: {
     paneSplitted: boolean;
   };
+  sessions: KeySet<Session, "id">;
 }
 
 const INIT_STATE: AppState = {
@@ -25,7 +27,8 @@ const INIT_STATE: AppState = {
   },
   appearances: {
     paneSplitted: false
-  }
+  },
+  sessions: new KeySet<Session, "id">("id")
 };
 
 @Injectable()
