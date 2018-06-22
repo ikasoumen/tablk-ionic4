@@ -32,14 +32,12 @@ export class SessionActions extends Actions<AppState> {
           notes
         } = (await this.api.sessionsGet().toPromise()) as SessionsResponse;
         apply(_st => {
-          return {
-            ..._st,
-            sessions: { ..._st.sessions, ...keyBy(sessions, "id") },
-            members: { ..._st.members, ...keyBy(members, "id") },
-            characters: { ..._st.characters, ...keyBy(characters, "id") },
-            users: { ..._st.users, ...keyBy(users, "id") },
-            notes: { ..._st.notes, ...keyBy(notes, "id") }
-          } as AppState;
+          _st.sessions = _st.sessions.addSome(sessions);
+          _st.members = _st.members.addSome(members);
+          _st.characters = _st.characters.addSome(characters);
+          _st.users = _st.users.addSome(users);
+          _st.notes = _st.notes.addSome(notes);
+          return _st;
         });
       });
     };

@@ -6,6 +6,7 @@ import { User, Session, Character, Member, Note } from "./http";
 import { getFromLocalStrage } from "app/helpers/localStorageKey";
 import { LocalStorageKeys } from "./constants";
 import { KeySet } from "./helpers/keySet";
+import { Dictionary } from "lodash";
 
 export class AppState extends State {
   login: {
@@ -15,11 +16,11 @@ export class AppState extends State {
   appearances: {
     paneSplitted: boolean;
   };
-  sessions: { [key: string]: Session };
-  characters: { [key: string]: Character };
-  notes: { [key: string]: Note };
-  users: { [key: string]: User };
-  members: { [key: string]: Member };
+  sessions: KeySet<Session, "id">;
+  characters: KeySet<Character, "id">;
+  notes: KeySet<Note, "id">;
+  users: KeySet<User, "id">;
+  members: KeySet<Member, "id">;
 }
 
 const INIT_STATE: AppState = {
@@ -32,11 +33,11 @@ const INIT_STATE: AppState = {
   appearances: {
     paneSplitted: false
   },
-  sessions: {},
-  characters: {},
-  notes: {},
-  users: {},
-  members: {}
+  sessions: new KeySet<Session, "id">("id"),
+  characters: new KeySet<Character, "id">("id"),
+  notes: new KeySet<Note, "id">("id"),
+  users: new KeySet<User, "id">("id"),
+  members: new KeySet<Member, "id">("id")
 };
 
 @Injectable()

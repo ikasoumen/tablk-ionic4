@@ -1,20 +1,27 @@
 import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
-import { map, distinctUntilChanged } from "rxjs/operators";
-import { Session } from "protractor";
+import { map, mergeMap } from "rxjs/operators";
+import { Session } from "app/http";
 
 @Injectable()
-export class AppearancesStore {
+export class SessionsStore {
   constructor(private store: AppStore) {}
 
   /**
    *
    */
-  getJoinedSessions$(): Observable<Dummyable<Session>[]> {
+  readSome$(ids$: Observable<number[]>): Observable<Session[]> {
     return this.store.observable.pipe(
-      map(state => state.appearances.paneSplitted),
-      distinctUntilChanged()
+      mergeMap(store => {
+        return ids$.pipe(
+          map(ids =>
+            Array.from(store.sessions.values()).filter(session =>
+              ids.includes(session.id)
+            )
+          )
+        );
+      })
     );
   }
 }
