@@ -16,9 +16,9 @@ import { Session } from "./session";
 import { User } from "./user";
 
 export interface SessionsResponse {
-  sessions: Array<Session>;
-  members: Array<Member>;
-  characters: Array<Character>;
-  users: Array<User>;
-  notes: Array<Note>;
+  sessions: { [key: string]: Session };
+  members: { [key: string]: Member };
+  characters: { [key: string]: Character };
+  users: { [key: string]: User };
+  notes: { [key: string]: Note };
 }

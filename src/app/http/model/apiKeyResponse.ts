@@ -13,5 +13,5 @@ import { User } from "./user";
 
 export interface ApiKeyResponse {
   apiKey: string;
-  user: User;
+  users: { [key: string]: User };
 }

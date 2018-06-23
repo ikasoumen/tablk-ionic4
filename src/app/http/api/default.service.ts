@@ -23,8 +23,8 @@ import { CustomHttpUrlEncodingCodec } from "../encoder";
 
 import { Observable } from "rxjs/Observable";
 
+import { ApiKeyInput } from "../model/apiKeyInput";
 import { ApiKeyResponse } from "../model/apiKeyResponse";
-import { ApikeyInput } from "../model/apiKeyInput";
 import { ErrorResponse } from "../model/errorResponse";
 import { SessionCreateInput } from "../model/sessionCreateInput";
 import { SessionDeleteInput } from "../model/sessionDeleteInput";
@@ -80,22 +80,22 @@ export class DefaultService {
    * @param reportProgress flag to report request and response progress.
    */
   public authApiKeyPost(
-    apiKeyInput: ApikeyInput,
+    apiKeyInput: ApiKeyInput,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<ApiKeyResponse>;
   public authApiKeyPost(
-    apiKeyInput: ApikeyInput,
+    apiKeyInput: ApiKeyInput,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<ApiKeyResponse>>;
   public authApiKeyPost(
-    apiKeyInput: ApikeyInput,
+    apiKeyInput: ApiKeyInput,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<ApiKeyResponse>>;
   public authApiKeyPost(
-    apiKeyInput: ApikeyInput,
+    apiKeyInput: ApiKeyInput,
     observe: any = "body",
     reportProgress: boolean = false
   ): Observable<any> {
