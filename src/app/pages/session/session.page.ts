@@ -10,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Session } from "app/http";
 import { InputChangeEvent } from "@ionic/core";
 import { SessionActions } from "../../actions/sessions.actions";
+import { AppDispatcher } from "../../app.dispatcher";
 
 enum segments {
   Description = "Description",
@@ -31,7 +32,8 @@ export class SessionPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private sessionActions: SessionActions,
-    private sessions: SessionsStore
+    private sessions: SessionsStore,
+    private dispatcher: AppDispatcher
   ) {}
 
   public ngOnInit() {
@@ -39,7 +41,11 @@ export class SessionPage implements OnInit {
       this.id = params.id;
     });
     this.session$ = this.sessions.readOne$(of(this.id));
-    this.sessionActions.getJoinedSessions();
+    try {
+      this.dispatcher.emit(this.sessionActions.getSessionOne(this.id));
+    } catch (e) {
+      throw e;
+    }
   }
 
   public get segment() {

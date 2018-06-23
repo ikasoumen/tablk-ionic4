@@ -5,6 +5,9 @@ import { AppState } from "../app.store";
 import { DelayedAction } from "walts/src/actions";
 import { DefaultService, SessionsResponse } from "../http";
 import { addSome, setSome } from "../helpers/helpers";
+import { HttpErrorResponse } from "@angular/common/http";
+import { ToastController } from "@ionic/angular";
+import { HttpErrorHandler } from "../providers/httpErrorHandler";
 
 @Injectable()
 /**
@@ -14,7 +17,10 @@ import { addSome, setSome } from "../helpers/helpers";
  * write, flush はローカルの更新に用いる
  */
 export class SessionActions extends Actions<AppState> {
-  constructor(public api: DefaultService) {
+  constructor(
+    private api: DefaultService,
+    private httpError: HttpErrorHandler
+  ) {
     super();
   }
 
@@ -24,22 +30,14 @@ export class SessionActions extends Actions<AppState> {
   getJoinedSessions(): DelayedAction<AppState> {
     return st => {
       return this.delayed(async apply => {
-        const {
-          sessions,
-          members,
-          characters,
-          users,
-          notes
-        } = (await this.api.sessionsGet().toPromise()) as SessionsResponse;
-        apply(_st => {
-          _st.my.sessionIds = addSome(_st.my.sessionIds, Object.keys(sessions));
-          _st.sessions = setSome(_st.sessions, Object.entries(sessions));
-          _st.members = setSome(_st.members, Object.entries(members));
-          _st.characters = setSome(_st.characters, Object.entries(characters));
-          _st.users = setSome(_st.users, Object.entries(users));
-          _st.notes = setSome(_st.notes, Object.entries(notes));
-          return _st;
-        });
+        const responce = (await this.api
+          .sessionsGet()
+          .toPromise()
+          .catch(error => {
+            this.httpError.handle(error);
+            throw error;
+          })) as SessionsResponse;
+        apply(_st => this.applyResponce(_st, responce));
       });
     };
   }
@@ -47,25 +45,26 @@ export class SessionActions extends Actions<AppState> {
   getSessionOne(id: string): DelayedAction<AppState> {
     return st => {
       return this.delayed(async apply => {
-        const {
-          sessions,
-          members,
-          characters,
-          users,
-          notes
-        } = (await this.api
+        const responce = (await this.api
           .sessionsSessionIdGet(id)
-          .toPromise()) as SessionsResponse;
-        apply(_st => {
-          _st.my.sessionIds = addSome(_st.my.sessionIds, Object.keys(sessions));
-          _st.sessions = setSome(_st.sessions, Object.entries(sessions));
-          _st.members = setSome(_st.members, Object.entries(members));
-          _st.characters = setSome(_st.characters, Object.entries(characters));
-          _st.users = setSome(_st.users, Object.entries(users));
-          _st.notes = setSome(_st.notes, Object.entries(notes));
-          return _st;
-        });
+          .toPromise()
+          .catch(error => {
+            this.httpError.handle(error);
+            throw error;
+          })) as SessionsResponse;
+        apply(_st => this.applyResponce(_st, responce));
       });
     };
+  }
+
+  private applyResponce(state: AppState, responce: SessionsResponse): AppState {
+    const { sessions, members, characters, users, notes } = responce;
+    state.my.sessionIds = addSome(state.my.sessionIds, Object.keys(sessions));
+    state.sessions = setSome(state.sessions, Object.entries(sessions));
+    state.members = setSome(state.members, Object.entries(members));
+    state.characters = setSome(state.characters, Object.entries(characters));
+    state.users = setSome(state.users, Object.entries(users));
+    state.notes = setSome(state.notes, Object.entries(notes));
+    return state;
   }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ErrorHandler } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -27,6 +27,8 @@ import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directiv
 import { SessionsStore } from "app/stores/sessions.store";
 import { SessionActions } from "app/actions/sessions.actions";
 import { MemberStore } from "./stores/member.store";
+import { TablkErrorHandler } from "app/helpers/tablkErrorHandler";
+import { HttpErrorHandler } from "./providers/httpErrorHandler";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -59,6 +61,7 @@ export function apiConfigFactory(): Configuration {
     SessionActions,
     SessionsStore,
     MemberStore,
+    HttpErrorHandler,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -67,6 +70,7 @@ export function apiConfigFactory(): Configuration {
       useClass: Interceptor,
       multi: true
     },
+    { provide: ErrorHandler, useClass: TablkErrorHandler },
     LoginGuard,
     NoLoginGuard
   ],
