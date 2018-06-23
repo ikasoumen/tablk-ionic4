@@ -23,7 +23,7 @@ namespace SessionPage {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionPage implements OnInit {
-  public session$: Observable<Session>;
+  public session$: Observable<{ exist: boolean; _: Session }>;
   private id: string;
 
   constructor(private route: ActivatedRoute, private sessions: SessionsStore) {}

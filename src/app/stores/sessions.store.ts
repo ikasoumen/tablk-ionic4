@@ -4,6 +4,16 @@ import { Observable } from "rxjs";
 import { map, mergeMap, filter } from "rxjs/operators";
 import { Session } from "app/http";
 
+export class DummySession implements Session {
+  public id: never;
+  public userId: never;
+  public name: never;
+  public imageUrl: never;
+  public description: never;
+  public catchphrase: never;
+  public scenarioName: never;
+}
+
 @Injectable()
 export class SessionsStore {
   constructor(private store: AppStore) {}
@@ -25,12 +35,19 @@ export class SessionsStore {
     );
   }
 
-  readOne$(id$: Observable<string>): Observable<Session> {
+  readOne$(
+    id$: Observable<string>
+  ): Observable<{ exist: boolean; _: Session }> {
     return this.store.observable.pipe(
       mergeMap(store => {
         return id$.pipe(
-          map(id => store.sessions.get(id)),
-          filter((session?: Session) => session != null)
+          map(id => {
+            const exist = store.sessions.has(id);
+            return {
+              exist,
+              _: exist ? store.sessions.get(id) : new DummySession()
+            };
+          })
         );
       })
     );
