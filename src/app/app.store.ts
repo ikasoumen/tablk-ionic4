@@ -38,13 +38,13 @@ const INIT_STATE: AppState = {
     paneSplitted: false
   },
   my: {
-    sessionIds: new Set2<number>()
+    sessionIds: new Set<number>()
   },
-  sessions: new KeySet<Session, "id">("id"),
-  characters: new KeySet<Character, "id">("id"),
-  notes: new KeySet<Note, "id">("id"),
-  users: new KeySet<User, "id">("id"),
-  members: new KeySet<Member, "id">("id")
+  sessions: new Map<string, Session>(),
+  characters: new Map<string, Character>(),
+  notes: new Map<string, Note>(),
+  users: new Map<string, User>(),
+  members: new Map<string, Member>()
 };
 
 @Injectable()
