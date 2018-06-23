@@ -11,7 +11,21 @@ export class SessionsStore {
   /**
    *
    */
-  readSome$(ids$: Observable<number[]>): Observable<Session[]> {
+  readSome$(ids$: Observable<string[]>): Observable<Session[]> {
+    return this.store.observable.pipe(
+      mergeMap(store => {
+        return ids$.pipe(
+          map(ids =>
+            Array.from(store.sessions.values()).filter(session =>
+              ids.includes(session.id)
+            )
+          )
+        );
+      })
+    );
+  }
+
+  readOne$(ids$: Observable<string[]>): Observable<Session[]> {
     return this.store.observable.pipe(
       mergeMap(store => {
         return ids$.pipe(

@@ -26,8 +26,6 @@ import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
 import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directive";
 import { SessionsStore } from "app/stores/sessions.store";
 import { SessionActions } from "app/actions/sessions.actions";
-import { HogehogeComponent } from "./hogehoge/hogehoge.component";
-import { SessionListComponent } from "./session-list/session-list.component";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -38,12 +36,7 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FadeHeaderDirective,
-    HogehogeComponent,
-    SessionListComponent
-  ],
+  declarations: [AppComponent, FadeHeaderDirective],
   entryComponents: [],
   imports: [
     BrowserModule,

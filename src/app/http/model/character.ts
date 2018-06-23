@@ -11,8 +11,8 @@
  */
 
 export interface Character {
-  id: number;
+  id: string;
   name: string;
   imageUrl: string;
-  sessionId: number;
+  sessionId: string;
 }

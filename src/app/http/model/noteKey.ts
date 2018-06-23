@@ -11,5 +11,5 @@
  */
 
 export interface NoteKey {
-  id: number;
+  id: string;
 }

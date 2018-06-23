@@ -11,5 +11,5 @@
  */
 
 export interface UserKey {
-  id: number;
+  id: string;
 }

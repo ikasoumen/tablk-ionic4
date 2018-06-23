@@ -1,3 +1,7 @@
-<p>
-  session-list-item works!
-</p>
+<ion-item
+  (tap)="pushSessionPage(session)"
+>
+  <img class="thumbnail" src="{{session.imageUrl}}" item-start>
+  <h2>{{session.name}}</h2>
+  <member-mini-list [memberIds$]="session.memberIds"></member-mini-list>
+</button>

@@ -11,8 +11,8 @@
  */
 
 export interface Note {
-  id: number;
+  id: string;
   title: string;
   body: string;
-  memberId: number;
+  memberId: string;
 }

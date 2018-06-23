@@ -11,16 +11,13 @@
  */
 
 export interface Member {
-  id: number;
-  sessionId: number;
-  userId: number;
+  id: string;
+  sessionId: string;
   imageUrl: string;
-  /**
-   * typeがGameMasterの時には存在しない
-   */
-  defaultCharacterId?: number;
+  defaultCharacterId?: string;
   color: string;
   type: Member.TypeEnum;
+  userId?: string;
 }
 export namespace Member {
   export type TypeEnum = "Player" | "GameMaster";

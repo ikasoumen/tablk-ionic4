@@ -2,8 +2,11 @@ import {
   Component,
   OnInit,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnChanges,
+  Input
 } from "@angular/core";
+import { SessionsStore } from "app/stores/sessions.store";
 
 @Component({
   selector: "tablk-session-list-item",
@@ -12,8 +15,12 @@ import {
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SessionListItemComponent implements OnInit {
-  constructor() {}
+export class SessionListItemComponent implements OnChanges {
+  @Input() private id: string;
 
-  ngOnInit() {}
+  constructor(public sessions: SessionsStore) {}
+
+  ngOnChanges() {
+    this.sessions.readSome$();
+  }
 }

@@ -11,5 +11,5 @@
  */
 
 export interface CharacterKey {
-  id: number;
+  id: string;
 }

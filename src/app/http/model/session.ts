@@ -11,8 +11,8 @@
  */
 
 export interface Session {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
   name: string;
   imageUrl: string;
   description: string;

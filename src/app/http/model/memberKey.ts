@@ -11,5 +11,5 @@
  */
 
 export interface MemberKey {
-  id: number;
+  id: string;
 }
