@@ -22,7 +22,7 @@ export class LoginActions extends Actions<AppState> {
   login(email: string, password: string): DelayedAction<AppState> {
     return st => {
       return this.delayed(async apply => {
-        const { apiKey, user } = await this.api
+        const { apiKey, users } = await this.api
           .authApiKeyPost({ email, password })
           .toPromise();
         if (apiKey == null) {
@@ -31,12 +31,12 @@ export class LoginActions extends Actions<AppState> {
 
         setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
           "lastLoginUser",
-          user
+          users[0]
         );
         setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", apiKey);
         apply(_st => {
           _st.login.apiKey = apiKey;
-          _st.login.lastLoginUser = user;
+          _st.login.lastLoginUser = users[0];
           return _st;
         });
       });

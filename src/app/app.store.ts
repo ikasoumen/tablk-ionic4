@@ -5,9 +5,6 @@ import { AppDispatcher } from "./app.dispatcher";
 import { User, Session, Character, Member, Note } from "./http";
 import { getFromLocalStrage } from "app/helpers/localStorageKey";
 import { LocalStorageKeys } from "./constants";
-import { KeySet } from "./helpers/keySet";
-import { Dictionary } from "lodash";
-import { Set2 } from "./helpers/Set2";
 
 export class AppState extends State {
   login: {
@@ -18,7 +15,7 @@ export class AppState extends State {
     paneSplitted: boolean;
   };
   my: {
-    sessionIds: Set<number>;
+    sessionIds: Set<string>;
   };
   sessions: Map<string, Session>;
   characters: Map<string, Character>;
@@ -38,7 +35,7 @@ const INIT_STATE: AppState = {
     paneSplitted: false
   },
   my: {
-    sessionIds: new Set<number>()
+    sessionIds: new Set<string>()
   },
   sessions: new Map<string, Session>(),
   characters: new Map<string, Character>(),

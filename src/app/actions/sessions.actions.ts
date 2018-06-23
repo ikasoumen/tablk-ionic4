@@ -4,6 +4,7 @@ import { Actions, Action } from "walts";
 import { AppState } from "../app.store";
 import { DelayedAction } from "walts/src/actions";
 import { DefaultService, SessionsResponse } from "../http";
+import { addSome, setSome } from "../helpers/helpers";
 
 @Injectable()
 /**
@@ -31,14 +32,12 @@ export class SessionActions extends Actions<AppState> {
           notes
         } = (await this.api.sessionsGet().toPromise()) as SessionsResponse;
         apply(_st => {
-          _st.my.sessionIds = _st.my.sessionIds.addSome(
-            sessions.map(s => s.id)
-          );
-          _st.sessions = _st.sessions.addSome(sessions);
-          _st.members = _st.members.addSome(members);
-          _st.characters = _st.characters.addSome(characters);
-          _st.users = _st.users.addSome(users);
-          _st.notes = _st.notes.addSome(notes);
+          _st.my.sessionIds = addSome(_st.my.sessionIds, Object.keys(sessions));
+          _st.sessions = setSome(_st.sessions, Object.entries(sessions));
+          _st.members = setSome(_st.members, Object.entries(members));
+          _st.characters = setSome(_st.characters, Object.entries(characters));
+          _st.users = setSome(_st.users, Object.entries(users));
+          _st.notes = setSome(_st.notes, Object.entries(notes));
           return _st;
         });
       });

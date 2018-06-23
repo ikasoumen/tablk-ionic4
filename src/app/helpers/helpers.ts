@@ -1,4 +1,4 @@
-export function setSome<K extends keyof T, T>(
+export function setSome<K, T>(
   map: Map<K, T>,
   dictionary: Iterable<[K, T]>
 ): Map<K, T> {
