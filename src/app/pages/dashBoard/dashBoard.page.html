@@ -9,9 +9,9 @@
 <ion-content #content>
   <ion-list>
     <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item *ngFor="let session of (sessions.readMy$() | async)">
+    <ion-item *ngFor="let id of (sessions.readMyIds$() | async)">
       <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      {{ session.name }}
+      {{ id }}
     </ion-item>
   </ion-list>
 </ion-content>
