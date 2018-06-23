@@ -4,7 +4,7 @@
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
       <ion-title>
-        セッション情報
+        セッション
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -25,8 +25,7 @@
       <div class="button-container" padding>
         <div>
           <ion-button
-            round
-            small
+            shape="round"
             icon-start
             color="light"
           >
@@ -34,8 +33,7 @@
             メンバー募集中
           </ion-button>
           <ion-button end
-            round
-            small
+            shape="round"
             icon-start
             (click)="presentActionSheet()"
             color="primary"
@@ -46,4 +44,66 @@
         </div>
       </div>
     </div>
+    <ion-segment
+      color="primary"
+      [value]="selectedSegment"
+      (ionChange)="selectSegment($event)"
+    >
+      <ion-segment-button [value]="segment.Description">
+        説明
+      </ion-segment-button>
+      <ion-segment-button [value]="segment.Members">
+        メンバー
+      </ion-segment-button>
+      <ion-segment-button [value]="segment.Notes">
+        メモ
+      </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="selectedSegment">
+        <div *ngSwitchCase="segment.Description">
+          <ion-list>
+            <ion-item-group class="catchphrase" padding>
+              
+            </ion-item-group>
+            <ion-item-group>
+              <ion-item-divider>
+                シナリオ名
+              </ion-item-divider>
+            </ion-item-group>
+            <ion-item-group>
+              <ion-item-divider>
+                概要
+              </ion-item-divider>
+            </ion-item-group>
+          </ion-list>
+        </div>
+        <div *ngSwitchCase="segment.Members">
+          <ion-list>
+            <ion-item-group>
+              <ion-item-divider>
+                GM
+              </ion-item-divider>
+            </ion-item-group>
+            <ion-item-group>
+              <ion-item-divider>
+                Players
+              </ion-item-divider>
+            </ion-item-group>
+          </ion-list>
+        </div>
+        <div *ngSwitchCase="segment.Notes">
+          <ion-list>
+            <ion-item-group>
+              <ion-item-divider>
+                Notes
+              </ion-item-divider>
+              <ion-item *ngFor="let note of notes">
+                <h2>
+                  {{ note.title }}
+                </h2>
+              </ion-item>
+            </ion-item-group>
+          </ion-list>
+        </div>
+      </div>
   </ion-content>
