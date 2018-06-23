@@ -8,7 +8,7 @@ import { AppearancesStore } from "../../stores/appearances.store";
 import { LoginNavRoot } from "../loginNav/loginNav.page";
 
 @Component({
-  selector: "app-page-home",
+  selector: "tablk-page-no-login",
   templateUrl: "noLogin.page.html",
   styleUrls: ["noLogin.page.scss"]
 })

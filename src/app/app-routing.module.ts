@@ -6,13 +6,18 @@ import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
 const routes: Routes = [
   {
     path: "",
-    loadChildren: "./pages/noLogin/noLogin.module#NoLoginPageModule",
+    loadChildren: "./pages/noLogin/noLogin.page.module#NoLoginPageModule",
     canActivate: [LoginGuard],
     pathMatch: "full"
   },
   {
     path: "dashBoard",
-    loadChildren: "./pages/dashBoard/dashBoard.module#DashBoardPageModule",
+    loadChildren: "./pages/dashBoard/dashBoard.page.module#DashBoardPageModule",
+    canActivate: [NoLoginGuard]
+  },
+  {
+    path: "sessions/:id",
+    loadChildren: "./pages/session/session.page.module#SessionPageModule",
     canActivate: [NoLoginGuard]
   }
 ];
