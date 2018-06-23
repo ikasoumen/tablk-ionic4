@@ -18,13 +18,13 @@ export class AppState extends State {
     paneSplitted: boolean;
   };
   my: {
-    sessionIds: Set2<number>;
+    sessionIds: Set<number>;
   };
-  sessions: KeySet<Session, "id">;
-  characters: KeySet<Character, "id">;
-  notes: KeySet<Note, "id">;
-  users: KeySet<User, "id">;
-  members: KeySet<Member, "id">;
+  sessions: Map<string, Session>;
+  characters: Map<string, Character>;
+  notes: Map<string, Note>;
+  users: Map<string, User>;
+  members: Map<string, Member>;
 }
 
 const INIT_STATE: AppState = {

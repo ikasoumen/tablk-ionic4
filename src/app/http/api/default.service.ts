@@ -21,7 +21,7 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ApiKeyInput } from "../model/apiKeyInput";
 import { ApiKeyResponse } from "../model/apiKeyResponse";
