@@ -255,25 +255,25 @@ export class DefaultService {
    * @param reportProgress flag to report request and response progress.
    */
   public sessionsSessionIdDelete(
-    sessionId: number,
+    sessionId: string,
     sessionDeleteInput: SessionDeleteInput,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<SuccessResponse>;
   public sessionsSessionIdDelete(
-    sessionId: number,
+    sessionId: string,
     sessionDeleteInput: SessionDeleteInput,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<SuccessResponse>>;
   public sessionsSessionIdDelete(
-    sessionId: number,
+    sessionId: string,
     sessionDeleteInput: SessionDeleteInput,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<SuccessResponse>>;
   public sessionsSessionIdDelete(
-    sessionId: number,
+    sessionId: string,
     sessionDeleteInput: SessionDeleteInput,
     observe: any = "body",
     reportProgress: boolean = false
@@ -328,22 +328,22 @@ export class DefaultService {
    * @param reportProgress flag to report request and response progress.
    */
   public sessionsSessionIdGet(
-    sessionId: number,
+    sessionId: string,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<SessionsResponse>;
   public sessionsSessionIdGet(
-    sessionId: number,
+    sessionId: string,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<SessionsResponse>>;
   public sessionsSessionIdGet(
-    sessionId: number,
+    sessionId: string,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<SessionsResponse>>;
   public sessionsSessionIdGet(
-    sessionId: number,
+    sessionId: string,
     observe: any = "body",
     reportProgress: boolean = false
   ): Observable<any> {
@@ -387,25 +387,25 @@ export class DefaultService {
    * @param reportProgress flag to report request and response progress.
    */
   public sessionsSessionIdPatch(
-    sessionId: number,
+    sessionId: string,
     sessionCreateInput: SessionCreateInput,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<SessionsResponse>;
   public sessionsSessionIdPatch(
-    sessionId: number,
+    sessionId: string,
     sessionCreateInput: SessionCreateInput,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<SessionsResponse>>;
   public sessionsSessionIdPatch(
-    sessionId: number,
+    sessionId: string,
     sessionCreateInput: SessionCreateInput,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<SessionsResponse>>;
   public sessionsSessionIdPatch(
-    sessionId: number,
+    sessionId: string,
     sessionCreateInput: SessionCreateInput,
     observe: any = "body",
     reportProgress: boolean = false
