@@ -7,6 +7,7 @@ import { getFromLocalStrage } from "app/helpers/localStorageKey";
 import { LocalStorageKeys } from "./constants";
 import { KeySet } from "./helpers/keySet";
 import { Dictionary } from "lodash";
+import { Set2 } from "./helpers/Set2";
 
 export class AppState extends State {
   login: {
@@ -15,6 +16,9 @@ export class AppState extends State {
   };
   appearances: {
     paneSplitted: boolean;
+  };
+  my: {
+    sessionIds: Set2<number>;
   };
   sessions: KeySet<Session, "id">;
   characters: KeySet<Character, "id">;
@@ -32,6 +36,9 @@ const INIT_STATE: AppState = {
   },
   appearances: {
     paneSplitted: false
+  },
+  my: {
+    sessionIds: new Set2<number>()
   },
   sessions: new KeySet<Session, "id">("id"),
   characters: new KeySet<Character, "id">("id"),

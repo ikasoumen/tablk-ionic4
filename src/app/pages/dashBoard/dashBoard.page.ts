@@ -1,4 +1,5 @@
 import { Component, ElementRef, ChangeDetectorRef } from "@angular/core";
+import { DefaultService } from "../../http";
 
 @Component({
   selector: "app-page-joined-sessions",
@@ -9,7 +10,11 @@ export class DashBoardPage {
   public translatedTitle = "ダッシュボード";
   public title = "Dashboard";
 
-  constructor() {}
+  constructor(private api: DefaultService) {}
 
   OnInit() {}
+
+  OnChanges() {
+    const a = this.http.sessionsGet("body");
+  }
 }

@@ -4,7 +4,6 @@ import { Actions, Action } from "walts";
 import { AppState } from "../app.store";
 import { DelayedAction } from "walts/src/actions";
 import { DefaultService, SessionsResponse } from "../http";
-import { keyBy } from "lodash";
 
 @Injectable()
 /**
@@ -32,6 +31,9 @@ export class SessionActions extends Actions<AppState> {
           notes
         } = (await this.api.sessionsGet().toPromise()) as SessionsResponse;
         apply(_st => {
+          _st.my.sessionIds = _st.my.sessionIds.addSome(
+            sessions.map(s => s.id)
+          );
           _st.sessions = _st.sessions.addSome(sessions);
           _st.members = _st.members.addSome(members);
           _st.characters = _st.characters.addSome(characters);
