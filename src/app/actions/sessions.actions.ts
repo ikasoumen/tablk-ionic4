@@ -43,4 +43,29 @@ export class SessionActions extends Actions<AppState> {
       });
     };
   }
+
+  getSessionOne(id: string): DelayedAction<AppState> {
+    return st => {
+      return this.delayed(async apply => {
+        const {
+          sessions,
+          members,
+          characters,
+          users,
+          notes
+        } = (await this.api
+          .sessionsSessionIdGet(id)
+          .toPromise()) as SessionsResponse;
+        apply(_st => {
+          _st.my.sessionIds = addSome(_st.my.sessionIds, Object.keys(sessions));
+          _st.sessions = setSome(_st.sessions, Object.entries(sessions));
+          _st.members = setSome(_st.members, Object.entries(members));
+          _st.characters = setSome(_st.characters, Object.entries(characters));
+          _st.users = setSome(_st.users, Object.entries(users));
+          _st.notes = setSome(_st.notes, Object.entries(notes));
+          return _st;
+        });
+      });
+    };
+  }
 }

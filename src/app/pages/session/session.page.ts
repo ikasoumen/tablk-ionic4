@@ -9,6 +9,7 @@ import { Observable, of } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Session } from "app/http";
 import { InputChangeEvent } from "@ionic/core";
+import { SessionActions } from "../../actions/sessions.actions";
 
 enum segments {
   Description = "Description",
@@ -27,13 +28,18 @@ export class SessionPage implements OnInit {
   public selectedSegment: segments = segments.Description;
   private id: string;
 
-  constructor(private route: ActivatedRoute, private sessions: SessionsStore) {}
+  constructor(
+    private route: ActivatedRoute,
+    private sessionActions: SessionActions,
+    private sessions: SessionsStore
+  ) {}
 
   public ngOnInit() {
     this.route.params.subscribe((params: SessionPage.Params) => {
       this.id = params.id;
     });
     this.session$ = this.sessions.readOne$(of(this.id));
+    this.sessionActions.getJoinedSessions();
   }
 
   public get segment() {
