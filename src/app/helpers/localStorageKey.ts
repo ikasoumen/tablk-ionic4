@@ -1,6 +1,7 @@
-export function getFromLocalStrage<T extends object, K extends keyof T>(
-  key: K
-): T[K] | undefined {
+export function getFromLocalStrage<
+  T extends object,
+  K extends string & keyof T
+>(key: K): T[K] | undefined {
   const obj = localStorage.getItem(key);
   if (obj == null) {
     return undefined;
@@ -8,8 +9,8 @@ export function getFromLocalStrage<T extends object, K extends keyof T>(
   return JSON.parse(obj) as T[K];
 }
 
-export function setToLocalStrage<T extends object, K extends keyof T>(
-  key: keyof T,
+export function setToLocalStrage<T extends object, K extends string & keyof T>(
+  key: string & keyof T,
   object: T[K]
 ) {
   const stringified = JSON.stringify(object);
