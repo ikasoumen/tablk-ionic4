@@ -54,7 +54,7 @@ export class AuthManager {
     setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", response.apiKey);
     setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
       "lastLoginUser",
-      response.user
+      Object.values(response.users)[0]
     );
   }
 

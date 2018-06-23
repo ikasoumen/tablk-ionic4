@@ -24,6 +24,8 @@ import { Interceptor } from "app/http/intercepter";
 import { LoginGuard } from "./providers/loginGuard/loginGuard";
 import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
 import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directive";
+import { SessionsStore } from "app/stores/sessions.store";
+import { SessionActions } from "app/actions/sessions.actions";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -53,6 +55,8 @@ export function apiConfigFactory(): Configuration {
     DefaultService,
     LoginActions,
     LoginStore,
+    SessionActions,
+    SessionsStore,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

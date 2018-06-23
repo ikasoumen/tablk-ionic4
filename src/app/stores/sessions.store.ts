@@ -24,4 +24,18 @@ export class SessionsStore {
       })
     );
   }
+
+  /**
+   *
+   */
+  readMy$(): Observable<Session[]> {
+    return this.store.observable.pipe(
+      map(store => {
+        const ids = Array.from(store.my.sessionIds);
+        return Array.from(store.sessions.values()).filter(session =>
+          ids.includes(session.id.toString())
+        );
+      })
+    );
+  }
 }

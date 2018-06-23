@@ -37,7 +37,7 @@ export class LoginNavRoot {
     this.modalCtrl.dismiss();
   }
 
-  public async onLogin(form: NgForm) {
+  public onLogin(form: NgForm) {
     this.submitted = true;
 
     if (form.valid) {

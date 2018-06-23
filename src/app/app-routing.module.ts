@@ -7,13 +7,8 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: "./pages/noLogin/noLogin.module#NoLoginPageModule",
-    pathMatch: "full",
-    canActivate: [LoginGuard]
-  },
-  {
-    path: "noLogin",
-    loadChildren: "./pages/noLogin/noLogin.module#NoLoginPageModule",
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
+    pathMatch: "full"
   },
   {
     path: "dashBoard",

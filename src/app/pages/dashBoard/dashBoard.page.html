@@ -1,107 +1,17 @@
 <ion-header #header appFadeHeader>
   <ion-toolbar>
     <ion-title>
-      Contact
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content #content>
-  <div appFadeHeader></div>
-  <app-page-title #title [title]="title" [translatedTitle]="translatedTitle"></app-page-title>
   <ion-list>
     <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
+    <ion-item *ngFor="let session of (sessions.readMy$() | async)">
       <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item>
-    <ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
-    </ion-item><ion-item>
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      @ionicframework
+      {{ session.name }}
     </ion-item>
   </ion-list>
 </ion-content>

@@ -31,12 +31,12 @@ export class LoginActions extends Actions<AppState> {
 
         setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
           "lastLoginUser",
-          users[0]
+          Object.values(users)[0]
         );
         setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", apiKey);
         apply(_st => {
           _st.login.apiKey = apiKey;
-          _st.login.lastLoginUser = users[0];
+          _st.login.lastLoginUser = Object.values(users)[0];
           return _st;
         });
       });
