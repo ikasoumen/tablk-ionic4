@@ -1,7 +1,14 @@
-<ion-item
-  (tap)="pushSessionPage(session)"
->
-  <img class="thumbnail" src="{{session.imageUrl}}" item-start>
-  <h2>{{session.name}}</h2>
-  <member-mini-list [memberIds$]="session.memberIds"></member-mini-list>
-</button>
+<ion-list>
+  <ion-item
+    *ngFor="let session of (sessions$ | async)"
+    (tap)="pushSessionPage(session)"
+  >
+    <ion-thumbnail slot="start">
+      <img [src]="session.imageUrl">
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{session.name}}</h2>
+    </ion-label>
+    <!-- <member-mini-list [memberIds$]="session.memberIds"></member-mini-list> -->
+  </ion-item>
+</ion-list>

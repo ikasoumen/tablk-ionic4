@@ -1,6 +1,8 @@
-.thumbnail {
+ion-thumbnail {
   width: 140px;
-  height: 78.75px;
+}
+
+ion-thumbnail > img {
   object-fit: cover;
   border-radius: 4px;
   border: 0.5px solid #f0f0f0;

@@ -14,11 +14,8 @@
 </ion-header>
 
 <ion-content #content>
-  <ion-list>
-    <tablk-session-list-item
-      *ngFor="let id of (sessions.readMyIds$() | async)"
-      [id]="id"
-    >
-    </tablk-session-list-item>
-  </ion-list>
+  <tablk-session-list-item
+    [ids]="(sessions.readMyIds$() | async)"
+  >
+  </tablk-session-list-item>
 </ion-content>

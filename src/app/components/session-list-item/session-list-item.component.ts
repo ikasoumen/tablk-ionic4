@@ -1,12 +1,13 @@
 import {
   Component,
-  OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnChanges,
   Input
 } from "@angular/core";
 import { SessionsStore } from "app/stores/sessions.store";
+import { of, Observable } from "rxjs";
+import { Session } from "../../http";
 
 @Component({
   selector: "tablk-session-list-item",
@@ -16,11 +17,12 @@ import { SessionsStore } from "app/stores/sessions.store";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionListItemComponent implements OnChanges {
-  @Input() private id: string;
+  @Input() private ids: string[];
+  public sessions$ = new Observable<Session[]>();
 
   constructor(public sessions: SessionsStore) {}
 
   ngOnChanges() {
-    this.sessions.readSome$();
+    this.sessions$ = this.sessions.readSome$(of(this.ids));
   }
 }
