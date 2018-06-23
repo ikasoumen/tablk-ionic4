@@ -26,6 +26,7 @@ import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
 import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directive";
 import { SessionsStore } from "app/stores/sessions.store";
 import { SessionActions } from "app/actions/sessions.actions";
+import { MemberStore } from "./stores/member.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -57,6 +58,7 @@ export function apiConfigFactory(): Configuration {
     LoginStore,
     SessionActions,
     SessionsStore,
+    MemberStore,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

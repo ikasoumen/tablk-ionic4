@@ -1,0 +1,6 @@
+<div>
+  <span *ngFor="let member of (members$ | async)">
+    <img [attr.src]="member.imageUrl">
+  </span>
+</div>
+

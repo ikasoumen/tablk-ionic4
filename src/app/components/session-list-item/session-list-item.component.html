@@ -1,6 +1,7 @@
 <ion-list>
   <ion-item
     *ngFor="let session of (sessions$ | async)"
+    button
     (tap)="pushSessionPage(session)"
   >
     <ion-thumbnail slot="start">
@@ -8,7 +9,10 @@
     </ion-thumbnail>
     <ion-label>
       <h2>{{session.name}}</h2>
+      <p>{{session.catchphrase}}</p>
+      <tablk-member-mini-list
+        [sessionId]="session.id"  
+      ></tablk-member-mini-list>
     </ion-label>
-    <!-- <member-mini-list [memberIds$]="session.memberIds"></member-mini-list> -->
   </ion-item>
 </ion-list>
