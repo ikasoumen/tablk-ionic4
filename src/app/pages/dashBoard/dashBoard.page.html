@@ -4,14 +4,21 @@
       {{title}}
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar color="primary"
+      [(ngModel)]="queryText"
+      (ionInput)="updateSession()"
+      placeholder="タイトルで検索">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content #content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item *ngFor="let id of (sessions.readMyIds$() | async)">
-      <ion-icon name="logo-ionic" slot="start"></ion-icon>
-      {{ id }}
-    </ion-item>
+    <tablk-session-list-item
+      *ngFor="let id of (sessions.readMyIds$() | async)"
+      [id]="id"
+    >
+    </tablk-session-list-item>
   </ion-list>
 </ion-content>

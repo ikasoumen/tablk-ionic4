@@ -33,4 +33,13 @@ export class SessionsStore {
       map(store => Array.from(store.my.sessionIds))
     );
   }
+
+  /**
+   *
+   */
+  readMyNotice$(): Observable<string[]> {
+    return this.store.observable.pipe(
+      map(store => Array.from(store.my.sessionIds))
+    );
+  }
 }
