@@ -18,6 +18,16 @@ const routes: Routes = [
   {
     path: "sessions/:id",
     loadChildren: "./pages/session/session.page.module#SessionPageModule"
+  },
+  {
+    path: "sessions/:id/new",
+    loadChildren:
+      "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
+  },
+  {
+    path: "sessions/:id/edit",
+    loadChildren:
+      "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
   }
 ];
 @NgModule({
