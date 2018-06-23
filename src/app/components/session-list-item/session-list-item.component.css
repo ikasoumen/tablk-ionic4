@@ -1,5 +1,6 @@
 ion-thumbnail {
-  width: 140px;
+  width: 130px;
+  height: 73px;
 }
 
 ion-thumbnail > img {

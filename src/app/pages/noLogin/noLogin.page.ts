@@ -21,9 +21,7 @@ export class NoLoginPage {
   ) {}
 
   public async pushTalkPage() {
-    // this.navCtrl.goForward('about');
     const modal = await this.modalCtrl.create({ component: LoginNavRoot });
     modal.present();
-    // this.alertCtrl.create({});
   }
 }

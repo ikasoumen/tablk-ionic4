@@ -2,7 +2,7 @@
   <ion-item
     *ngFor="let session of (sessions$ | async)"
     button
-    (tap)="pushSessionPage(session)"
+    (click)="pushSessionPage(session)"
   >
     <ion-thumbnail slot="start">
       <img [src]="session.imageUrl">
