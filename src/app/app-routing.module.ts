@@ -17,8 +17,7 @@ const routes: Routes = [
   },
   {
     path: "sessions/:id",
-    loadChildren: "./pages/session/session.page.module#SessionPageModule",
-    canActivate: [NoLoginGuard]
+    loadChildren: "./pages/session/session.page.module#SessionPageModule"
   }
 ];
 @NgModule({

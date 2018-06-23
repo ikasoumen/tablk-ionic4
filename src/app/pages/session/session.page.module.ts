@@ -7,7 +7,11 @@ import { SessionPage } from "./session.page";
 import { LoginNavRootModule } from "../loginNav/loginNav.page.module";
 
 @NgModule({
-  imports: [IonicModule, CommonModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    RouterModule.forChild([{ path: "", component: SessionPage }])
+  ],
   declarations: [SessionPage]
 })
 export class SessionPageModule {}
