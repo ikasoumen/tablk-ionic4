@@ -27,7 +27,6 @@ import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directiv
 import { SessionsStore } from "app/stores/sessions.store";
 import { SessionActions } from "app/actions/sessions.actions";
 import { MemberStore } from "./stores/member.store";
-import { ScratchTextComponent } from "./scratch-text/scratch-text.component";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {

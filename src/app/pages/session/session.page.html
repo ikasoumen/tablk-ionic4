@@ -3,10 +3,47 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title>{{ (session$ | async)._.name }}</ion-title>
+      <ion-title>
+        セッション情報
+      </ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-content>
-
+    <div
+      class="cover-container"
+      [ngStyle]="{'background-image': 'url()'}"
+    >
+      <div class="title-container" padding>
+        <h1>
+          <tablk-scratch-text
+            [sealed]="!(session$ | async).exist"
+            [text]="(session$ | async)._.name"
+          ></tablk-scratch-text>
+        </h1>
+      </div>
+      <div class="button-container" padding>
+        <div>
+          <ion-button
+            round
+            small
+            icon-start
+            color="light"
+          >
+            <ion-icon name="ios-chatbubbles"></ion-icon>
+            メンバー募集中
+          </ion-button>
+          <ion-button end
+            round
+            small
+            icon-start
+            (click)="presentActionSheet()"
+            color="primary"
+          >
+            <ion-icon name="ios-chatbubbles"></ion-icon>
+            チャットする
+          </ion-button>
+        </div>
+      </div>
+    </div>
   </ion-content>
