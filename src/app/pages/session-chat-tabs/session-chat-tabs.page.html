@@ -1,20 +1,37 @@
-<ion-header *ngIf="!(appearnce.getPaneSplitted$() | async)">
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <!-- @todo: class="button" は 大きく表示するための苦肉の策なので今後直す-->
+        <ion-button class="button" slot="icon-only">
+          <ion-icon name="menu"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>
+      <tablk-page-title
+        title="Talk"
+        translatedTitle="会話"
+      ></tablk-page-title>
+    </ion-title>
   </ion-toolbar>
+  <ion-segment
+    color="primary"
+    [value]="selectedSegment"
+    (ionChange)="selectSegment($event)"
+  >
+    <ion-segment-button [value]="segments.Description">
+      説明
+    </ion-segment-button>
+    <ion-segment-button [value]="segments.Members">
+      メンバー
+    </ion-segment-button>
+    <ion-segment-button [value]="segments.Notes">
+      メモ
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
-<ion-content *ngIf="!(appearnce.getPaneSplitted$() | async)">
-  <!-- <ion-tabs
-    tabbarLayout="icon-hide"
-    tabbarPlacement="top"
-    tabbarHighlight="true"
-  >
-    <ion-tab label="会話" icon="chat-bubble" href="/sessions/1/chat/(talk:talk)">
-      <ion-router-outlet name="talk"></ion-router-outlet>
-    </ion-tab>
-    <ion-tab label="About" icon="information-circle" href="/sessions/1/chat/(about:about)">
-      <ion-router-outlet name="about"></ion-router-outlet>
-    </ion-tab>
-  </ion-tabs> -->
+<ion-content>
+  
 </ion-content>

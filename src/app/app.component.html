@@ -3,19 +3,14 @@
     <ion-menu *ngIf="login.isLogined$() | async">
       <ion-header no-border>
         <ion-toolbar [color]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
-          <ion-title>Menu {{ appearnce.getPaneSplitted$() | async }}</ion-title>
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+          </ion-buttons>
+          <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content [ngClass]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>
