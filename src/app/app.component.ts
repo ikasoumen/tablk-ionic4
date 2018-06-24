@@ -1,4 +1,8 @@
-import { Component } from "@angular/core";
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from "@angular/core";
 
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -10,7 +14,10 @@ import { LoginStore } from "./stores/login.store";
 
 @Component({
   selector: "tablk-root",
-  templateUrl: "app.component.html"
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   constructor(

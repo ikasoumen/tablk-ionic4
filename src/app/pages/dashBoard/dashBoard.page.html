@@ -1,13 +1,25 @@
 <ion-header #header no-border>
-  <ion-toolbar>
+  <ion-toolbar color="light">
+      <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <!-- @todo: class="button" は 大きく表示するための苦肉の策なので今後直す-->
+        <ion-button class="button" slot="icon-only">
+          <ion-icon name="menu"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+      </ion-buttons>
     <ion-title>
-      {{title}}
+      <tablk-page-title
+        title="Sessions"
+        translatedTitle="セッション一覧"
+      ></tablk-page-title>
     </ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar color="primary"
+  <ion-toolbar color="light">
+    <ion-searchbar
       [value]="queryText"
       (ionChange)="updateSession($event)"
+      mode="ios"
       placeholder="タイトルで検索">
     </ion-searchbar>
   </ion-toolbar>

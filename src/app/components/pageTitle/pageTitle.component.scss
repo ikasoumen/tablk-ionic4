@@ -1,12 +1,24 @@
-h1 {
-  font-weight: 900;
-  font-size: 32px;
-  font-family: "Montserrat", sans-serif;
-  display: inline;
+:host {
+  display: flex;
+  flex-flow: row nowrap;
+  white-space: nowrap;
+  align-items: baseline;
 }
 
-span {
+.heading {
+  font-weight: 900;
+  font-size: 28px;
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.small {
   font-size: 12px;
   opacity: 0.6;
   font-weight: 600;
+  margin-left: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

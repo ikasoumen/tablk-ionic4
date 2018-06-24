@@ -2,11 +2,11 @@
   <ion-split-pane (ionChange)="splitPaneSubscribe($event)">
     <ion-menu *ngIf="login.isLogined$() | async">
       <ion-header no-border>
-        <ion-toolbar>
+        <ion-toolbar [color]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
           <ion-title>Menu {{ appearnce.getPaneSplitted$() | async }}</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content>
+      <ion-content [class]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
