@@ -39,13 +39,13 @@ export class SessionPage implements OnInit {
   public ngOnInit() {
     this.route.params.subscribe((params: SessionPage.Params) => {
       this.id = params.id;
+      this.session$ = this.sessions.readOne$(of(this.id));
+      try {
+        this.dispatcher.emit(this.sessionActions.getSessionOne(this.id));
+      } catch (e) {
+        throw e;
+      }
     });
-    this.session$ = this.sessions.readOne$(of(this.id));
-    try {
-      this.dispatcher.emit(this.sessionActions.getSessionOne(this.id));
-    } catch (e) {
-      throw e;
-    }
   }
 
   public get segment() {
