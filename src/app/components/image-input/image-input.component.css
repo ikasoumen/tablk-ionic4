@@ -1,0 +1,13 @@
+:host {
+  position: relative;
+}
+
+canvas {
+  width: 100%;
+  border-radius: 8px;
+  border: 0.5px solid #f0f0f0;
+}
+
+input {
+  display: none;
+}

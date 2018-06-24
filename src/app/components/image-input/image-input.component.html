@@ -1,0 +1,7 @@
+<label for="image">
+  <canvas #image
+    [attr.width]="width"
+    [attr.height]="height"
+  ></canvas>
+</label>
+<input type="file" (change)="setNewImageWithEmit($event)" id="image">

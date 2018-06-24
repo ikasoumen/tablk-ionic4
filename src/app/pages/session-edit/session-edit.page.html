@@ -19,29 +19,29 @@
   <ion-content>
     <form novalidate padding>
       <ion-list>
-        <div class="item">
-          <ion-label stacked color="primary">ヘッダー画像</ion-label>
-          <!-- <previewable-image-input
-            width=1024
-            height=576
-            (onChangeImage)="setNewImage($event)"
-            [defaultImage]="session ? session.imageUrl : undefined"
-          ></previewable-image-input> -->
-        </div>
         <ion-item>
-          <ion-label stacked color="primary">セッション名</ion-label>
+          <ion-label position="stacked" color="primary">ヘッダー画像</ion-label>
+            <tablk-image-input
+            resizeWidth=1024
+            resizeHeight=576
+            (changeImage)="setNewImage($event)"
+            [defaultImage]="session ? session.imageUrl : undefined"
+          ></tablk-image-input>
+          </ion-item>
+        <ion-item>
+          <ion-label position="stacked" color="primary">セッション名</ion-label>
           <ion-input type="text" [(ngModel)]="params.name" name="name"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label stacked color="primary">キャッチフレーズ</ion-label>
+          <ion-label position="stacked" color="primary">キャッチフレーズ</ion-label>
           <ion-input type="text" [(ngModel)]="params.catchphrase" name="catchphrase"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label stacked color="primary">シナリオ名</ion-label>
+          <ion-label position="stacked" color="primary">シナリオ名</ion-label>
           <ion-input type="text" [(ngModel)]="params.scenarioName" name="scenarioName"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label stacked color="primary">概要</ion-label>
+          <ion-label position="stacked" color="primary">概要</ion-label>
           <ion-textarea [(ngModel)]="params.description" name="description"></ion-textarea>
         </ion-item>
       </ion-list>
