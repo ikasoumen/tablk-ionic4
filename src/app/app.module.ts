@@ -23,7 +23,6 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interceptor } from "app/http/intercepter";
 import { LoginGuard } from "./providers/loginGuard/loginGuard";
 import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
-import { FadeHeaderDirective } from "./directives/fadeHeader/fadeHeader.directive";
 import { SessionsStore } from "app/stores/sessions.store";
 import { SessionActions } from "app/actions/sessions.actions";
 import { MemberStore } from "./stores/member.store";
@@ -39,7 +38,7 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [AppComponent, FadeHeaderDirective],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -74,7 +73,6 @@ export function apiConfigFactory(): Configuration {
     LoginGuard,
     NoLoginGuard
   ],
-  exports: [FadeHeaderDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
