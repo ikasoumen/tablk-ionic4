@@ -6,5 +6,7 @@ export interface LocalStorageKeys {
 }
 
 export const Time = {
-  msec500: 500
+  msec500: 500,
+  msec1500: 1500,
+  msec3000: 3000
 };

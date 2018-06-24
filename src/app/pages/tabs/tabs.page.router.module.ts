@@ -7,7 +7,7 @@ import { AboutPage } from "../about/about.page";
 
 const routes: Routes = [
   {
-    path: "tabs",
+    path: "chat",
     component: TabsPage,
     children: [
       {
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "/tabs/(home:home)",
+    redirectTo: "/chat/(home:home)",
     pathMatch: "full"
   }
 ];

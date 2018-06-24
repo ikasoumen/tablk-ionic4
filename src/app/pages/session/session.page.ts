@@ -11,7 +11,11 @@ import { Session } from "app/http";
 import { InputChangeEvent, ActionSheetOptions } from "@ionic/core";
 import { SessionActions } from "../../actions/sessions.actions";
 import { AppDispatcher } from "../../app.dispatcher";
-import { ActionSheetController, ModalController } from "@ionic/angular";
+import {
+  ActionSheetController,
+  ModalController,
+  NavController
+} from "@ionic/angular";
 import {
   SessionEditPage,
   SessionEditPageMode
@@ -40,7 +44,8 @@ export class SessionPage implements OnInit {
     private sessions: SessionsStore,
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController,
-    private dispatcher: AppDispatcher
+    private dispatcher: AppDispatcher,
+    private navCtrl: NavController
   ) {}
 
   public ngOnInit() {
@@ -53,6 +58,10 @@ export class SessionPage implements OnInit {
         throw e;
       }
     });
+  }
+
+  public pushChatTabsPage() {
+    this.navCtrl.goForward(`sessions/${this.id}/chat`);
   }
 
   public async showActionSheet() {
