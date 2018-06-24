@@ -8,7 +8,7 @@ import { ElementRef } from "@angular/core";
  * Components.
  */
 @Component({
-  selector: "app-page-title",
+  selector: "tablk-page-title",
   templateUrl: "pageTitle.component.html",
   styleUrls: ["pageTitle.component.scss"],
   encapsulation: ViewEncapsulation.Emulated

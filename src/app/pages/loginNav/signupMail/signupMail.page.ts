@@ -17,7 +17,7 @@ import { AuthManager } from "app/providers/authManager/authManager";
 import { SignupPostInput } from "app/http";
 
 @Component({
-  selector: "app-page-signup-mail",
+  selector: "tablk-page-signup-mail",
   templateUrl: "signupMail.page.html",
   encapsulation: ViewEncapsulation.Emulated
 })

@@ -15,7 +15,7 @@ import { ModalController } from "@ionic/angular";
  * Login と Signup を modal 上で切り替えるための nav を持ったページ
  */
 @Component({
-  selector: "app-page-login-nav",
+  selector: "tablk-page-login-nav",
   templateUrl: "loginNav.page.html",
   encapsulation: ViewEncapsulation.Emulated
 })

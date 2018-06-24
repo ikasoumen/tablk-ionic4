@@ -9,7 +9,7 @@ import { AppearancesStore } from "./stores/appearances.store";
 import { LoginStore } from "./stores/login.store";
 
 @Component({
-  selector: "app-root",
+  selector: "tablk-root",
   templateUrl: "app.component.html"
 })
 export class AppComponent {

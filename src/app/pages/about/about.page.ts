@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-page-about",
+  selector: "tablk-page-about",
   templateUrl: "about.page.html",
   styleUrls: ["about.page.scss"]
 })
