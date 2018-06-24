@@ -1,5 +1,9 @@
-ion-menu .scroll-md {
+.sidemenu .scroll-md {
   background: var(--ion-color-sidemenu);
+}
+
+.light .scroll-md {
+  background: var(--ion-color-light);
 }
 
 .toolbar-md-sidemenu .toolbar-background-md {
