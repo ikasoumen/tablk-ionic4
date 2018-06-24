@@ -1,7 +1,13 @@
-<ion-header>
+<ion-header no-border>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <!-- @todo: class="button" は 大きく表示するための苦肉の策なので今後直す-->
+        <ion-button (click)="showActionSheet()" slot="icon-only" class="button">
+          <ion-icon name="more"></ion-icon>
+        </ion-button>
       </ion-buttons>
       <ion-title>
         セッション
