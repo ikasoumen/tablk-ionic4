@@ -14,7 +14,30 @@ import { PageTitleModule } from "../../components/pageTitle/pageTitle.component.
     CommonModule,
     ScratchTextComponentModule,
     PageTitleModule,
-    RouterModule.forChild([{ path: "", component: SessionPage }])
+    RouterModule.forChild([
+      {
+        path: "",
+        component: SessionPage
+      },
+      {
+        path: "new",
+        loadChildren:
+          "./pages/session-edit/session-edit.page.module#SessionEditPageModule",
+        pathMatch: "full"
+      },
+      {
+        path: "edit",
+        loadChildren:
+          "./pages/session-edit/session-edit.page.module#SessionEditPageModule",
+        pathMatch: "full"
+      },
+      {
+        path: "chat",
+        loadChildren:
+          "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule",
+        pathMatch: "full"
+      }
+    ])
   ],
   declarations: [SessionPage]
 })
