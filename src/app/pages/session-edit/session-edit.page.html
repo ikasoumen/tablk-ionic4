@@ -25,7 +25,7 @@
             resizeWidth=1024
             resizeHeight=576
             (changeImage)="setNewImage($event)"
-            [defaultImage]="session ? session.imageUrl : undefined"
+            [defaultImage]="(session$ | async).imageUrl"
           ></tablk-image-input>
           </ion-item>
         <ion-item>

@@ -6,8 +6,8 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar color="primary"
-      [(ngModel)]="queryText"
-      (ionInput)="updateSession()"
+      [value]="queryText"
+      (ionChange)="updateSession($event)"
       placeholder="タイトルで検索">
     </ion-searchbar>
   </ion-toolbar>

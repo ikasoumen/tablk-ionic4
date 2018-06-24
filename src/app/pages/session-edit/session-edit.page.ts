@@ -2,7 +2,8 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  Input
 } from "@angular/core";
 import { SessionsStore } from "app/stores/sessions.store";
 import { of, Observable } from "rxjs";
@@ -16,7 +17,7 @@ import { SessionActions } from "../../actions/sessions.actions";
 import { ActivatedRoute } from "@angular/router";
 import { AppDispatcher } from "../../app.dispatcher";
 
-enum Mode {
+export enum SessionEditPageMode {
   Create = "Create",
   Update = "Update"
 }
@@ -28,10 +29,12 @@ enum Mode {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionEditPage implements OnInit {
+  @Input() public mode = SessionEditPageMode.Create;
+  @Input() public sessionId: string;
+
   public params: SessionCreateInput = { name: "" };
   public title = "セッションの作成";
-  private session$: Observable<{ exist: boolean; _: Session }>;
-  private mode = Mode.Create;
+  public session$: Observable<{ exist: boolean; _: Session }>;
 
   constructor(
     private sessions: SessionsStore,
@@ -44,8 +47,8 @@ export class SessionEditPage implements OnInit {
   public ngOnInit() {
     this.switchTextToUpdateMode();
 
-    this.route.params.subscribe((params: SessionEditPage.Params) => {
-      const id = params.id;
+    this.route.params.subscribe(() => {
+      const id = this.sessionId;
       this.session$ = this.sessions.readOne$(of(id));
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(id));
@@ -59,7 +62,7 @@ export class SessionEditPage implements OnInit {
    * @todo api を使った処理の Action への移行
    */
   public createOrUpdateSession() {
-    if (this.mode === Mode.Create) {
+    if (this.mode === SessionEditPageMode.Create) {
       this.api
         .sessionsPost(this.params)
         .toPromise()
@@ -95,12 +98,6 @@ export class SessionEditPage implements OnInit {
 
   private switchTextToUpdateMode() {
     this.title = "Edit Session";
-    this.mode = Mode.Update;
-  }
-}
-
-namespace SessionEditPage {
-  export interface Params {
-    id?: string;
+    this.mode = SessionEditPageMode.Update;
   }
 }

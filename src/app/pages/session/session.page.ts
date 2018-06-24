@@ -8,9 +8,14 @@ import { SessionsStore } from "app/stores/sessions.store";
 import { Observable, of } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Session } from "app/http";
-import { InputChangeEvent } from "@ionic/core";
+import { InputChangeEvent, ActionSheetOptions } from "@ionic/core";
 import { SessionActions } from "../../actions/sessions.actions";
 import { AppDispatcher } from "../../app.dispatcher";
+import { ActionSheetController, ModalController } from "@ionic/angular";
+import {
+  SessionEditPage,
+  SessionEditPageMode
+} from "../session-edit/session-edit.page";
 
 enum segments {
   Description = "Description",
@@ -33,6 +38,8 @@ export class SessionPage implements OnInit {
     private route: ActivatedRoute,
     private sessionActions: SessionActions,
     private sessions: SessionsStore,
+    private actionSheetCtrl: ActionSheetController,
+    private modalCtrl: ModalController,
     private dispatcher: AppDispatcher
   ) {}
 
@@ -46,6 +53,58 @@ export class SessionPage implements OnInit {
         throw e;
       }
     });
+  }
+
+  public async showActionSheet() {
+    const sheet = await this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: "セッションを編集する",
+          handler: async () => {
+            const session = await this.session$.toPromise();
+            const componentProps: Pick<
+              SessionEditPage,
+              "mode" | "sessionId"
+            > = {
+              mode: SessionEditPageMode.Update,
+              sessionId: session._.id
+            };
+            const modal = await this.modalCtrl.create({
+              component: SessionEditPage,
+              componentProps
+            });
+            modal.present();
+          }
+        },
+        {
+          text: "セッションを削除する",
+          role: "destructive",
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: "リプレイにまとめる",
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: "過去ログを読む",
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: "キャンセル",
+          role: "cancel",
+          handler: () => {
+            return;
+          }
+        }
+      ]
+    } as ActionSheetOptions);
+    sheet.present();
   }
 
   public get segment() {

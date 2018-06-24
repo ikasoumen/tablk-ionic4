@@ -18,6 +18,7 @@ import { AppDispatcher } from "app/app.dispatcher";
 })
 export class DashBoardPage implements OnInit {
   public title = "セッション一覧";
+  public queryText: string;
 
   constructor(
     private sessionActions: SessionActions,
@@ -25,7 +26,8 @@ export class DashBoardPage implements OnInit {
     private dispatcher: AppDispatcher
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.dispatcher.emit(this.sessionActions.getJoinedSessions());
   }
+  public updateSession(event) {}
 }
