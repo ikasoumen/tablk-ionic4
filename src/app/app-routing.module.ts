@@ -28,6 +28,11 @@ const routes: Routes = [
     path: "sessions/:id/edit",
     loadChildren:
       "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
+  },
+  {
+    path: "sessions/:id/chat",
+    loadChildren:
+      "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule"
   }
 ];
 @NgModule({

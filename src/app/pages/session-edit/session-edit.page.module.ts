@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { SessionEditPage } from "./session-edit.page";
 import { ImageInputComponentModule } from "../../components/image-input/image-input.component.module";
+import { PageTitleModule } from "../../components/pageTitle/pageTitle.component.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { ImageInputComponentModule } from "../../components/image-input/image-in
     CommonModule,
     FormsModule,
     ImageInputComponentModule,
+    PageTitleModule,
     RouterModule.forChild([{ path: "", component: SessionEditPage }])
   ],
   declarations: [SessionEditPage]

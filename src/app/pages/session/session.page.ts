@@ -60,7 +60,7 @@ export class SessionPage implements OnInit {
     });
   }
 
-  public pushChatTabsPage() {
+  public pushChatSessionChatTabsPage() {
     this.navCtrl.goForward(`sessions/${this.id}/chat`);
   }
 
