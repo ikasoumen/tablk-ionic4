@@ -47,7 +47,7 @@ export class ImageInputComponent implements OnChanges {
       return;
     }
     this.context.fillStyle = "rgb(240, 240, 240)";
-    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillRect(0, 0, this.resizeWidth, this.resizeHeight);
   }
 
   public clearCanvas() {
@@ -55,7 +55,7 @@ export class ImageInputComponent implements OnChanges {
       return;
     }
     this.context.fillStyle = "rgb(255, 255, 255)";
-    this.context.fillRect(0, 0, this.width, this.height);
+    this.context.fillRect(0, 0, this.resizeWidth, this.resizeHeight);
   }
 
   public emitChangeImage(base64Image: string) {
@@ -87,8 +87,8 @@ export class ImageInputComponent implements OnChanges {
 
     const image = await this.loadImage(srcUrl);
     const { offsetX, offsetY, width, height } = this.getCoverOffset(
-      this.width,
-      this.height,
+      this.resizeWidth,
+      this.resizeHeight,
       image.width,
       image.height
     );
