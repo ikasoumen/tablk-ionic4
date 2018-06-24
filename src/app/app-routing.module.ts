@@ -17,8 +17,15 @@ const routes: Routes = [
   },
   {
     path: "sessions/:id",
+    // "sessions/:id/chat" みたいな page への rooting が効かない
     loadChildren: "./pages/session/session.page.module#SessionPageModule",
-    pathMatch: "full"
+    canActivate: [NoLoginGuard]
+  },
+  {
+    path: "chatTabs",
+    loadChildren:
+      "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule",
+    canActivate: [NoLoginGuard]
   }
 ];
 @NgModule({

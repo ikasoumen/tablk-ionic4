@@ -17,28 +17,27 @@ import { PageTitleModule } from "../../components/pageTitle/pageTitle.component.
     RouterModule.forChild([
       {
         path: "",
-        component: SessionPage
+        component: SessionPage,
+        pathMatch: "full"
       },
       {
         path: "new",
         loadChildren:
-          "./pages/session-edit/session-edit.page.module#SessionEditPageModule",
-        pathMatch: "full"
+          "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
       },
       {
         path: "edit",
         loadChildren:
-          "./pages/session-edit/session-edit.page.module#SessionEditPageModule",
-        pathMatch: "full"
+          "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
       },
       {
         path: "chat",
         loadChildren:
-          "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule",
-        pathMatch: "full"
+          "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule"
       }
     ])
   ],
-  declarations: [SessionPage]
+  declarations: [SessionPage],
+  exports: [RouterModule]
 })
 export class SessionPageModule {}

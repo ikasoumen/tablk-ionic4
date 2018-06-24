@@ -3,13 +3,12 @@ import { AppearancesStore } from "../../stores/appearances.store";
 import { DefaultService } from "../../http";
 
 @Component({
-  selector: "tablk-page-tabs",
+  selector: "tablk-session-chat-tabs-page",
   templateUrl: "session-chat-tabs.page.html",
   styleUrls: ["session-chat-tabs.page.scss"]
 })
 export class SessionChatTabsPage {
-  constructor(
-    public appearnce: AppearancesStore,
-    private api: DefaultService
-  ) {}
+  constructor(public appearnce: AppearancesStore) {
+    console.log(this);
+  }
 }
