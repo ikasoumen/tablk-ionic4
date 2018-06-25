@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Actions, Action, SyncAction } from "walts";
+import { Actions } from "app/walts";
 import { AppState } from "../app.store";
-import { DefaultRouteReuseStrategy } from "@angular/router/src/route_reuse_strategy";
 import { DefaultService } from "../http";
-import { DelayedAction } from "walts/src/actions";
 import { setToLocalStrage } from "../helpers/localStorageKey";
 import { LocalStorageKeys } from "../constants";
+import { DelayedAction } from "app/walts";
 
 @Injectable()
 export class LoginActions extends Actions<AppState> {

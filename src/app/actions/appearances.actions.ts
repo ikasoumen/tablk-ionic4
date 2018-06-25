@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Action, SyncAction } from "walts";
+import { Actions, Action } from "walts";
 
 import { AppState } from "../app.store";
 

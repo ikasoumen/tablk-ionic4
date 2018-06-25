@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { State, Store } from "walts";
+import { State, Store } from "app/walts";
 
 import { AppDispatcher } from "./app.dispatcher";
 import { User, Session, Character, Member, Note } from "./http";

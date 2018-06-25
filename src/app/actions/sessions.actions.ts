@@ -1,12 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Actions, Action } from "walts";
+import { Actions, Action } from "app/walts";
 
 import { AppState } from "../app.store";
-import { DelayedAction } from "walts/src/actions";
+import { DelayedAction } from "app/walts";
 import { DefaultService, SessionsResponse } from "../http";
 import { addSome, setSome } from "../helpers/helpers";
-import { HttpErrorResponse } from "@angular/common/http";
-import { ToastController } from "@ionic/angular";
 import { HttpErrorHandler } from "../providers/httpErrorHandler";
 
 @Injectable()
