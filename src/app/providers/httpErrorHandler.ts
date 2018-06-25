@@ -8,7 +8,6 @@ export class HttpErrorHandler {
   constructor(private toast: ToastController) {}
 
   public async handle(error) {
-    console.log(error);
     if (error instanceof HttpErrorResponse) {
       let message: string | null = null;
       switch (error.status) {

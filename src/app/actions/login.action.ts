@@ -5,10 +5,14 @@ import { DefaultService } from "../http";
 import { setToLocalStrage } from "../helpers/localStorageKey";
 import { LocalStorageKeys } from "../constants";
 import { DelayedAction } from "app/walts";
+import { HttpErrorHandler } from "app/providers/httpErrorHandler";
 
 @Injectable()
 export class LoginActions extends Actions<AppState> {
-  constructor(private api: DefaultService) {
+  constructor(
+    private api: DefaultService,
+    private httpError: HttpErrorHandler
+  ) {
     super();
   }
 
@@ -21,23 +25,26 @@ export class LoginActions extends Actions<AppState> {
   login(email: string, password: string): DelayedAction<AppState> {
     return st => {
       return this.delayed(async apply => {
-        const { apiKey, users } = await this.api
-          .authApiKeyPost({ email, password })
-          .toPromise();
-        if (apiKey == null) {
-          throw Error("空の api_key が返ってきました");
+        try {
+          const { apiKey, users } = await this.api
+            .authApiKeyPost({ email, password })
+            .toPromise();
+          if (apiKey == null) {
+            throw Error("空の api_key が返ってきました");
+          }
+          setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
+            "lastLoginUser",
+            Object.values(users)[0]
+          );
+          setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", apiKey);
+          apply(_st => {
+            _st.login.apiKey = apiKey;
+            _st.login.lastLoginUser = Object.values(users)[0];
+            return _st;
+          });
+        } catch (e) {
+          this.httpError.handle(e);
         }
-
-        setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
-          "lastLoginUser",
-          Object.values(users)[0]
-        );
-        setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", apiKey);
-        apply(_st => {
-          _st.login.apiKey = apiKey;
-          _st.login.lastLoginUser = Object.values(users)[0];
-          return _st;
-        });
       });
     };
   }
