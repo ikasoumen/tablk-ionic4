@@ -13,11 +13,11 @@ export class ToastManager {
   constructor(private toastCtrl: ToastController) {}
 
   public async present(message: string, type: ToastCssType) {
-    await this.toastCtrl.create({
+    const toast = await this.toastCtrl.create({
       message: message,
       cssClass: type,
-      duration: Time.msec500,
-      position: "top"
+      duration: Time.msec3000
     });
+    toast.present();
   }
 }
