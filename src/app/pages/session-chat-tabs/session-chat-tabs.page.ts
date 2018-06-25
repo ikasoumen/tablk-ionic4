@@ -20,8 +20,4 @@ export class SessionChatTabsPage {
   public selectSegment(event: CustomEvent) {
     this.selectedSegment = event.detail.value;
   }
-
-  public get segments() {
-    return segments;
-  }
 }

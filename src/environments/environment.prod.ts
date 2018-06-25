@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_BASE_PATH: "https://tablk-herokuapp.com/apiv2"
+  API_BASE_PATH: "https://tablk.herokuapp.com/apiv2"
 };
