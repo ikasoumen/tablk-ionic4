@@ -1,14 +1,16 @@
 <ion-header no-border>
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-title>
-      {{ translatedTitle }}
+      <tablk-page-title
+        title="Login"
+        translatedTitle="ログイン"
+      ></tablk-page-title>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div padding>
-    <tablk-page-title #titleContent [title]="title" [translatedTitle]="translatedTitle"></tablk-page-title>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
       <ion-list>
         <ion-item>
