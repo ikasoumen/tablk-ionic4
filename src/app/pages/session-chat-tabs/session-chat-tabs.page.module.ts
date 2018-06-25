@@ -15,13 +15,13 @@ const routes: Routes = [
       {
         path: "talk",
         outlet: "talk",
-        loadChildren: "./pages/talk/talk.page.module#TalkPageModule"
+        loadChildren: "../talk/talk.page.module#TalkPageModule"
       },
       {
         path: "about",
         outlet: "about",
         loadChildren:
-          "./pages/session-edit/session-edit.page.module#SessionEditPageModule"
+          "../session-edit/session-edit.page.module#SessionEditPageModule"
       }
     ]
   }
