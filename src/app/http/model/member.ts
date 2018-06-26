@@ -17,6 +17,9 @@ export interface Member {
   defaultCharacterId?: string;
   color: string;
   type: Member.TypeEnum;
+  /**
+   * Session から Kick された時には存在しない
+   */
   userId?: string;
 }
 export namespace Member {

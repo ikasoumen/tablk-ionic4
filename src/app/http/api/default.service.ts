@@ -21,11 +21,15 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Observable";
 
 import { ApiKeyInput } from "../model/apiKeyInput";
 import { ApiKeyResponse } from "../model/apiKeyResponse";
 import { ErrorResponse } from "../model/errorResponse";
+import { GroupCreateInput } from "../model/groupCreateInput";
+import { GroupsResponse } from "../model/groupsResponse";
+import { MessageCreateInput } from "../model/messageCreateInput";
+import { MessagesResponse } from "../model/messagesResponse";
 import { SessionCreateInput } from "../model/sessionCreateInput";
 import { SessionDeleteInput } from "../model/sessionDeleteInput";
 import { SessionsResponse } from "../model/sessionsResponse";
@@ -128,6 +132,194 @@ export class DefaultService {
     return this.httpClient.post<ApiKeyResponse>(
       `${this.basePath}/auth/api_key`,
       apiKeyInput,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   *
+   * get session
+   * @param sessionId
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public groupsGroupIdMessagesGet(
+    sessionId: string,
+    observe?: "body",
+    reportProgress?: boolean
+  ): Observable<MessagesResponse>;
+  public groupsGroupIdMessagesGet(
+    sessionId: string,
+    observe?: "response",
+    reportProgress?: boolean
+  ): Observable<HttpResponse<MessagesResponse>>;
+  public groupsGroupIdMessagesGet(
+    sessionId: string,
+    observe?: "events",
+    reportProgress?: boolean
+  ): Observable<HttpEvent<MessagesResponse>>;
+  public groupsGroupIdMessagesGet(
+    sessionId: string,
+    observe: any = "body",
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (sessionId === null || sessionId === undefined) {
+      throw new Error(
+        "Required parameter sessionId was null or undefined when calling groupsGroupIdMessagesGet."
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
+      | string
+      | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = ["application/json"];
+
+    return this.httpClient.get<MessagesResponse>(
+      `${this.basePath}/groups/${encodeURIComponent(String(groupId))}/messages`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   *
+   * create group. 自分が居ないグループの作成は 401 になる。
+   * @param groupCreateInput
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public groupsPost(
+    groupCreateInput: GroupCreateInput,
+    observe?: "body",
+    reportProgress?: boolean
+  ): Observable<GroupsResponse>;
+  public groupsPost(
+    groupCreateInput: GroupCreateInput,
+    observe?: "response",
+    reportProgress?: boolean
+  ): Observable<HttpResponse<GroupsResponse>>;
+  public groupsPost(
+    groupCreateInput: GroupCreateInput,
+    observe?: "events",
+    reportProgress?: boolean
+  ): Observable<HttpEvent<GroupsResponse>>;
+  public groupsPost(
+    groupCreateInput: GroupCreateInput,
+    observe: any = "body",
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (groupCreateInput === null || groupCreateInput === undefined) {
+      throw new Error(
+        "Required parameter groupCreateInput was null or undefined when calling groupsPost."
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
+      | string
+      | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
+      | string
+      | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set("Content-Type", httpContentTypeSelected);
+    }
+
+    return this.httpClient.post<GroupsResponse>(
+      `${this.basePath}/groups`,
+      groupCreateInput,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   *
+   * post message
+   * @param messageCreateInput
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public messagesPost(
+    messageCreateInput: MessageCreateInput,
+    observe?: "body",
+    reportProgress?: boolean
+  ): Observable<MessagesResponse>;
+  public messagesPost(
+    messageCreateInput: MessageCreateInput,
+    observe?: "response",
+    reportProgress?: boolean
+  ): Observable<HttpResponse<MessagesResponse>>;
+  public messagesPost(
+    messageCreateInput: MessageCreateInput,
+    observe?: "events",
+    reportProgress?: boolean
+  ): Observable<HttpEvent<MessagesResponse>>;
+  public messagesPost(
+    messageCreateInput: MessageCreateInput,
+    observe: any = "body",
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (messageCreateInput === null || messageCreateInput === undefined) {
+      throw new Error(
+        "Required parameter messageCreateInput was null or undefined when calling messagesPost."
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
+      | string
+      | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = ["application/json"];
+    let httpContentTypeSelected:
+      | string
+      | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set("Content-Type", httpContentTypeSelected);
+    }
+
+    return this.httpClient.post<MessagesResponse>(
+      `${this.basePath}/messages`,
+      messageCreateInput,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
@@ -369,6 +561,66 @@ export class DefaultService {
 
     return this.httpClient.get<SessionsResponse>(
       `${this.basePath}/sessions/${encodeURIComponent(String(sessionId))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   *
+   * get joined groups
+   * @param sessionId
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public sessionsSessionIdGroupsGet(
+    sessionId: string,
+    observe?: "body",
+    reportProgress?: boolean
+  ): Observable<GroupsResponse>;
+  public sessionsSessionIdGroupsGet(
+    sessionId: string,
+    observe?: "response",
+    reportProgress?: boolean
+  ): Observable<HttpResponse<GroupsResponse>>;
+  public sessionsSessionIdGroupsGet(
+    sessionId: string,
+    observe?: "events",
+    reportProgress?: boolean
+  ): Observable<HttpEvent<GroupsResponse>>;
+  public sessionsSessionIdGroupsGet(
+    sessionId: string,
+    observe: any = "body",
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (sessionId === null || sessionId === undefined) {
+      throw new Error(
+        "Required parameter sessionId was null or undefined when calling sessionsSessionIdGroupsGet."
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
+      | string
+      | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = ["application/json"];
+
+    return this.httpClient.get<GroupsResponse>(
+      `${this.basePath}/sessions/${encodeURIComponent(
+        String(sessionId)
+      )}/groups`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,
