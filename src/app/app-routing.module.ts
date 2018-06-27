@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [NoLoginGuard]
   },
   {
-    path: "chatTabs",
+    path: "chat_tabs/sessions/:id",
     loadChildren:
       "./pages/session-chat-tabs/session-chat-tabs.page.module#SessionChatTabsPageModule",
     canActivate: [NoLoginGuard]

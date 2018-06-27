@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions } from "app/walts";
 import { AppState } from "../app.store";
-import { DefaultService } from "../http";
+import { DefaultService, ApiKeyResponse } from "../http";
 import { setToLocalStrage } from "../helpers/localStorageKey";
 import { LocalStorageKeys } from "../constants";
 import { DelayedAction } from "app/walts";
@@ -26,9 +26,9 @@ export class LoginActions extends Actions<AppState> {
     return st => {
       return this.delayed(async apply => {
         try {
-          const { apiKey, users } = await this.api
+          const { apiKey, users } = (await this.api
             .authApiKeyPost({ email, password })
-            .toPromise();
+            .toPromise()) as ApiKeyResponse;
           if (apiKey == null) {
             throw Error("空の api_key が返ってきました");
           }

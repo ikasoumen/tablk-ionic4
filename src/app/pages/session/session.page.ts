@@ -61,7 +61,7 @@ export class SessionPage implements OnInit {
   }
 
   public pushChatSessionChatTabsPage() {
-    this.navCtrl.goForward(`chatTabs`);
+    this.navCtrl.goForward(`chat_tabs/sessions/${this.id}`);
   }
 
   public async showActionSheet() {

@@ -21,7 +21,7 @@ import {
 } from "@angular/common/http";
 import { CustomHttpUrlEncodingCodec } from "../encoder";
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 import { ApiKeyInput } from "../model/apiKeyInput";
 import { ApiKeyResponse } from "../model/apiKeyResponse";
@@ -144,33 +144,33 @@ export class DefaultService {
   /**
    *
    * get session
-   * @param sessionId
+   * @param groupId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public groupsGroupIdMessagesGet(
-    sessionId: string,
+    groupId: string,
     observe?: "body",
     reportProgress?: boolean
   ): Observable<MessagesResponse>;
   public groupsGroupIdMessagesGet(
-    sessionId: string,
+    groupId: string,
     observe?: "response",
     reportProgress?: boolean
   ): Observable<HttpResponse<MessagesResponse>>;
   public groupsGroupIdMessagesGet(
-    sessionId: string,
+    groupId: string,
     observe?: "events",
     reportProgress?: boolean
   ): Observable<HttpEvent<MessagesResponse>>;
   public groupsGroupIdMessagesGet(
-    sessionId: string,
+    groupId: string,
     observe: any = "body",
     reportProgress: boolean = false
   ): Observable<any> {
-    if (sessionId === null || sessionId === undefined) {
+    if (groupId === null || groupId === undefined) {
       throw new Error(
-        "Required parameter sessionId was null or undefined when calling groupsGroupIdMessagesGet."
+        "Required parameter groupId was null or undefined when calling groupsGroupIdMessagesGet."
       );
     }
 

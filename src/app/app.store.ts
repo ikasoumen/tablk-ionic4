@@ -5,6 +5,7 @@ import { AppDispatcher } from "./app.dispatcher";
 import { User, Session, Character, Member, Note } from "./http";
 import { getFromLocalStrage } from "app/helpers/localStorageKey";
 import { LocalStorageKeys } from "./constants";
+import { Group } from "./http/model/group";
 
 export class AppState extends State {
   login: {
@@ -22,6 +23,7 @@ export class AppState extends State {
   notes: Map<string, Note>;
   users: Map<string, User>;
   members: Map<string, Member>;
+  groups: Map<string, Group>;
 }
 
 const INIT_STATE: AppState = {
@@ -41,7 +43,8 @@ const INIT_STATE: AppState = {
   characters: new Map<string, Character>(),
   notes: new Map<string, Note>(),
   users: new Map<string, User>(),
-  members: new Map<string, Member>()
+  members: new Map<string, Member>(),
+  groups: new Map<string, Group>()
 };
 
 @Injectable()

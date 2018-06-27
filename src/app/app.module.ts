@@ -28,6 +28,8 @@ import { SessionActions } from "app/actions/sessions.actions";
 import { MemberStore } from "./stores/member.store";
 import { TablkErrorHandler } from "app/helpers/tablkErrorHandler";
 import { HttpErrorHandler } from "./providers/httpErrorHandler";
+import { GroupActions } from "./actions/groups.actions";
+import { NoteStore } from "./stores/note.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -60,6 +62,8 @@ export function apiConfigFactory(): Configuration {
     SessionActions,
     SessionsStore,
     MemberStore,
+    GroupActions,
+    NoteStore,
     HttpErrorHandler,
     StatusBar,
     SplashScreen,
