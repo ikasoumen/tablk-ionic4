@@ -34,6 +34,8 @@ import { CharacterStore } from "./stores/character.store";
 import { MessageActions } from "./actions/messages.actions";
 import { PagesActions } from "./actions/pages.actions";
 import { PagesStore } from "./stores/pages.store";
+import { GroupsStore } from "app/stores/groups.store";
+import { MessageStore } from "./stores/message.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -76,6 +78,8 @@ export function apiConfigFactory(): Configuration {
     LoginStore,
     AppearancesStore,
     PagesStore,
+    GroupsStore,
+    MessageStore,
 
     HttpErrorHandler,
     StatusBar,

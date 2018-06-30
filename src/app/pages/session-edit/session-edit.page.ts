@@ -34,7 +34,7 @@ export class SessionEditPage implements OnInit {
 
   public params: SessionCreateInput = { name: "" };
   public title = "セッションの作成";
-  public session$: Observable<{ exist: boolean; _: Session }>;
+  public session$: Observable<Session>;
 
   constructor(
     private sessions: SessionsStore,
@@ -70,7 +70,7 @@ export class SessionEditPage implements OnInit {
           this.dismissSelf();
         });
     } else {
-      // this.api.sessionsSessionIdPatch(this.session._.id, this.params)
+      // this.api.sessionsSessionIdPatch(this.session.id, this.params)
       // .toPromise()
       // .then(
       //   () => { this.dismissSelf(); },

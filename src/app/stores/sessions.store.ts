@@ -35,19 +35,12 @@ export class SessionsStore {
     );
   }
 
-  readOne$(
-    id$: Observable<string>
-  ): Observable<{ exist: boolean; _: Session }> {
+  readOne$(id$: Observable<string>): Observable<Session> {
     return this.store.observable.pipe(
       mergeMap(store => {
         return id$.pipe(
-          map(id => {
-            const exist = store.sessions.has(id);
-            return {
-              exist,
-              _: exist ? store.sessions.get(id) : new DummySession()
-            };
-          })
+          map(id => store.sessions.get(id)),
+          filter(session => session != null)
         );
       })
     );

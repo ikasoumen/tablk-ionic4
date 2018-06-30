@@ -34,7 +34,7 @@ enum segments {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionPage implements OnInit {
-  public session$: Observable<{ exist: boolean; _: Session }>;
+  public session$: Observable<Session>;
   public selectedSegment: segments = segments.Description;
   private id: string;
 
@@ -76,7 +76,7 @@ export class SessionPage implements OnInit {
               "mode" | "sessionId"
             > = {
               mode: SessionEditPageMode.Update,
-              sessionId: session._.id
+              sessionId: session.id
             };
             const modal = await this.modalCtrl.create({
               component: SessionEditPage,

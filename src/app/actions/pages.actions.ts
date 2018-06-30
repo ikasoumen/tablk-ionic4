@@ -7,6 +7,7 @@ import { AppState } from "../app.store";
 export class PagesActions extends Actions<AppState> {
   chatTabs_setGroupId(groupId: string): Action<AppState> {
     return _state => {
+      _state.groups.has(groupId);
       _state.pages.chatTab.currentGroupId = groupId;
       return _state;
     };

@@ -8,6 +8,9 @@ import {
 import { MessageStore } from "../../stores/message.store";
 import { Observable } from "rxjs";
 import { Group } from "app/http";
+import { AppDispatcher } from "../../app.dispatcher";
+import { MessageActions } from "../../actions/messages.actions";
+import { distinctUntilChanged } from "rxjs/operators";
 
 @Component({
   selector: "tablk-message-list",
@@ -16,12 +19,18 @@ import { Group } from "app/http";
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MessageListComponent {
+export class MessageListComponent implements OnInit {
   @Input() group$: Observable<Group>;
 
-  constructor(private message: MessageStore) {}
+  constructor(
+    private message: MessageStore,
+    private messageActions: MessageActions,
+    private dispatcher: AppDispatcher
+  ) {}
 
-  public messages$() {
+  public ngOnInit() {}
+
+  public get messages$() {
     return this.message.readSome$_byGroup$(this.group$);
   }
 }

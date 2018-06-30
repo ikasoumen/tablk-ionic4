@@ -33,6 +33,10 @@
 </ion-header>
 
 <ion-content>
+  <tablk-message-list
+    *ngIf="selectedSegment === segments.Talk"
+    [group$]="mainGroup$"
+  ></tablk-message-list>
   <tablk-note-list
     *ngIf="selectedSegment === segments.Notes"
     [sessionId]="sessionId"

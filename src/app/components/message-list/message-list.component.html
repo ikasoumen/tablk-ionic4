@@ -1,3 +1,4 @@
-<p>
-  message-list works!
+<p *ngFor="let message of ( messages$ | async)">
+    {{ message.message }}
 </p>
+

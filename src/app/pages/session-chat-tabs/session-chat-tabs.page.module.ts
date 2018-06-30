@@ -7,6 +7,7 @@ import { TalkPage } from "app/pages/talk/talk.page";
 import { AboutPage } from "app/pages/about/about.page";
 import { PageTitleModule } from "../../components/pageTitle/pageTitle.component.module";
 import { NoteListComponentModule } from "../../components/note-list/note-list.component.module";
+import { MessageListComponentModule } from "../../components/message-list/message-list.component.module";
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     CommonModule,
     PageTitleModule,
     NoteListComponentModule,
+    MessageListComponentModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SessionChatTabsPage]
