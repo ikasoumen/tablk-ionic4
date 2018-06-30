@@ -45,7 +45,7 @@ export class MessageStore {
       mergeMap(messages => {
         return group$.pipe(
           map(group =>
-            // itearble filter に変えた方が 高効率
+            // @todo: itearble filter に変えた方が 高効率
             Array.from(messages.values()).filter(message =>
               group.memberIds.includes(message.memberId)
             )

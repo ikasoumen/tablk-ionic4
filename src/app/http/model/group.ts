@@ -12,6 +12,7 @@
 
 export interface Group {
   id: string;
+  sessionId: string;
   type: Group.TypeEnum;
   memberIds: Array<string>;
 }
