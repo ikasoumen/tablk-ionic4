@@ -1,3 +1,18 @@
-<p *ngFor="let a of (notes$() | async)">
-  note-list works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let note of (notes$() | async)">
+    <ion-avatar slot="start">
+      <tablk-character-avatar
+        [characterId]="(this.character$(note) | async).id"
+      ></tablk-character-avatar>
+    </ion-avatar>
+    <ion-label>
+      <p
+        [ngStyle]="{'color': (this.member$(note) | async).color}"
+      > {{ ( this.character$(note) | async).name }}</p>
+      {{ note.title }}
+      <p>
+        {{ note.body }}
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-list>

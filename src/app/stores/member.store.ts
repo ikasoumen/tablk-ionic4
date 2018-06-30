@@ -25,14 +25,10 @@ export class MemberStore {
     );
   }
 
-  readOne$(id$: Observable<string>): Observable<Member> {
+  readOne$(id: string): Observable<Member> {
     return this.store.observable.pipe(
-      mergeMap(store => {
-        return id$.pipe(
-          map(id => store.members.get(id)),
-          filter((member?: Member) => member != null)
-        );
-      })
+      map(store => store.members.get(id)),
+      filter((member?: Member) => member != null)
     );
   }
 

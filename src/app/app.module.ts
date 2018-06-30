@@ -30,6 +30,7 @@ import { TablkErrorHandler } from "app/helpers/tablkErrorHandler";
 import { HttpErrorHandler } from "./providers/httpErrorHandler";
 import { GroupActions } from "./actions/groups.actions";
 import { NoteStore } from "./stores/note.store";
+import { CharacterStore } from "./stores/character.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -54,16 +55,22 @@ export function apiConfigFactory(): Configuration {
   providers: [
     AppearancesActions,
     AppDispatcher,
-    AppStore,
-    AppearancesStore,
     DefaultService,
-    LoginActions,
-    LoginStore,
+
+    // Actions
     SessionActions,
+    GroupActions,
+    LoginActions,
+
+    // Stores
+    AppStore,
     SessionsStore,
     MemberStore,
-    GroupActions,
+    CharacterStore,
     NoteStore,
+    LoginStore,
+    AppearancesStore,
+
     HttpErrorHandler,
     StatusBar,
     SplashScreen,

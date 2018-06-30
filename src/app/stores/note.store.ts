@@ -41,11 +41,11 @@ export class NoteStore {
    */
   readByMemberIds$(memberIds: string[]): Observable<Note[]> {
     return this.store.observable.pipe(
-      map(store =>
-        Array.from(store.notes.values()).filter(note =>
+      map(store => {
+        return Array.from(store.notes.values()).filter(note =>
           memberIds.includes(note.memberId)
-        )
-      )
+        );
+      })
     );
   }
 }

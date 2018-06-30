@@ -8,7 +8,9 @@ import {
 import { NoteStore } from "app/stores/note.store";
 import { MemberStore } from "app/stores/member.store";
 import { mergeMap, map } from "rxjs/operators";
-import { Member } from "app/http";
+import { Member, Note } from "app/http";
+import { CharacterStore } from "../../stores/character.store";
+import { of } from "rxjs";
 
 @Component({
   selector: "tablk-note-list",
@@ -20,17 +22,28 @@ import { Member } from "app/http";
 export class NoteListComponent implements OnInit {
   @Input() sessionId: string;
 
-  constructor(public note: NoteStore, public member: MemberStore) {}
+  constructor(
+    public note: NoteStore,
+    public member: MemberStore,
+    public character: CharacterStore
+  ) {}
 
   ngOnInit() {}
 
   public notes$() {
-    this.member.readBySessionId$(this.sessionId).pipe(
+    return this.member.readBySessionId$(this.sessionId).pipe(
       mergeMap((members: Member[]) => {
         const ids = members.map(member => member.id);
         return this.note.readByMemberIds$(ids);
-      }),
-      map(notes => console.log(notes))
+      })
     );
+  }
+
+  public character$(note: Note) {
+    return this.character.readOne$_byMember$(this.member$(note));
+  }
+
+  public member$(note: Note) {
+    return this.member.readOne$(note.memberId);
   }
 }
