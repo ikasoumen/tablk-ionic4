@@ -39,10 +39,37 @@ export class SessionChatTabsPage implements OnInit {
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
         this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
+        this.dispatcher.emit(this);
       } catch (e) {
         throw e;
       }
     });
+  }
+
+  public get segmentTitle() {
+    switch (this.selectedSegment) {
+      case segments.Talk:
+        return "Talk";
+      case segments.Notes:
+        return "Notes";
+      case segments.Log:
+        return "Log";
+      default:
+        return "";
+    }
+  }
+
+  public get segmentTranslatedTitle() {
+    switch (this.selectedSegment) {
+      case segments.Talk:
+        return "会話";
+      case segments.Notes:
+        return "メモ";
+      case segments.Log:
+        return "過去ログ";
+      default:
+        return "";
+    }
   }
 
   public get segments() {
