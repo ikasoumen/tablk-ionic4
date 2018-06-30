@@ -45,6 +45,10 @@ export class SessionChatTabsPage implements OnInit {
     });
   }
 
+  public get segments() {
+    return segments;
+  }
+
   public selectSegment(event: CustomEvent) {
     this.selectedSegment = event.detail.value;
   }

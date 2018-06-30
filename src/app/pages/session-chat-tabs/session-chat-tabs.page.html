@@ -20,20 +20,21 @@
     [value]="selectedSegment"
     (ionChange)="selectSegment($event)"
   >
-    <ion-segment-button value="Description">
-      説明
+    <ion-segment-button [value]="segments.Talk">
+      Talk
     </ion-segment-button>
-    <ion-segment-button value="Members">
-      メンバー
+    <ion-segment-button [value]="segments.Notes">
+      Note
     </ion-segment-button>
-    <ion-segment-button value="Notes">
-      メモ
+    <ion-segment-button [value]="segments.Log">
+      Log
     </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 <ion-content>
   <tablk-note-list
+    *ngIf="selectedSegment === segments.Notes"
     [sessionId]="sessionId"
   ></tablk-note-list>
 </ion-content>
