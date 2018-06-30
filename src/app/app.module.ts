@@ -31,6 +31,7 @@ import { HttpErrorHandler } from "./providers/httpErrorHandler";
 import { GroupActions } from "./actions/groups.actions";
 import { NoteStore } from "./stores/note.store";
 import { CharacterStore } from "./stores/character.store";
+import { MessageActions } from "./actions/messages.actions";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -61,6 +62,7 @@ export function apiConfigFactory(): Configuration {
     SessionActions,
     GroupActions,
     LoginActions,
+    MessageActions,
 
     // Stores
     AppStore,

@@ -7,6 +7,7 @@ import { DefaultService } from "../http";
 import { addSome, setSome } from "../helpers/helpers";
 import { HttpErrorHandler } from "../providers/httpErrorHandler";
 import { GroupsResponse } from "../http/model/groupsResponse";
+import { Observable, Subject } from "rxjs";
 
 @Injectable()
 export class GroupActions extends Actions<AppState> {
