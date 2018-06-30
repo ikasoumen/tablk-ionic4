@@ -17,14 +17,8 @@ import { Observable } from "rxjs";
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterAvatarComponent implements OnChanges {
-  @Input() private characterId: string;
-  public character$: Observable<Character>;
-  public loaded$: Observable<boolean>;
+export class CharacterAvatarComponent {
+  @Input() public character$: Observable<Character>;
 
   constructor(public character: CharacterStore) {}
-
-  ngOnChanges() {
-    this.character$ = this.character.readOne$(this.characterId);
-  }
 }
