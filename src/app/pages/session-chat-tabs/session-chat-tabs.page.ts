@@ -39,7 +39,6 @@ export class SessionChatTabsPage implements OnInit {
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
         this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
-        this.dispatcher.emit(this);
       } catch (e) {
         throw e;
       }

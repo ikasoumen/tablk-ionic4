@@ -32,6 +32,8 @@ import { GroupActions } from "./actions/groups.actions";
 import { NoteStore } from "./stores/note.store";
 import { CharacterStore } from "./stores/character.store";
 import { MessageActions } from "./actions/messages.actions";
+import { PagesActions } from "./actions/pages.actions";
+import { PagesStore } from "./stores/pages.store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -63,6 +65,7 @@ export function apiConfigFactory(): Configuration {
     GroupActions,
     LoginActions,
     MessageActions,
+    PagesActions,
 
     // Stores
     AppStore,
@@ -72,6 +75,7 @@ export function apiConfigFactory(): Configuration {
     NoteStore,
     LoginStore,
     AppearancesStore,
+    PagesStore,
 
     HttpErrorHandler,
     StatusBar,

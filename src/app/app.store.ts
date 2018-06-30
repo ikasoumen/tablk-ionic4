@@ -18,6 +18,11 @@ export class AppState extends State {
   my: {
     sessionIds: Set<string>;
   };
+  pages: {
+    chatTab: {
+      currentGroupId: string;
+    };
+  };
   sessions: Map<string, Session>;
   characters: Map<string, Character>;
   notes: Map<string, Note>;
@@ -39,6 +44,11 @@ const INIT_STATE: AppState = {
   },
   my: {
     sessionIds: new Set<string>()
+  },
+  pages: {
+    chatTab: {
+      currentGroupId: ""
+    }
   },
   sessions: new Map<string, Session>(),
   characters: new Map<string, Character>(),
