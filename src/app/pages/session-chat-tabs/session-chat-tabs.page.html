@@ -35,7 +35,7 @@
 <ion-content>
   <tablk-message-list
     *ngIf="selectedSegment === segments.Talk"
-    [group$]="mainGroup$"
+    [groupId]="(mainGroup$ | async).id"
   ></tablk-message-list>
   <tablk-note-list
     *ngIf="selectedSegment === segments.Notes"

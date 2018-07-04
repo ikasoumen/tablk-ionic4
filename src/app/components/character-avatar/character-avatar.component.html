@@ -1,1 +1,4 @@
-<img [src]="(character$ | async).imageUrl">
+<img
+  *ngIf="(shouldShow$ | async)"
+  [src]="(character$ | async).imageUrl"
+>

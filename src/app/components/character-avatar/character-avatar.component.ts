@@ -6,9 +6,14 @@ import {
   Input,
   OnChanges
 } from "@angular/core";
-import { CharacterStore } from "../../stores/character.store";
+import {
+  CharacterStore,
+  NameOnlyCharacter
+} from "../../stores/character.store";
 import { Character } from "app/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
+import { SessionsStore } from "../../stores/sessions.store";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "tablk-character-avatar",
@@ -17,8 +22,25 @@ import { Observable } from "rxjs";
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CharacterAvatarComponent {
-  @Input() public character$: Observable<Character>;
+export class CharacterAvatarComponent implements OnChanges {
+  @Input() public name: string;
+  @Input() public sessionId: string;
+  public character$: Observable<Character | NameOnlyCharacter>;
+  public shouldShow$: Observable<boolean>;
 
-  constructor(public character: CharacterStore) {}
+  constructor(
+    public character: CharacterStore,
+    public session: SessionsStore
+  ) {}
+
+  ngOnChanges() {
+    this.character$ = this.character.readOne$_byNameAndSession$(
+      of(this.name),
+      this.session.readOne$(of(this.sessionId))
+    );
+    this.shouldShow$ = this.character$.pipe(
+      // nameOnlyCharacter かどうかの判定
+      map(character => character.id != null)
+    );
+  }
 }

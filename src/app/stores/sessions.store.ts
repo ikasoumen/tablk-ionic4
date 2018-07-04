@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
-import { map, mergeMap, filter } from "rxjs/operators";
-import { Session } from "app/http";
+import { map, mergeMap, filter, share } from "rxjs/operators";
+import { Session, Group } from "app/http";
 
 export class DummySession implements Session {
   public id: never;
@@ -17,6 +17,13 @@ export class DummySession implements Session {
 @Injectable()
 export class SessionsStore {
   constructor(private store: AppStore) {}
+
+  selectRoot$() {
+    return this.store.observable.pipe(
+      map(store => store.sessions),
+      share()
+    );
+  }
 
   /**
    *
@@ -43,6 +50,22 @@ export class SessionsStore {
           filter(session => session != null)
         );
       })
+    );
+  }
+
+  readOne$_byGroup$(group$: Observable<Group>): Observable<Session> {
+    return this.selectRoot$().pipe(
+      mergeMap(sessions =>
+        group$.pipe(
+          map(
+            group =>
+              Array.from(sessions.values()).filter(
+                session => session.id === group.sessionId
+              )[0]
+          ),
+          filter(session => session != null)
+        )
+      )
     );
   }
 

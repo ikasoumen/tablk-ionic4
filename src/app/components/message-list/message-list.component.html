@@ -1,4 +1,26 @@
-<p *ngFor="let message of ( messages$ | async)">
-    {{ message.message }}
-</p>
+<div class="message-item" *ngFor="let message of ( messages$ | async)">
+  <div class="spacer" [style.backgroundColor]="'red'"></div>
+  <div class="container">
+    <div class="name" [style.color]="'red'">
+        {{ (name$(message) | async).roleAs }}
+    </div>
+    <div class="main-container">
+      <tablk-character-avatar
+        [name]="(character$(message.roleAs) | async).id"
+        [sessionId]="sessionId"
+      ></tablk-character-avatar>
+      <p [ngClass]="{'balloon': message.type === 'Act' }" class="body voice-lv-{{message.options.voice_lv}}">
+        {{message.message}}
+      </p>
+    </div>
+    <div *ngFor="let exp of message.options.exp" class="dice-exp">
+      <span *ngFor="let item of exp">
+        <span class="elem" [ngClass]="{'op': item.type == 'op', 'eq': item.val == '=', 'with-label': item.type == 'label' || item.type == 'dice' }">
+          {{ item.type == 'label' || item.type == 'dice' ? "" : item.val }}
+        </span>
+        <!-- <pips *ngIf=" item.type === 'dice' " [dice]="item"></pips> -->
+      </span>
+    </div>
+  </div>
+</div>
 

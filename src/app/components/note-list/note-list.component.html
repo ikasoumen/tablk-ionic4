@@ -2,7 +2,8 @@
   <ion-item *ngFor="let note of (notes$() | async)">
     <ion-avatar slot="start">
       <tablk-character-avatar
-        [character$]="this.character$(note)"
+        [name]="(character$(note) | async).name"
+        [sessionId]="sessionId"
       ></tablk-character-avatar>
     </ion-avatar>
     <ion-label>
