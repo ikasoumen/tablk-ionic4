@@ -1,0 +1,136 @@
+:host {
+  display: flex;
+  align-content: stretch;
+}
+
+.spacer {
+  width: 16px;
+  background-color: grey;
+  flex: 0 0 auto;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.spacer::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+  padding-left: 4px;
+}
+
+.name {
+  font-size: 10px;
+  height: 10px;
+  font-weight: bold;
+}
+
+.main-container {
+  margin: 5px 5px 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+.body {
+  font-size: 12pt;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.voice-lv-2 {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #444;
+}
+
+.voice-lv-3 {
+  font-size: 13pt;
+  font-weight: bold;
+  color: #444;
+}
+
+.voice-lv-4 {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #444;
+}
+
+.voice-lv-5 {
+  font-size: 15pt;
+  font-weight: bold;
+  color: #444;
+}
+
+.balloon::before {
+  display: block;
+  margin-left: -24px;
+  position: absolute;
+}
+
+.balloon {
+  background-color: #c4fbfc;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-left: 8px;
+}
+
+.dice-exp {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  font-size: 20px;
+  margin-bottom: 0.5em;
+  font-family: "Exo 2";
+  font-weight: bold;
+}
+
+.dice-exp .eq + .elem {
+  font-size: 23px;
+}
+
+.dice-exp .with-label {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.dice-exp .elem {
+  line-height: 30px;
+}
+
+.dice-exp .op {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  margin-bottom: 0.05em;
+  color: #0096a6;
+}
+
+.dice-exp .label {
+  border-bottom: 1px solid #0096a6;
+  color: #1f3638;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 12px;
+}
+
+.dice-exp .pip {
+  border: 1px solid #aaa;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  font-size: 1em;
+  border-radius: 3px;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}

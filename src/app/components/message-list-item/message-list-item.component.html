@@ -1,0 +1,26 @@
+<div class="spacer" [style.backgroundColor]="(member$ | async).color"></div>
+<div class="container">
+  <div
+    class="name"
+    [style.color]="(member$ | async).color"
+  >
+    {{ (character$ | async).name }}
+  </div>
+  <div class="main-container">
+    <tablk-character-avatar
+      [name]="(character$ | async).id"
+      [sessionId]="sessionId"
+    ></tablk-character-avatar>
+    <p class="body voice-lv-1">
+      {{ (message$ | async).message }}
+    </p>
+  </div>
+  <!-- <div *ngFor="let exp of message.options.exp" class="dice-exp">
+    <span *ngFor="let item of exp">
+      <span class="elem" [ngClass]="{'op': item.type == 'op', 'eq': item.val == '=', 'with-label': item.type == 'label' || item.type == 'dice' }">
+        {{ item.type == 'label' || item.type == 'dice' ? "" : item.val }}
+      </span>
+      <pips *ngIf=" item.type === 'dice' " [dice]="item"></pips>
+    </span>
+  </div> -->
+</div>

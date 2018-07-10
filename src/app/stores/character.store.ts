@@ -52,9 +52,7 @@ export class CharacterStore {
     return this.store.observable.pipe(
       mergeMap(store => {
         return member$.pipe(
-          // @todo: 実装ミス
-          map(member => store.characters.get(member.id)),
-          filter((character?: Character) => character != null)
+          map(member => store.characters.get(member.defaultCharacterId))
         );
       })
     );

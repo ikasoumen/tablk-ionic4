@@ -26,6 +26,7 @@
       <div class="title-container" padding>
         <h1>
           <tablk-scratch-text
+            [sealed]="false"
             [text]="(session$ | async).name"
           ></tablk-scratch-text>
         </h1>
