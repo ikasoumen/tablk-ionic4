@@ -11,7 +11,7 @@
 
 <ion-content>
   <div padding>
-    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" novalidate>
+    <form #loginForm="ngForm" novalidate>
       <ion-list>
         <ion-item>
           <ion-label color="primary" position="stacked">メールアドレス</ion-label>
@@ -23,7 +23,8 @@
           <ion-input type="password" [(ngModel)]="params.password" name="password"></ion-input>
         </ion-item>
       </ion-list>
-      <ion-button type="submit" block>ログイン</ion-button>
+      <!-- @todo : onSubmit が無効なので click を代わりに使っている。 onSubmit にする -->
+      <ion-button type="submit" block (click)="onLogin(loginForm)">ログイン</ion-button>
     </form>
   </div>
 </ion-content>

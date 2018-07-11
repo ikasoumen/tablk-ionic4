@@ -1,4 +1,10 @@
-import { Component, ViewEncapsulation, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+  OnInit,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { AuthManager } from "app/providers/authManager/authManager";
 import { ApiKeyInput } from "app/http";
 import {
@@ -17,7 +23,8 @@ import { ModalController } from "@ionic/angular";
 @Component({
   selector: "tablk-page-login-nav",
   templateUrl: "loginNav.page.html",
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginNavRoot {
   public params: ApiKeyInput = { email: "", password: "" };
@@ -28,14 +35,8 @@ export class LoginNavRoot {
   constructor(
     private loginActions: LoginActions,
     private toastManager: ToastManager,
-    private modalCtrl: ModalController,
-    private dispatcher: AppDispatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    private dispatcher: AppDispatcher
   ) {}
-
-  public OnInit() {
-    this.modalCtrl.dismiss();
-  }
 
   public onLogin(form: NgForm) {
     this.submitted = true;
