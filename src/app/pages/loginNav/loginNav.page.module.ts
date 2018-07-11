@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { LoginNavRoot } from "./loginNav.page";
-import { ParticlesModule } from "angular-particle";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { AuthManagerModule } from "app/providers/authManager/authManager.module";
@@ -10,13 +9,7 @@ import { ToastManagerModule } from "../../providers/toastManager/toastManager.mo
 
 @NgModule({
   entryComponents: [LoginNavRoot],
-  imports: [
-    ParticlesModule,
-    IonicModule,
-    PageTitleModule,
-    FormsModule,
-    ToastManagerModule
-  ],
+  imports: [IonicModule, PageTitleModule, FormsModule, ToastManagerModule],
   declarations: [LoginNavRoot]
 })
 export class LoginNavRootModule {}

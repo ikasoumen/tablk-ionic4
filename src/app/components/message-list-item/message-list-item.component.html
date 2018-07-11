@@ -9,7 +9,6 @@
   <div class="main-container">
     <tablk-character-avatar
       [name]="(character$ | async).id"
-      [sessionId]="sessionId"
     ></tablk-character-avatar>
     <p class="body voice-lv-1">
       {{ (message$ | async).message }}
