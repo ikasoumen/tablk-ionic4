@@ -4,7 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  API_BASE_PATH: "http://localhost:3000/apiv2"
+  API_BASE_PATH: "http://localhost:3000/apiv2",
+  CABLE_PATH: "ws:/localhost:8080/cable"
 };
 
 /*

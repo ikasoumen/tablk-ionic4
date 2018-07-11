@@ -28,10 +28,12 @@
     "@ionic/angular": "4.0.0-alpha.9",
     "@ionic/ng-toolkit": "1.0.0-rc.9",
     "@ionic/schematics-angular": "1.0.0-rc.9",
+    "@types/actioncable": "0.0.2",
+    "actioncable": "^5.2.0",
     "core-js": "^2.5.3",
+    "firebase-tools": "^3.19.3",
     "rxjs": "6.2.1",
-    "zone.js": "^0.8.26",
-    "firebase-tools": "^3.19.3"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/cli": "6.0.8",
