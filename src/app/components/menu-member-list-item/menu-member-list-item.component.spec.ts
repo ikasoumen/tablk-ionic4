@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ChatMemberListItemComponent } from "./chat-member-list-item.component";
+import { MenuMemberListItemComponent } from "./menu-member-list-item.component";
 
-describe("ChatMemberListItemComponent", () => {
-  let component: ChatMemberListItemComponent;
-  let fixture: ComponentFixture<ChatMemberListItemComponent>;
+describe("MenuMemberListItemComponent", () => {
+  let component: MenuMemberListItemComponent;
+  let fixture: ComponentFixture<MenuMemberListItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ChatMemberListItemComponent]
+      declarations: [MenuMemberListItemComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatMemberListItemComponent);
+    fixture = TestBed.createComponent(MenuMemberListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

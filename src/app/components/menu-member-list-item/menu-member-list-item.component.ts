@@ -6,13 +6,13 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "tablk-chat-member-list-item",
-  templateUrl: "./chat-member-list-item.component.html",
-  styleUrls: ["./chat-member-list-item.component.css"],
+  selector: "tablk-menu-member-list-item",
+  templateUrl: "./menu-member-list-item.component.html",
+  styleUrls: ["./menu-member-list-item.component.css"],
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChatMemberListItemComponent implements OnInit {
+export class MenuMemberListItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

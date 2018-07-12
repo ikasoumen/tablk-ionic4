@@ -10,9 +10,11 @@
         </ion-toolbar>
       </ion-header>
       <ion-content [ngClass]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
-        <ion-list >
-            {{ isChatPage$ | async }}
+        <ion-list>
+          {{ isChatPage$ | async }}
         </ion-list>
+        <tablk-menu-member-list-item>
+        </tablk-menu-member-list-item>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

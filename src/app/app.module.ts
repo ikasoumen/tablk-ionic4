@@ -37,6 +37,8 @@ import { PagesStore } from "./stores/pages.store";
 import { GroupsStore } from "./stores/groups.store";
 import { MessageStore } from "./stores/message.store";
 import { CableManager } from "./providers/cableManager";
+import { MenuMemberListComponent } from "./components/menu-member-list/menu-member-list.component";
+import { MenuMemberListItemComponent } from "app/components/menu-member-list-item/menu-member-list-item.component";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -47,7 +49,11 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    MenuMemberListComponent,
+    MenuMemberListItemComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
