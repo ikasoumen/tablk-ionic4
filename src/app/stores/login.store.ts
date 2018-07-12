@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
 import { map, distinctUntilChanged } from "rxjs/operators";
+import { User } from "app/http";
 
 @Injectable()
 export class LoginStore {
@@ -17,5 +18,13 @@ export class LoginStore {
       map(state => state.login.apiKey != null),
       distinctUntilChanged()
     );
+  }
+
+  lastLoginUser$(): Observable<User> {
+    return this.store.observable.pipe(map(state => state.login.lastLoginUser));
+  }
+
+  apiKey$(): Observable<String> {
+    return this.store.observable.pipe(map(state => state.login.apiKey));
   }
 }

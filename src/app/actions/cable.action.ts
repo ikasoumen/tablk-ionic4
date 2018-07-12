@@ -1,31 +1,50 @@
 import { Injectable } from "@angular/core";
-import { Actions, Action } from "app/walts";
-import { AppState } from "../app.store";
 import * as ActionCable from "actioncable";
+import { environment } from "environments/environment";
+import { LoginStore } from "../stores/login.store";
 
 @Injectable()
-export class CableActions extends Actions<AppState> {
-  private cable: ActionCable.Cable;
+export class CableManager {
+  private cable?: ActionCable.Cable;
+  private sessionChannels = new Map<string, ActionCable.Channel>();
+  private groupChannels = new Map<string, ActionCable.Channel>();
 
-  connect(): Action<AppState> {
-    return _state => {
-      this.cable = ActionCable.createConsumer(
-        `${window.default_cabel_url}?token=${Cookies.get("remember_token")}`
-      );
-      this.session_id = session_id;
-      this.cable.subscriptions.create(
-        { channel: "SessionMembersChannel", session_id: session_id },
-        this.callbacks()
-      );
-      _state.cable.paneSplitted = paneSplitted;
-      return _state;
-    };
+  constructor(private login: LoginStore) {}
+
+  async init() {
+    const apiKey = await this.login.apiKey$().toPromise();
+    this.cable = ActionCable.createConsumer(
+      `${environment.CABLE_PATH}?token=${apiKey}`
+    );
   }
 
-  disconnect(): Action<AppState> {
-    return _state => {
-      _state.cable.paneSplitted = paneSplitted;
-      return _state;
-    };
+  public connectSession(sessionId: string) {
+    const channel = this.cable.subscriptions.create(
+      { channel: "SessionChannel", session_id: sessionId },
+      {
+        connected: () => {},
+        disconnected: () => {},
+        received: action => {},
+        rejected: reason => {
+          console.log("Authorization failed because " + reason);
+        }
+      }
+    );
+    this.sessionChannels.set(sessionId, channel);
+  }
+
+  public connectGroup(groupId: string) {
+    const channel = this.cable.subscriptions.create(
+      { channel: "GroupChannel", group_id: groupId },
+      {
+        connected: () => {},
+        disconnected: () => {},
+        received: action => {},
+        rejected: reason => {
+          console.log("Authorization failed because " + reason);
+        }
+      }
+    );
+    this.groupChannels.set(groupId, channel);
   }
 }
