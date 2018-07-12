@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import * as ActionCable from "actioncable";
 import { environment } from "environments/environment";
 import { LoginStore } from "../stores/login.store";
+import { LocalStorageKeys } from "../constants";
+import { getFromLocalStrage } from "app/helpers/localStorageKey";
 
 @Injectable()
 export class CableManager {
@@ -11,19 +13,23 @@ export class CableManager {
 
   constructor(private login: LoginStore) {}
 
-  async init() {
-    const apiKey = await this.login.apiKey$().toPromise();
+  public init() {
+    const apiKey = getFromLocalStrage<LocalStorageKeys, "apiKey">("apiKey");
     this.cable = ActionCable.createConsumer(
-      `${environment.CABLE_PATH}?token=${apiKey}`
+      `${environment.CABLE_PATH}?api_key=${apiKey}`
     );
   }
 
   public connectSession(sessionId: string) {
     const channel = this.cable.subscriptions.create(
-      { channel: "SessionChannel", session_id: sessionId },
+      { channel: "SessionMembersChannel", session_id: sessionId },
       {
-        connected: () => {},
-        disconnected: () => {},
+        connected: () => {
+          console.log("connected!");
+        },
+        disconnected: () => {
+          console.log("connected!");
+        },
         received: action => {},
         rejected: reason => {
           console.log("Authorization failed because " + reason);

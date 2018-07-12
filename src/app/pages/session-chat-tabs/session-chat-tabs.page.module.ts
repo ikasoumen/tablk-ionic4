@@ -8,6 +8,7 @@ import { AboutPage } from "app/pages/about/about.page";
 import { PageTitleModule } from "../../components/pageTitle/pageTitle.component.module";
 import { NoteListComponentModule } from "../../components/note-list/note-list.component.module";
 import { MessageListComponentModule } from "../../components/message-list/message-list.component.module";
+import { CableManager } from "app/actions/cable.action";
 
 const routes: Routes = [
   {

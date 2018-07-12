@@ -36,6 +36,7 @@ import { PagesActions } from "./actions/pages.actions";
 import { PagesStore } from "./stores/pages.store";
 import { GroupsStore } from "app/stores/groups.store";
 import { MessageStore } from "./stores/message.store";
+import { CableManager } from "app/actions/cable.action";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -61,6 +62,7 @@ export function apiConfigFactory(): Configuration {
     AppearancesActions,
     AppDispatcher,
     DefaultService,
+    CableManager,
 
     // Actions
     SessionActions,
@@ -91,6 +93,8 @@ export function apiConfigFactory(): Configuration {
       multi: true
     },
     { provide: ErrorHandler, useClass: TablkErrorHandler },
+
+    // Guards
     LoginGuard,
     NoLoginGuard
   ],

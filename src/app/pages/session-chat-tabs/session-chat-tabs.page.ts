@@ -10,6 +10,7 @@ import { SessionActions } from "../../actions/sessions.actions";
 import { GroupsStore } from "../../stores/groups.store";
 import { map, first } from "rxjs/operators";
 import { MessageActions } from "../../actions/messages.actions";
+import { CableManager } from "app/actions/cable.action";
 
 enum segments {
   Talk = "Talk",
@@ -35,11 +36,12 @@ export class SessionChatTabsPage implements OnInit {
     private sessionActions: SessionActions,
     private messageActions: MessageActions,
     private sessions: SessionsStore,
-    private dispatcher: AppDispatcher
+    private dispatcher: AppDispatcher,
+    private cable: CableManager
   ) {}
 
   public ngOnInit() {
-    this.route.params.subscribe((params: SessionChatTabsPage.Params) => {
+    this.route.params.subscribe(async (params: SessionChatTabsPage.Params) => {
       this.sessionId = params.id;
       this.session$ = this.sessions.readOne$(of(this.sessionId));
       this.groups$ = this.groups.readSome$_bySession$(this.session$);
@@ -50,6 +52,8 @@ export class SessionChatTabsPage implements OnInit {
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
         this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
+        await this.cable.init();
+        this.cable.connectSession(this.sessionId);
       } catch (e) {
         throw e;
       }
