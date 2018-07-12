@@ -16,17 +16,17 @@ import {
   ConfigurationParameters,
   DefaultService
 } from "./http";
-import { environment } from "../environments/environment";
+import { environment } from "environments/environment";
 import { LoginActions } from "./actions/login.action";
 import { LoginStore } from "./stores/login.store";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { Interceptor } from "app/http/intercepter";
+import { Interceptor } from "./http/intercepter";
 import { LoginGuard } from "./providers/loginGuard/loginGuard";
 import { NoLoginGuard } from "./providers/noLoginGuard/noLoginGuard";
-import { SessionsStore } from "app/stores/sessions.store";
-import { SessionActions } from "app/actions/sessions.actions";
+import { SessionsStore } from "./stores/sessions.store";
+import { SessionActions } from "./actions/sessions.actions";
 import { MemberStore } from "./stores/member.store";
-import { TablkErrorHandler } from "app/helpers/tablkErrorHandler";
+import { TablkErrorHandler } from "./helpers/tablkErrorHandler";
 import { HttpErrorHandler } from "./providers/httpErrorHandler";
 import { GroupActions } from "./actions/groups.actions";
 import { NoteStore } from "./stores/note.store";
@@ -34,9 +34,9 @@ import { CharacterStore } from "./stores/character.store";
 import { MessageActions } from "./actions/messages.actions";
 import { PagesActions } from "./actions/pages.actions";
 import { PagesStore } from "./stores/pages.store";
-import { GroupsStore } from "app/stores/groups.store";
+import { GroupsStore } from "./stores/groups.store";
 import { MessageStore } from "./stores/message.store";
-import { CableManager } from "app/actions/cable.action";
+import { CableManager } from "./providers/cableManager";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {

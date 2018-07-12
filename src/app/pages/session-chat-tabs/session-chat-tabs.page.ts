@@ -4,13 +4,15 @@ import { Session, Group } from "../../http";
 import { GroupActions } from "../../actions/groups.actions";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of } from "rxjs";
-import { SessionsStore } from "app/stores/sessions.store";
-import { AppDispatcher } from "app/app.dispatcher";
+import { SessionsStore } from "../../stores/sessions.store";
+import { AppDispatcher } from "../../app.dispatcher";
 import { SessionActions } from "../../actions/sessions.actions";
 import { GroupsStore } from "../../stores/groups.store";
 import { map, first } from "rxjs/operators";
 import { MessageActions } from "../../actions/messages.actions";
-import { CableManager } from "app/actions/cable.action";
+import { CableManager } from "../../providers/cableManager";
+import { AppearancesActions } from "../../actions/appearances.actions";
+import { Pages } from "../../constants";
 
 enum segments {
   Talk = "Talk",
@@ -35,12 +37,15 @@ export class SessionChatTabsPage implements OnInit {
     private groups: GroupsStore,
     private sessionActions: SessionActions,
     private messageActions: MessageActions,
+    private appearnceActions: AppearancesActions,
     private sessions: SessionsStore,
     private dispatcher: AppDispatcher,
     private cable: CableManager
   ) {}
 
   public ngOnInit() {
+    this.dispatcher.emit(this.appearnceActions.setCurrentPage(Pages.chat));
+
     this.route.params.subscribe(async (params: SessionChatTabsPage.Params) => {
       this.sessionId = params.id;
       this.session$ = this.sessions.readOne$(of(this.sessionId));

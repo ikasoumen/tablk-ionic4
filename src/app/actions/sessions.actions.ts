@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Actions, Action } from "app/walts";
+import { Actions, Action } from "../walts";
 
 import { AppState } from "../app.store";
-import { DelayedAction } from "app/walts";
+import { DelayedAction } from "../walts";
 import { DefaultService, SessionsResponse } from "../http";
 import { addSome, setSome } from "../helpers/helpers";
 import { HttpErrorHandler } from "../providers/httpErrorHandler";

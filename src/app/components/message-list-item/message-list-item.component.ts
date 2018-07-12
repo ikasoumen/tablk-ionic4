@@ -7,13 +7,13 @@ import {
   OnChanges
 } from "@angular/core";
 
-import { MemberStore } from "app/stores/member.store";
-import { CharacterStore } from "app/stores/character.store";
+import { MemberStore } from "../../stores/member.store";
+import { CharacterStore } from "../../stores/character.store";
 import { GroupsStore } from "../../stores/groups.store";
 import { SessionsStore } from "../../stores/sessions.store";
 import { MessageStore } from "../../stores/message.store";
 import { Observable, of } from "rxjs";
-import { Message, Character, Member } from "app/http";
+import { Message, Character, Member } from "../../http";
 import { mergeMap, map } from "rxjs/operators";
 
 @Component({

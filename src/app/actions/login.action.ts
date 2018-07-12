@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Actions } from "app/walts";
+import { Actions } from "../walts";
 import { AppState } from "../app.store";
 import { DefaultService, ApiKeyResponse } from "../http";
 import { setToLocalStrage } from "../helpers/localStorageKey";
 import { LocalStorageKeys } from "../constants";
-import { DelayedAction } from "app/walts";
-import { HttpErrorHandler } from "app/providers/httpErrorHandler";
+import { DelayedAction } from "../walts";
+import { HttpErrorHandler } from "../providers/httpErrorHandler";
 
 @Injectable()
 export class LoginActions extends Actions<AppState> {

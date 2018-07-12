@@ -11,9 +11,9 @@ import { map } from "rxjs/operators";
 import {
   changeJSONObject,
   changeJSONObjectType
-} from "app/helpers/changeJsonObject";
+} from "../helpers/changeJsonObject";
 import { LocalStorageKeys } from "../constants";
-import { getFromLocalStrage } from "app/helpers/localStorageKey";
+import { getFromLocalStrage } from "../helpers/localStorageKey";
 
 interface HttpRequestUpdate {
   headers?: HttpHeaders;

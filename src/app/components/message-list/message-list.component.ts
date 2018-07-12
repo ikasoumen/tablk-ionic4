@@ -8,12 +8,12 @@ import {
 } from "@angular/core";
 import { MessageStore } from "../../stores/message.store";
 import { Observable, of } from "rxjs";
-import { Group, Message } from "app/http";
+import { Group, Message } from "../../http";
 import { AppDispatcher } from "../../app.dispatcher";
 import { MessageActions } from "../../actions/messages.actions";
 import { distinctUntilChanged, mergeMap, map } from "rxjs/operators";
-import { MemberStore } from "app/stores/member.store";
-import { CharacterStore } from "app/stores/character.store";
+import { MemberStore } from "../../stores/member.store";
+import { CharacterStore } from "../../stores/character.store";
 import { GroupsStore } from "../../stores/groups.store";
 import { SessionsStore } from "../../stores/sessions.store";
 

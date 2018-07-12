@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { State, Store } from "app/walts";
+import { State, Store } from "./walts";
 
 import { AppDispatcher } from "./app.dispatcher";
 import { User, Session, Character, Member, Note, Message } from "./http";
-import { getFromLocalStrage } from "app/helpers/localStorageKey";
-import { LocalStorageKeys } from "./constants";
+import { getFromLocalStrage } from "./helpers/localStorageKey";
+import { LocalStorageKeys, Pages } from "./constants";
 import { Group } from "./http/model/group";
 
 export class AppState extends State {
@@ -14,6 +14,7 @@ export class AppState extends State {
   };
   appearances: {
     paneSplitted: boolean;
+    currentPage: Pages;
   };
   my: {
     sessionIds: Set<string>;
@@ -40,7 +41,8 @@ const INIT_STATE: AppState = {
     apiKey: getFromLocalStrage<LocalStorageKeys, "apiKey">("apiKey")
   },
   appearances: {
-    paneSplitted: false
+    paneSplitted: false,
+    currentPage: Pages.nonSet
   },
   my: {
     sessionIds: new Set<string>()

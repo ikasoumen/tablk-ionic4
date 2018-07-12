@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
 import { map, mergeMap, filter } from "rxjs/operators";
-import { Note } from "app/http";
+import { Note } from "../http";
 
 @Injectable()
 export class NoteStore {

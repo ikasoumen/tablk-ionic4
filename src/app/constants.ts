@@ -1,8 +1,15 @@
-import { User } from "app/http";
+import { User } from "./http";
 
 export interface LocalStorageKeys {
   lastLoginUser: User;
   apiKey: string;
+}
+
+export enum Pages {
+  chat = "chat",
+  sessionInfo = "sessionInfo",
+  dashBoard = "dashBoard",
+  nonSet = "nonSet"
 }
 
 export const Time = {

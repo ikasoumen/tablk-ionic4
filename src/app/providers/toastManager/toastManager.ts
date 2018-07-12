@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Time } from "app/constants";
+import { Time } from "../../constants";
 import { ToastController } from "@ionic/angular";
 
 export enum ToastCssType {

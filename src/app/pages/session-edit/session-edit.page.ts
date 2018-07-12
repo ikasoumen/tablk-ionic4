@@ -5,14 +5,14 @@ import {
   OnInit,
   Input
 } from "@angular/core";
-import { SessionsStore } from "app/stores/sessions.store";
+import { SessionsStore } from "../../stores/sessions.store";
 import { of, Observable } from "rxjs";
 import {
   Session,
   DefaultService,
   SessionCreateInput,
   ImageBase64
-} from "app/http";
+} from "../../http";
 import { SessionActions } from "../../actions/sessions.actions";
 import { ActivatedRoute } from "@angular/router";
 import { AppDispatcher } from "../../app.dispatcher";

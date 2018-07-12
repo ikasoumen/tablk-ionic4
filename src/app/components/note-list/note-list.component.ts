@@ -5,10 +5,10 @@ import {
   ChangeDetectionStrategy,
   Input
 } from "@angular/core";
-import { NoteStore } from "app/stores/note.store";
-import { MemberStore } from "app/stores/member.store";
+import { NoteStore } from "../../stores/note.store";
+import { MemberStore } from "../../stores/member.store";
 import { mergeMap, map } from "rxjs/operators";
-import { Member, Note } from "app/http";
+import { Member, Note } from "../../http";
 import { CharacterStore } from "../../stores/character.store";
 import { of } from "rxjs";
 

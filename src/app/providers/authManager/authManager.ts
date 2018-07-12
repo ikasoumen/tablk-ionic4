@@ -6,13 +6,13 @@ import {
   SignupFormInput,
   ApiKeyResponse,
   DefaultService
-} from "app/http";
+} from "../../http";
 import {
   getFromLocalStrage,
   setToLocalStrage,
   unsetFromLocalStorage
-} from "app/helpers/localStorageKey";
-import { LocalStorageKeys } from "app/constants";
+} from "../../helpers/localStorageKey";
+import { LocalStorageKeys } from "../../constants";
 
 @Injectable()
 export class AuthManager {

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
 import { map, mergeMap, filter, share } from "rxjs/operators";
-import { Character, Member, Session } from "app/http";
+import { Character, Member, Session } from "../http";
 
 /**
  * message 表示時に内部的に使う

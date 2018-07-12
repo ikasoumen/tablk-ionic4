@@ -7,7 +7,7 @@ import {
 import { DefaultService } from "../../http";
 import { SessionActions } from "../../actions/sessions.actions";
 import { SessionsStore } from "../../stores/sessions.store";
-import { AppDispatcher } from "app/app.dispatcher";
+import { AppDispatcher } from "../../app.dispatcher";
 
 @Component({
   selector: "tablk-page-joined-sessions",

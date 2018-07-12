@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
 import { map, mergeMap, filter, share } from "rxjs/operators";
-import { Session, Group } from "app/http";
+import { Session, Group } from "../http";
 
 export class DummySession implements Session {
   public id: never;

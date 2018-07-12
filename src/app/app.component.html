@@ -6,11 +6,12 @@
           <ion-buttons slot="start">
             <ion-back-button defaultHref="/"></ion-back-button>
           </ion-buttons>
-          <ion-title></ion-title>
+          <ion-title>{{ appearnce.getCurrentPage$() | async }}</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content [ngClass]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
-        <ion-list>
+        <ion-list >
+            {{ isChatPage$ | async }}
         </ion-list>
       </ion-content>
     </ion-menu>

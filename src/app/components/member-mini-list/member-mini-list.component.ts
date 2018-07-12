@@ -6,7 +6,7 @@ import {
   Input
 } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { Member } from "app/http";
+import { Member } from "../../http";
 import { MemberStore } from "../../stores/member.store";
 
 @Component({

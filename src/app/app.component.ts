@@ -1,7 +1,9 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild,
+  OnInit
 } from "@angular/core";
 
 import { Platform } from "@ionic/angular";
@@ -11,6 +13,9 @@ import { AppDispatcher } from "./app.dispatcher";
 import { AppearancesActions } from "./actions/appearances.actions";
 import { AppearancesStore } from "./stores/appearances.store";
 import { LoginStore } from "./stores/login.store";
+import { Observable } from "../../node_modules/rxjs";
+import { Pages } from "./constants";
+import { map } from "../../node_modules/rxjs/operators";
 
 @Component({
   selector: "tablk-root",
@@ -19,7 +24,9 @@ import { LoginStore } from "./stores/login.store";
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public isChatPage$: Observable<boolean>;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,6 +37,12 @@ export class AppComponent {
     public login: LoginStore
   ) {
     this.initializeApp();
+  }
+
+  ngOnInit() {
+    this.isChatPage$ = this.appearnce
+      .getCurrentPage$()
+      .pipe(map(page => page === Pages.chat));
   }
 
   initializeApp() {

@@ -5,16 +5,16 @@ import {
   OnInit,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { AuthManager } from "app/providers/authManager/authManager";
-import { ApiKeyInput } from "app/http";
+import { AuthManager } from "../../providers/authManager/authManager";
+import { ApiKeyInput } from "../../http";
 import {
   ToastManager,
   ToastCssType
-} from "app/providers/toastManager/toastManager";
+} from "../../providers/toastManager/toastManager";
 import { NgForm } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import { LoginActions } from "../../actions/login.action";
-import { AppDispatcher } from "app/app.dispatcher";
+import { AppDispatcher } from "../../app.dispatcher";
 import { ModalController } from "@ionic/angular";
 
 /**

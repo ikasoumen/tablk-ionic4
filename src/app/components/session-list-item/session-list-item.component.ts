@@ -5,7 +5,7 @@ import {
   OnChanges,
   Input
 } from "@angular/core";
-import { SessionsStore } from "app/stores/sessions.store";
+import { SessionsStore } from "../../stores/sessions.store";
 import { of, Observable } from "rxjs";
 import { Session } from "../../http";
 import { NavController } from "@ionic/angular";

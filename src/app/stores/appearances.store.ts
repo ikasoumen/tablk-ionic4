@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AppStore } from "../app.store";
 import { Observable } from "rxjs";
 import { map, distinctUntilChanged } from "rxjs/operators";
+import { Pages } from "../constants";
 
 @Injectable()
 export class AppearancesStore {
@@ -16,6 +17,12 @@ export class AppearancesStore {
     return this.store.observable.pipe(
       map(state => state.appearances.paneSplitted),
       distinctUntilChanged()
+    );
+  }
+
+  getCurrentPage$(): Observable<Pages> {
+    return this.store.observable.pipe(
+      map(state => state.appearances.currentPage)
     );
   }
 }

@@ -12,9 +12,9 @@ import { NavController } from "@ionic/angular";
 import {
   ToastManager,
   ToastCssType
-} from "app/providers/toastManager/toastManager";
-import { AuthManager } from "app/providers/authManager/authManager";
-import { SignupPostInput } from "app/http";
+} from "../../../providers/toastManager/toastManager";
+import { AuthManager } from "../../../providers/authManager/authManager";
+import { SignupPostInput } from "../../../http";
 
 @Component({
   selector: "tablk-page-signup-mail",

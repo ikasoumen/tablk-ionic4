@@ -10,7 +10,7 @@ import {
   CharacterStore,
   NameOnlyCharacter
 } from "../../stores/character.store";
-import { Character } from "app/http";
+import { Character } from "../../http";
 import { Observable, of } from "rxjs";
 import { SessionsStore } from "../../stores/sessions.store";
 import { map } from "rxjs/operators";

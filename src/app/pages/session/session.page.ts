@@ -4,10 +4,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { SessionsStore } from "app/stores/sessions.store";
+import { SessionsStore } from "../../stores/sessions.store";
 import { Observable, of } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
-import { Session } from "app/http";
+import { Session } from "../../http";
 import { InputChangeEvent, ActionSheetOptions } from "@ionic/core";
 import { SessionActions } from "../../actions/sessions.actions";
 import { AppDispatcher } from "../../app.dispatcher";

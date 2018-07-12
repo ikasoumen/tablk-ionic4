@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { SignupPage } from "./signupMail.page";
-import { PageTitleModule } from "app/components/pageTitle/pageTitle.component.module";
+import { PageTitleModule } from "../../../components/pageTitle/pageTitle.component.module";
 import { IonicModule } from "@ionic/angular";
 import { FormsModule } from "@angular/forms";
 

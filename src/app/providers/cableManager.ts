@@ -3,15 +3,13 @@ import * as ActionCable from "actioncable";
 import { environment } from "environments/environment";
 import { LoginStore } from "../stores/login.store";
 import { LocalStorageKeys } from "../constants";
-import { getFromLocalStrage } from "app/helpers/localStorageKey";
+import { getFromLocalStrage } from "../helpers/localStorageKey";
 
 @Injectable()
 export class CableManager {
   private cable?: ActionCable.Cable;
   private sessionChannels = new Map<string, ActionCable.Channel>();
   private groupChannels = new Map<string, ActionCable.Channel>();
-
-  constructor(private login: LoginStore) {}
 
   public init() {
     const apiKey = getFromLocalStrage<LocalStorageKeys, "apiKey">("apiKey");
