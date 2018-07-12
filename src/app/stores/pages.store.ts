@@ -15,4 +15,10 @@ export class PagesStore {
   public chatTabs_currentGroupId$() {
     return this.selectRoot$().pipe(map(pages => pages.chatTab.currentGroupId));
   }
+
+  public chatTabs_currenSessionId$() {
+    return this.selectRoot$().pipe(
+      map(pages => pages.chatTab.currentSessionId)
+    );
+  }
 }

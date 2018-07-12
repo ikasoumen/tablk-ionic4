@@ -7,8 +7,20 @@ import { AppState } from "../app.store";
 export class PagesActions extends Actions<AppState> {
   chatTabs_setGroupId(groupId: string): Action<AppState> {
     return _state => {
-      _state.groups.has(groupId);
+      if (!_state.groups.has(groupId)) {
+        return _state;
+      }
       _state.pages.chatTab.currentGroupId = groupId;
+      return _state;
+    };
+  }
+
+  chatTabs_setSessionId(sessionId: string): Action<AppState> {
+    return _state => {
+      if (!_state.sessions.has(sessionId)) {
+        return _state;
+      }
+      _state.pages.chatTab.currentSessionId = sessionId;
       return _state;
     };
   }

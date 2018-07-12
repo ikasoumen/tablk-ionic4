@@ -21,7 +21,8 @@ export class AppState extends State {
   };
   pages: {
     chatTab: {
-      currentGroupId: string;
+      currentSessionId: string | null;
+      currentGroupId: string | null;
     };
   };
   sessions: Map<string, Session>;
@@ -49,7 +50,8 @@ const INIT_STATE: AppState = {
   },
   pages: {
     chatTab: {
-      currentGroupId: ""
+      currentSessionId: null,
+      currentGroupId: null
     }
   },
   sessions: new Map<string, Session>(),
