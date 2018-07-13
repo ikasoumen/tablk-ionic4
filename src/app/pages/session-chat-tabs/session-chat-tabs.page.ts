@@ -13,6 +13,7 @@ import { MessageActions } from "../../actions/messages.actions";
 import { CableManager } from "../../providers/cableManager";
 import { AppearancesActions } from "../../actions/appearances.actions";
 import { Pages } from "../../constants";
+import { PagesActions } from "../../actions/pages.actions";
 
 enum segments {
   Talk = "Talk",
@@ -38,6 +39,7 @@ export class SessionChatTabsPage implements OnInit {
     private sessionActions: SessionActions,
     private messageActions: MessageActions,
     private appearnceActions: AppearancesActions,
+    private pageActions: PagesActions,
     private sessions: SessionsStore,
     private dispatcher: AppDispatcher,
     private cable: CableManager
@@ -48,6 +50,9 @@ export class SessionChatTabsPage implements OnInit {
 
     this.route.params.subscribe(async (params: SessionChatTabsPage.Params) => {
       this.sessionId = params.id;
+      this.dispatcher.emit(
+        this.pageActions.chatTabs_setSessionId(this.sessionId)
+      );
       this.session$ = this.sessions.readOne$(of(this.sessionId));
       this.groups$ = this.groups.readSome$_bySession$(this.session$);
       this.groups$.pipe(first()).subscribe(groups => {

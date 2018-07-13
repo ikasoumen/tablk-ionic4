@@ -39,6 +39,7 @@ import { MessageStore } from "./stores/message.store";
 import { CableManager } from "./providers/cableManager";
 import { MenuMemberListComponent } from "./components/menu-member-list/menu-member-list.component";
 import { MenuMemberListItemComponent } from "app/components/menu-member-list-item/menu-member-list-item.component";
+import { MenuMemberListComponentModule } from "./components/menu-member-list/menu-member-list.component.module";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -49,11 +50,7 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuMemberListComponent,
-    MenuMemberListItemComponent
-  ],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -62,7 +59,10 @@ export function apiConfigFactory(): Configuration {
       iconMode: "md"
     }),
     AppRoutingModule,
-    ApiModule.forRoot(apiConfigFactory)
+    ApiModule.forRoot(apiConfigFactory),
+
+    // Components
+    MenuMemberListComponentModule
   ],
   providers: [
     AppearancesActions,

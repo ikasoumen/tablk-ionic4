@@ -16,6 +16,8 @@ import { LoginStore } from "./stores/login.store";
 import { Observable } from "../../node_modules/rxjs";
 import { Pages } from "./constants";
 import { map } from "../../node_modules/rxjs/operators";
+import { PagesActions } from "./actions/pages.actions";
+import { PagesStore } from "./stores/pages.store";
 
 @Component({
   selector: "tablk-root",
@@ -26,6 +28,7 @@ import { map } from "../../node_modules/rxjs/operators";
 })
 export class AppComponent implements OnInit {
   public isChatPage$: Observable<boolean>;
+  public currentSessionId$: Observable<string>;
 
   constructor(
     private platform: Platform,
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private dispatcher: AppDispatcher,
     private appearanceActions: AppearancesActions,
+    private pages: PagesStore,
     public appearnce: AppearancesStore,
     public login: LoginStore
   ) {
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit {
     this.isChatPage$ = this.appearnce
       .getCurrentPage$()
       .pipe(map(page => page === Pages.chat));
+    this.currentSessionId$ = this.pages.chatTabs_currenSessionId$();
   }
 
   initializeApp() {

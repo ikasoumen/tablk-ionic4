@@ -1,3 +1,8 @@
-<p>
-  menu-member-list works!
-</p>
+<ion-list>
+  <tablk-menu-member-list-item
+    *ngFor="let member of (members$ | async)"
+    [memberId]="member.id"
+    [sessionId]="sessionId"
+  >
+  </tablk-menu-member-list-item>
+</ion-list>

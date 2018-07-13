@@ -1,3 +1,13 @@
-<p>
-  chat-member-list-item works!
-</p>
+<ion-item>
+  <ion-avatar slot="start">
+    <tablk-character-avatar
+      [name]="(character$ | async).name"
+      [sessionId]="sessionId"
+    ></tablk-character-avatar>
+  </ion-avatar>
+  <ion-label>
+    <p
+      [ngStyle]="{'color': (member$ | async).color}"
+    > {{ ( character$ | async).name }}</p>
+  </ion-label>
+</ion-item>
