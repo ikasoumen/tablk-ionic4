@@ -62,6 +62,9 @@ export class SessionChatTabsPage implements OnInit {
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
         this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
+        this.dispatcher.emit(
+          this.pageActions.chatTabs_getOnlineMemberIds(this.sessionId)
+        );
         await this.cable.init();
         this.cable.connectSession(this.sessionId);
       } catch (e) {

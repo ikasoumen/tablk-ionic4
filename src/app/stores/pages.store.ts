@@ -21,4 +21,18 @@ export class PagesStore {
       map(pages => pages.chatTab.currentSessionId)
     );
   }
+
+  public chatTabs_currentSessionOnlineMemberIds$() {
+    return this.selectRoot$().pipe(
+      map(pages => pages.chatTab.currentSessionOnlineMemberIds)
+    );
+  }
+
+  public chatTabs_memberIsOnline$(memberId$: Observable<string>) {
+    return this.chatTabs_currentSessionOnlineMemberIds$().pipe(
+      mergeMap(memberIds => {
+        return memberId$.pipe(map(memberId => memberIds.includes(memberId)));
+      })
+    );
+  }
 }

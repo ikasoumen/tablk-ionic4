@@ -9,7 +9,8 @@ import {
 import { MemberStore } from "app/stores/member.store";
 import { CharacterStore } from "app/stores/character.store";
 import { Member, Character } from "app/http";
-import { Observable } from "../../../../node_modules/rxjs";
+import { Observable, of } from "../../../../node_modules/rxjs";
+import { PagesStore } from "../../stores/pages.store";
 
 @Component({
   selector: "tablk-menu-member-list-item",
@@ -23,11 +24,17 @@ export class MenuMemberListItemComponent implements OnChanges {
   @Input() public sessionId: string;
   public member$: Observable<Member>;
   public character$: Observable<Character>;
+  public isOnline$: Observable<boolean>;
 
-  constructor(private member: MemberStore, private character: CharacterStore) {}
+  constructor(
+    private member: MemberStore,
+    private character: CharacterStore,
+    private page: PagesStore
+  ) {}
 
   ngOnChanges() {
     this.member$ = this.member.readOne$(this.memberId);
+    this.isOnline$ = this.page.chatTabs_memberIsOnline$(of(this.memberId));
     this.character$ = this.character.readOne$_byMember$(this.member$);
   }
 }

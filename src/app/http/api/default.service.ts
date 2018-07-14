@@ -30,6 +30,7 @@ import { GroupCreateInput } from "../model/groupCreateInput";
 import { GroupsResponse } from "../model/groupsResponse";
 import { MessageCreateInput } from "../model/messageCreateInput";
 import { MessagesResponse } from "../model/messagesResponse";
+import { OnlineMembersResponse } from "../model/onlineMembersResponse";
 import { SessionCreateInput } from "../model/sessionCreateInput";
 import { SessionDeleteInput } from "../model/sessionDeleteInput";
 import { SessionsResponse } from "../model/sessionsResponse";
@@ -621,6 +622,66 @@ export class DefaultService {
       `${this.basePath}/sessions/${encodeURIComponent(
         String(sessionId)
       )}/groups`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
+  /**
+   *
+   * get online members
+   * @param sessionId
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public sessionsSessionIdOnlinesGet(
+    sessionId: string,
+    observe?: "body",
+    reportProgress?: boolean
+  ): Observable<OnlineMembersResponse>;
+  public sessionsSessionIdOnlinesGet(
+    sessionId: string,
+    observe?: "response",
+    reportProgress?: boolean
+  ): Observable<HttpResponse<OnlineMembersResponse>>;
+  public sessionsSessionIdOnlinesGet(
+    sessionId: string,
+    observe?: "events",
+    reportProgress?: boolean
+  ): Observable<HttpEvent<OnlineMembersResponse>>;
+  public sessionsSessionIdOnlinesGet(
+    sessionId: string,
+    observe: any = "body",
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (sessionId === null || sessionId === undefined) {
+      throw new Error(
+        "Required parameter sessionId was null or undefined when calling sessionsSessionIdOnlinesGet."
+      );
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ["application/json"];
+    let httpHeaderAcceptSelected:
+      | string
+      | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = ["application/json"];
+
+    return this.httpClient.get<OnlineMembersResponse>(
+      `${this.basePath}/sessions/${encodeURIComponent(
+        String(sessionId)
+      )}/onlines`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,

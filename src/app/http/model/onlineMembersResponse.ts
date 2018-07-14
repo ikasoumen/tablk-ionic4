@@ -10,15 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface Group {
-  id: string;
-  type: Group.TypeEnum;
-  memberIds: Array<string>;
-}
-export namespace Group {
-  export type TypeEnum = "Main" | "Sub";
-  export const TypeEnum = {
-    Main: "Main" as TypeEnum,
-    Sub: "Sub" as TypeEnum
-  };
+export interface OnlineMembersResponse {
+  /**
+   * Online member が居ない場合には false
+   */
+  memberIds?: Array<string>;
 }

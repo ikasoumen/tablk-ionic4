@@ -19,6 +19,7 @@ export * from "./messageOptions";
 export * from "./messagesResponse";
 export * from "./note";
 export * from "./noteKey";
+export * from "./onlineMembersResponse";
 export * from "./session";
 export * from "./sessionCreateInput";
 export * from "./sessionDeleteInput";

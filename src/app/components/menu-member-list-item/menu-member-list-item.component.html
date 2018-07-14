@@ -10,4 +10,8 @@
       [ngStyle]="{'color': (member$ | async).color}"
     > {{ ( character$ | async).name }}</p>
   </ion-label>
+  <ion-badge 
+    slot="end"
+    *ngIf=" isOnline$ | async "
+  >online</ion-badge>
 </ion-item>
