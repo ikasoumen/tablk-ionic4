@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { RouteReuseStrategy } from "@angular/router";
+import { RouteReuseStrategy, RouterModule } from "@angular/router";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
@@ -9,6 +9,11 @@ import { AppearancesActions } from "./actions/appearances.actions";
 import { AppComponent } from "./app.component";
 import { AppDispatcher } from "./app.dispatcher";
 import { AppStore } from "./app.store";
+
+// ngrx
+import { StoreModule } from "@ngrx/store";
+import { reducers, metaReducers } from "./reducers";
+
 import { AppearancesStore } from "./stores/appearances.store";
 import {
   ApiModule,
@@ -40,6 +45,7 @@ import { CableManager } from "./providers/cableManager";
 import { MenuMemberListComponent } from "./components/menu-member-list/menu-member-list.component";
 import { MenuMemberListItemComponent } from "app/components/menu-member-list-item/menu-member-list-item.component";
 import { MenuMemberListComponentModule } from "./components/menu-member-list/menu-member-list.component.module";
+import { StoreRouterConnectingModule } from "../../node_modules/@ngrx/router-store";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -60,6 +66,10 @@ export function apiConfigFactory(): Configuration {
     }),
     AppRoutingModule,
     ApiModule.forRoot(apiConfigFactory),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: "router" // name of reducer key
+    }),
 
     // Components
     MenuMemberListComponentModule
