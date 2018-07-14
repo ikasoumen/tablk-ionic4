@@ -46,5 +46,13 @@
 <ion-footer no-border>
   <ion-toolbar color="light">
     <ion-input></ion-input>
+    <ion-buttons slot="start">
+      <ion-button
+        slot="icon-only"
+        (click)="postMessage()"
+      >
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-footer>

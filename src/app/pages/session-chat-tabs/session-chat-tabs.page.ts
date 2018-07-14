@@ -14,6 +14,7 @@ import { CableManager } from "../../providers/cableManager";
 import { AppearancesActions } from "../../actions/appearances.actions";
 import { Pages } from "../../constants";
 import { PagesActions } from "../../actions/pages.actions";
+import { PagesStore } from "../../stores/pages.store";
 
 enum segments {
   Talk = "Talk",
@@ -30,6 +31,7 @@ export class SessionChatTabsPage implements OnInit {
   public selectedSegment: segments = segments.Talk;
   public groups$: Observable<Group[]>;
   private sessionId: string;
+  private currentGroupId: string;
 
   constructor(
     public appearnce: AppearancesStore,
@@ -40,6 +42,7 @@ export class SessionChatTabsPage implements OnInit {
     private messageActions: MessageActions,
     private appearnceActions: AppearancesActions,
     private pageActions: PagesActions,
+    private pages: PagesStore,
     private sessions: SessionsStore,
     private dispatcher: AppDispatcher,
     private cable: CableManager
@@ -58,6 +61,7 @@ export class SessionChatTabsPage implements OnInit {
       this.groups$.pipe(first()).subscribe(groups => {
         const mainGroup = groups.filter(group => group.type === "Main")[0];
         this.dispatcher.emit(this.messageActions.getMessages(mainGroup.id));
+        this.cable.connectGroup(mainGroup.id);
       });
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
@@ -71,6 +75,11 @@ export class SessionChatTabsPage implements OnInit {
         throw e;
       }
     });
+
+    // get CurrentGroupId
+    this.pages
+      .chatTabs_currentGroupId$()
+      .subscribe(groupId => (this.currentGroupId = groupId));
   }
 
   public get mainGroup$(): Observable<Group> {
@@ -107,6 +116,10 @@ export class SessionChatTabsPage implements OnInit {
 
   public get segments() {
     return segments;
+  }
+
+  public postMessage() {
+    this.cable.postToGroup("3");
   }
 
   public selectSegment(event: CustomEvent) {
