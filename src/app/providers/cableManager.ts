@@ -20,7 +20,7 @@ export class CableManager {
 
   public connectSession(sessionId: string) {
     const channel = this.cable.subscriptions.create(
-      { channel: "SessionMembersChannel", session_id: sessionId },
+      { channel: "Apiv2::SessionsChannel", session_id: sessionId },
       {
         connected: () => {
           console.log("connected!");

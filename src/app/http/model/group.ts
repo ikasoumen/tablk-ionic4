@@ -14,6 +14,7 @@ export interface Group {
   id: string;
   type: Group.TypeEnum;
   memberIds: Array<string>;
+  sessionId: string;
 }
 export namespace Group {
   export type TypeEnum = "Main" | "Sub";
