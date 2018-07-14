@@ -26,9 +26,11 @@ export class CableManager {
           console.log("connected!");
         },
         disconnected: () => {
+          console.log("disconnected!");
+        },
+        received: action => {
           console.log("connected!");
         },
-        received: action => {},
         rejected: reason => {
           console.log("Authorization failed because " + reason);
         }
