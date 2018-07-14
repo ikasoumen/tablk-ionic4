@@ -18,7 +18,7 @@
   <ion-toolbar color="light">
     <ion-searchbar
       [value]="queryText"
-      (ionChange)="updateSession($event)"
+      (ionChange)="updateQuery($event)"
       mode="ios"
       placeholder="タイトルで検索">
     </ion-searchbar>
@@ -27,7 +27,7 @@
 
 <ion-content #content>
   <tablk-session-list-item
-    [ids]="(sessions.readMyIds$() | async)"
+    [ids]="(sessions$ | async)"
   >
   </tablk-session-list-item>
 </ion-content>

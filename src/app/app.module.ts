@@ -42,11 +42,11 @@ import { GroupsStore } from "./stores/groups.store";
 import { MessageStore } from "./stores/message.store";
 import { CableManager } from "./providers/cableManager";
 import { MenuMemberListComponent } from "./components/menu-member-list/menu-member-list.component";
-import { MenuMemberListItemComponent } from "app/components/menu-member-list-item/menu-member-list-item.component";
+import { MenuMemberListItemComponent } from "./components/menu-member-list-item/menu-member-list-item.component";
 import { MenuMemberListComponentModule } from "./components/menu-member-list/menu-member-list.component.module";
-import { StoreRouterConnectingModule } from "../../node_modules/@ngrx/router-store";
-import { EffectsModule } from "../../node_modules/@ngrx/effects";
-import { AuthEffects } from "app/effects/auth.effects";
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { EffectsModule } from "@ngrx/effects";
+import { AuthEffects } from "./effects/auth.effects";
 import { ErrorEffects } from "./effects/error.effects";
 
 export function apiConfigFactory(): Configuration {

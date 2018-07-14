@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { map, mergeMap, filter, share } from "rxjs/operators";
 import { Session, Group } from "../http";
 
-export class DummySession implements Session {
+export class DumSessions implements Session {
   public id: never;
   public userId: never;
   public name: never;

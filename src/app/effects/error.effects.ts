@@ -9,12 +9,12 @@ import {
   LogInSuccess
 } from "../ngrx-actions/auth.actions";
 import { DefaultService } from "../http";
-import { HttpErrorHandler } from "app/providers/httpErrorHandler";
-import { RaiseError, ErrorActionTypes } from "app/ngrx-actions/error.actions";
+import { HttpErrorHandler } from "../providers/httpErrorHandler";
+import { RaiseError, ErrorActionTypes } from "../ngrx-actions/error.actions";
 import { Void } from "../ngrx-actions/void.action";
-import { HttpErrorResponse } from "../../../node_modules/@angular/common/http";
-import { Time } from "app/constants";
-import { ToastController } from "../../../node_modules/@ionic/angular";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Time } from "../constants";
+import { ToastController } from "@ionic/angular";
 
 @Injectable()
 export class ErrorEffects {

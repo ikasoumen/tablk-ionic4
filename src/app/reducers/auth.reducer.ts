@@ -6,12 +6,9 @@ import { User } from "../http";
 import {
   getFromLocalStrage,
   setToLocalStrage
-} from "app/helpers/localStorageKey";
-import { LocalStorageKeys } from "app/constants";
-import {
-  createSelector,
-  createFeatureSelector
-} from "../../../node_modules/@ngrx/store";
+} from "../helpers/localStorageKey";
+import { LocalStorageKeys } from "../constants";
+import { createSelector, createFeatureSelector } from "@ngrx/store";
 
 export interface State {
   loginUser: User | undefined;
@@ -42,6 +39,11 @@ export function reducer(
         loginUser: Object.values(action.payload.users)[0]
       };
     case AuthActionTypes.LogOut:
+      setToLocalStrage<LocalStorageKeys, "apiKey">("apiKey", undefined);
+      setToLocalStrage<LocalStorageKeys, "lastLoginUser">(
+        "lastLoginUser",
+        undefined
+      );
       return {
         ...state,
         loginUser: undefined
@@ -56,7 +58,7 @@ export function reducer(
   }
 }
 
-export const featureSelectAuth = createFeatureSelector<State>("auth");
+const featureSelectAuth = createFeatureSelector<State>("auth");
 
 export const isLogin = createSelector(
   featureSelectAuth,

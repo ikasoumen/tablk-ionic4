@@ -13,7 +13,7 @@ import { AppDispatcher } from "./app.dispatcher";
 import { AppearancesActions } from "./actions/appearances.actions";
 import { AppearancesStore } from "./stores/appearances.store";
 import { Pages } from "./constants";
-import { map } from "../../node_modules/rxjs/operators";
+import { map } from "rxjs/operators";
 import { PagesStore } from "./stores/pages.store";
 import { Store, select } from "@ngrx/store";
 import * as fromAuth from "./reducers/auth.reducer";

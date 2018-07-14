@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { HttpErrorResponse } from "../../../node_modules/@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export enum ErrorActionTypes {
   RaiseError = "[Error] RaiseError"

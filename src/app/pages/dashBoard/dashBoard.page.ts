@@ -4,11 +4,14 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { DefaultService } from "../../http";
-import { SessionActions } from "../../actions/sessions.actions";
 import { SessionsStore } from "../../stores/sessions.store";
 import { AppDispatcher } from "../../app.dispatcher";
-
+import { Store, select } from "@ngrx/store";
+import * as fromSessions from "../../reducers/sessions.reducer";
+import { Session } from "app/http";
+import { Observable } from "rxjs";
+import { SessionsAction } from "app/ngrx-actions/sessions.action";
+import { InputChangeEvent } from "../../../../node_modules/@ionic/core";
 @Component({
   selector: "tablk-page-joined-sessions",
   templateUrl: "dashBoard.page.html",
@@ -19,15 +22,16 @@ import { AppDispatcher } from "../../app.dispatcher";
 export class DashBoardPage implements OnInit {
   public title = "セッション一覧";
   public queryText: string;
+  public sessions$: Observable<Session[]>;
 
-  constructor(
-    private sessionActions: SessionActions,
-    public sessions: SessionsStore,
-    private dispatcher: AppDispatcher
-  ) {}
+  constructor(private store: Store<fromSessions.State>) {
+    this.sessions$ = store.pipe(select(fromSessions.all));
+  }
 
   public ngOnInit() {
-    this.dispatcher.emit(this.sessionActions.getJoinedSessions());
+    this.store.dispatch(new SessionsAction.GetAll());
   }
-  public updateSession(event) {}
+  public updateQuery(event: InputChangeEvent) {
+    this.store.dispatch(new SessionsAction.SetQuery({ query: event.value }));
+  }
 }

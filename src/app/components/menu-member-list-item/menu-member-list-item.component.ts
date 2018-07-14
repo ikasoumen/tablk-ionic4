@@ -6,10 +6,10 @@ import {
   Input,
   OnChanges
 } from "@angular/core";
-import { MemberStore } from "app/stores/member.store";
-import { CharacterStore } from "app/stores/character.store";
-import { Member, Character } from "app/http";
-import { Observable, of } from "../../../../node_modules/rxjs";
+import { MemberStore } from "../../stores/member.store";
+import { CharacterStore } from "../../stores/character.store";
+import { Member, Character } from "../../http";
+import { Observable, of } from "rxjs";
 import { PagesStore } from "../../stores/pages.store";
 
 @Component({

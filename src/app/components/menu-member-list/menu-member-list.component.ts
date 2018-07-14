@@ -5,7 +5,7 @@ import {
   OnChanges,
   Input
 } from "@angular/core";
-import { Observable } from "../../../../node_modules/rxjs";
+import { Observable } from "rxjs";
 import { Member, Character } from "../../http";
 import { SessionsStore } from "../../stores/sessions.store";
 import { MemberStore } from "../../stores/member.store";

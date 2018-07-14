@@ -31,7 +31,6 @@ export class LoginNavRoot {
 
   constructor(
     private toastManager: ToastManager,
-    private dispatcher: AppDispatcher,
     private store: Store<fromAuth.State>
   ) {}
 
