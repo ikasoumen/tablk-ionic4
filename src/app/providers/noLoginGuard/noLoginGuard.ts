@@ -1,14 +1,19 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
-import { LoginStore } from "../../stores/login.store";
 import { map } from "rxjs/operators";
-
+import { Observable } from "rxjs";
+import { Store, select } from "@ngrx/store";
+import * as fromAuth from "../../reducers/auth.reducer";
 @Injectable()
 export class NoLoginGuard implements CanActivate {
-  constructor(private loginStore: LoginStore, private router: Router) {}
+  private isLogin$: Observable<boolean>;
+
+  constructor(store: Store<fromAuth.State>, private router: Router) {
+    this.isLogin$ = store.pipe(select(fromAuth.isLogin));
+  }
 
   canActivate() {
-    return this.loginStore.isLogined$().pipe(
+    return this.isLogin$.pipe(
       map(allowed => {
         if (!allowed) {
           this.router.navigate(["/"]);

@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane (ionChange)="splitPaneSubscribe($event)">
-    <ion-menu *ngIf="login.isLogined$() | async">
+    <ion-menu *ngIf="isLogined$ | async">
       <ion-header no-border>
         <ion-toolbar [color]="(appearnce.getPaneSplitted$() | async) ? 'light' : 'sidemenu'">
           <ion-buttons slot="start">

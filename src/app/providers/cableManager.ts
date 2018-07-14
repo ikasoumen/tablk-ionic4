@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as ActionCable from "actioncable";
 import { environment } from "environments/environment";
-import { LoginStore } from "../stores/login.store";
 import { LocalStorageKeys } from "../constants";
 import { getFromLocalStrage } from "../helpers/localStorageKey";
 import { AppDispatcher } from "../app.dispatcher";
@@ -42,7 +41,6 @@ export class CableManager {
         },
         received: action => {
           console.log("connected!");
-          debugger;
         },
         rejected: reason => {
           console.log("Authorization failed because " + reason);

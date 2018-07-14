@@ -23,8 +23,6 @@ import {
   DefaultService
 } from "./http";
 import { environment } from "environments/environment";
-import { LoginActions } from "./actions/login.action";
-import { LoginStore } from "./stores/login.store";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Interceptor } from "./http/intercepter";
 import { LoginGuard } from "./providers/loginGuard/loginGuard";
@@ -47,6 +45,9 @@ import { MenuMemberListComponent } from "./components/menu-member-list/menu-memb
 import { MenuMemberListItemComponent } from "app/components/menu-member-list-item/menu-member-list-item.component";
 import { MenuMemberListComponentModule } from "./components/menu-member-list/menu-member-list.component.module";
 import { StoreRouterConnectingModule } from "../../node_modules/@ngrx/router-store";
+import { EffectsModule } from "../../node_modules/@ngrx/effects";
+import { AuthEffects } from "app/effects/auth.effects";
+import { ErrorEffects } from "./effects/error.effects";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -67,6 +68,8 @@ export function apiConfigFactory(): Configuration {
     }),
     AppRoutingModule,
     ApiModule.forRoot(apiConfigFactory),
+
+    // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: "router" // name of reducer key
@@ -75,6 +78,7 @@ export function apiConfigFactory(): Configuration {
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
+    EffectsModule.forRoot([AuthEffects, ErrorEffects]),
 
     // Components
     MenuMemberListComponentModule
@@ -88,7 +92,6 @@ export function apiConfigFactory(): Configuration {
     // Actions
     SessionActions,
     GroupActions,
-    LoginActions,
     MessageActions,
     PagesActions,
 
@@ -98,7 +101,6 @@ export function apiConfigFactory(): Configuration {
     MemberStore,
     CharacterStore,
     NoteStore,
-    LoginStore,
     AppearancesStore,
     PagesStore,
     GroupsStore,

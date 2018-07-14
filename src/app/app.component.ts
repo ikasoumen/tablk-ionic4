@@ -12,12 +12,12 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppDispatcher } from "./app.dispatcher";
 import { AppearancesActions } from "./actions/appearances.actions";
 import { AppearancesStore } from "./stores/appearances.store";
-import { LoginStore } from "./stores/login.store";
-import { Observable } from "../../node_modules/rxjs";
 import { Pages } from "./constants";
 import { map } from "../../node_modules/rxjs/operators";
-import { PagesActions } from "./actions/pages.actions";
 import { PagesStore } from "./stores/pages.store";
+import { Store, select } from "@ngrx/store";
+import * as fromAuth from "./reducers/auth.reducer";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "tablk-root",
@@ -29,6 +29,7 @@ import { PagesStore } from "./stores/pages.store";
 export class AppComponent implements OnInit {
   public isChatPage$: Observable<boolean>;
   public currentSessionId$: Observable<string>;
+  public isLogin$: Observable<boolean>;
 
   constructor(
     private platform: Platform,
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
     private appearanceActions: AppearancesActions,
     private pages: PagesStore,
     public appearnce: AppearancesStore,
-    public login: LoginStore
+    private store: Store<fromAuth.State>
   ) {
     this.initializeApp();
   }
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
     this.isChatPage$ = this.appearnce
       .getCurrentPage$()
       .pipe(map(page => page === Pages.chat));
+    this.isLogin$ = this.store.pipe(select(fromAuth.isLogin));
     this.currentSessionId$ = this.pages.chatTabs_currenSessionId$();
   }
 

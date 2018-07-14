@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: "sessions/:id",
-    // "sessions/:id/chat" みたいな page への rooting が効かない
+    // "sessions/:id/chat" みたいな page への routing が効かない
     loadChildren: "./pages/session/session.page.module#SessionPageModule",
     canActivate: [NoLoginGuard]
   },

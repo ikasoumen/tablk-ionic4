@@ -1,21 +1,18 @@
 import {
   Component,
   ViewEncapsulation,
-  ChangeDetectorRef,
-  OnInit,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { AuthManager } from "../../providers/authManager/authManager";
 import { ApiKeyInput } from "../../http";
 import {
   ToastManager,
   ToastCssType
 } from "../../providers/toastManager/toastManager";
 import { NgForm } from "@angular/forms";
-import { HttpErrorResponse } from "@angular/common/http";
-import { LoginActions } from "../../actions/login.action";
 import { AppDispatcher } from "../../app.dispatcher";
-import { ModalController } from "@ionic/angular";
+import { Store } from "@ngrx/store";
+import * as fromAuth from "../../reducers/auth.reducer";
+import { LogIn } from "../../ngrx-actions/auth.actions";
 
 /**
  * Login と Signup を modal 上で切り替えるための nav を持ったページ
@@ -33,9 +30,9 @@ export class LoginNavRoot {
   public translatedTitle = "ログイン";
 
   constructor(
-    private loginActions: LoginActions,
     private toastManager: ToastManager,
-    private dispatcher: AppDispatcher
+    private dispatcher: AppDispatcher,
+    private store: Store<fromAuth.State>
   ) {}
 
   public onLogin(form: NgForm) {
@@ -43,7 +40,7 @@ export class LoginNavRoot {
 
     if (form.valid) {
       const { email, password } = this.params;
-      this.dispatcher.emit(this.loginActions.login(email, password));
+      this.store.dispatch(new LogIn({ email, password }));
     } else {
       this.toastManager.present(
         "メールアドレスとパスワードを\n両方とも入力してください",
