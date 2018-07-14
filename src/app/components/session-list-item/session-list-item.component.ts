@@ -3,11 +3,13 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnChanges,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { SessionsStore } from "../../stores/sessions.store";
 import { of, Observable } from "rxjs";
-import { Session } from "../../http";
+import { Session, Member } from "../../http";
 import { NavController } from "@ionic/angular";
 
 @Component({
@@ -18,16 +20,17 @@ import { NavController } from "@ionic/angular";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionListItemComponent implements OnChanges {
-  @Input() private ids: string[];
-  public sessions$ = new Observable<Session[]>();
+  @Input() private session: Session;
+  @Output() public click = new EventEmitter<Event>();
+  public members$: Observable<Member[]>;
 
-  constructor(public sessions: SessionsStore, public navCtrl: NavController) {}
+  constructor() {}
 
   ngOnChanges() {
-    this.sessions$ = this.sessions.readSome$(of(this.ids));
+    this.members$ = of();
   }
 
-  public pushSessionPage(session: Session) {
-    this.navCtrl.goForward(`sessions/${session.id}`);
+  public emitClick(event: Event) {
+    this.click.emit(event);
   }
 }

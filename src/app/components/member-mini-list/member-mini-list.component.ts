@@ -16,13 +16,6 @@ import { MemberStore } from "../../stores/member.store";
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MemberMiniListComponent implements OnChanges {
-  @Input() private sessionId: string;
-  public members$ = new Observable<Member[]>();
-
-  constructor(public member: MemberStore) {}
-
-  ngOnChanges() {
-    this.members$ = this.member.readBySessionId$(this.sessionId);
-  }
+export class MemberMiniListComponent {
+  @Input() private members$: Observable<Member[]>;
 }

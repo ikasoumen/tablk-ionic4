@@ -1,0 +1,8 @@
+<ion-list>
+  <tablk-session-list-item
+    *ngFor="let session of (sessions$ | async)"
+    [session]="session"
+    (click)="pushSessionPage(session)"
+  >
+  </tablk-session-list-item>
+</ion-list>

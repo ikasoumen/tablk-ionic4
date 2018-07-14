@@ -48,6 +48,7 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./effects/auth.effects";
 import { ErrorEffects } from "./effects/error.effects";
+import { SessionsEffects } from "./effects/sessions.effects";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -78,7 +79,7 @@ export function apiConfigFactory(): Configuration {
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([AuthEffects, ErrorEffects]),
+    EffectsModule.forRoot([AuthEffects, ErrorEffects, SessionsEffects]),
 
     // Components
     MenuMemberListComponentModule

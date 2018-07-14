@@ -16,7 +16,7 @@ import {
 } from "../ngrx-actions/sessions.action";
 
 @Injectable()
-export class SessionssEffects {
+export class SessionsEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$.pipe(
     ofType<SessionsAction.GetAll>(SessionsActionTypes.GetAll),
