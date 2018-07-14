@@ -13,6 +13,7 @@ import { AppStore } from "./app.store";
 // ngrx
 import { StoreModule } from "@ngrx/store";
 import { reducers, metaReducers } from "./reducers";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { AppearancesStore } from "./stores/appearances.store";
 import {
@@ -69,6 +70,10 @@ export function apiConfigFactory(): Configuration {
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({
       stateKey: "router" // name of reducer key
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
     }),
 
     // Components
