@@ -21,7 +21,7 @@ import { NavController } from "@ionic/angular";
 })
 export class SessionListItemComponent implements OnChanges {
   @Input() private session: Session;
-  @Output() public click = new EventEmitter<Event>();
+  // @Output() public click = new EventEmitter<Event>();
   public members$: Observable<Member[]>;
 
   constructor() {}
@@ -31,6 +31,6 @@ export class SessionListItemComponent implements OnChanges {
   }
 
   public emitClick(event: Event) {
-    this.click.emit(event);
+    // this.click.emit(event);
   }
 }

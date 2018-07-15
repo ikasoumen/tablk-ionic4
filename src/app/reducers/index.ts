@@ -12,11 +12,13 @@ import * as fromRouter from "@ngrx/router-store";
 import * as fromLayout from "./layout.reducer";
 import * as fromAuth from "./auth.reducer";
 import * as fromSessions from "./sessions.reducer";
+import * as fromMembers from "./members.reducer";
 
 export interface State {
   layout: fromLayout.State;
   auth: fromAuth.State;
   sessions: fromSessions.State;
+  members: fromMembers.State;
   router: fromRouter.RouterReducerState;
 }
 
@@ -24,6 +26,7 @@ export const reducers: ActionReducerMap<State> = {
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   sessions: fromSessions.reducer,
+  members: fromMembers.reducer,
   router: fromRouter.routerReducer
 };
 
