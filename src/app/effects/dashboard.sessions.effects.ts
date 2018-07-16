@@ -22,24 +22,24 @@ import {
 import { DefaultService } from "../http";
 import { RaiseError } from "../ngrx-actions/error.actions";
 import {
-  SessionsActionTypes,
-  SessionsAction
-} from "../ngrx-actions/sessions.action";
-import { MembersAction } from "app/ngrx-actions/members.action";
+  DashboardSessionsActionTypes,
+  DashboardSessionsAction
+} from "../ngrx-actions/dashboard.sessions.action";
+import { DashboardMembersAction } from "../ngrx-actions/dashboard.members.action";
 
 @Injectable()
-export class SessionsEffects {
+export class DashboardSessionsEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$.pipe(
-    ofType<SessionsAction.GetAll>(SessionsActionTypes.GetAll),
+    ofType<DashboardSessionsAction.GetAll>(DashboardSessionsActionTypes.GetAll),
     exhaustMap(() =>
       this.api.sessionsGet().pipe(
         switchMap(response =>
           from([
-            new SessionsAction.AddMany({
+            new DashboardSessionsAction.AddMany({
               sessions: Object.values(response.sessions)
             }),
-            new MembersAction.AddMany({
+            new DashboardMembersAction.AddMany({
               members: Object.values(response.members)
             })
           ])

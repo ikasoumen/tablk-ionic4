@@ -6,11 +6,12 @@ import {
 } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import * as fromSessions from "../../reducers/sessions.reducer";
-import { Session } from "app/http";
+import { Session } from "../../http";
 import { Observable } from "rxjs";
-import { SessionsAction } from "app/ngrx-actions/sessions.action";
+import { DashboardSessionsAction } from "../../ngrx-actions/dashboard.sessions.action";
 import { InputChangeEvent } from "@ionic/core";
-import { tap } from "../../../../node_modules/rxjs/operators";
+import { tap } from "rxjs/operators";
+import { selectDashboardSessionsAll } from "app/reducers";
 @Component({
   selector: "tablk-page-joined-sessions",
   templateUrl: "dashBoard.page.html",
@@ -24,14 +25,16 @@ export class DashBoardPage implements OnInit {
   public sessions$: Observable<Session[]>;
 
   constructor(private store: Store<fromSessions.State>) {
-    this.sessions$ = store.pipe(select(fromSessions.all));
+    this.sessions$ = store.pipe(select(selectDashboardSessionsAll));
   }
 
   public ngOnInit() {
-    this.store.dispatch(new SessionsAction.GetAll());
+    this.store.dispatch(new DashboardSessionsAction.GetAll());
   }
 
   public updateQuery(event: InputChangeEvent) {
-    this.store.dispatch(new SessionsAction.SetQuery({ query: event.value }));
+    this.store.dispatch(
+      new DashboardSessionsAction.SetQuery({ query: event.value })
+    );
   }
 }

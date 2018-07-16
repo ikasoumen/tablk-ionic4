@@ -1,15 +1,15 @@
 import { Action } from "@ngrx/store";
 import { Member } from "../http";
 
-export enum MembersActionTypes {
-  AddMany = "[Members] AddMany"
+export enum DashboardMembersActionTypes {
+  AddMany = "[Dashboard/Members] AddMany"
 }
 
-export namespace MembersAction {
+export namespace DashboardMembersAction {
   export type Union = AddMany;
 
   export class AddMany implements Action {
-    readonly type = MembersActionTypes.AddMany;
+    readonly type = DashboardMembersActionTypes.AddMany;
     constructor(public payload: { members: Member[] }) {}
   }
 }
