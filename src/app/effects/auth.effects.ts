@@ -3,13 +3,9 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { catchError, map, exhaustMap, tap } from "rxjs/operators";
-import {
-  LogIn,
-  AuthActionTypes,
-  LogInSuccess
-} from "../ngrx-actions/auth.actions";
+import { LogIn, AuthActionTypes, LogInSuccess } from "../reducers/auth.actions";
 import { DefaultService } from "../http";
-import { RaiseError } from "../ngrx-actions/error.actions";
+import { RaiseError } from "../reducers/error.actions";
 
 @Injectable()
 export class AuthEffects {

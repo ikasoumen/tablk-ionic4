@@ -2,12 +2,10 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnChanges,
   Input
 } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { Member } from "../../http";
-import { MemberStore } from "../../stores/member.store";
 
 @Component({
   selector: "tablk-member-mini-list",

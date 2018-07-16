@@ -3,16 +3,13 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   OnChanges,
-  Input,
-  Output,
-  EventEmitter
+  Input
 } from "@angular/core";
-import { SessionsStore } from "../../stores/sessions.store";
-import { of, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { Session, Member } from "../../http";
-import { NavController } from "@ionic/angular";
-import { DashboardState } from "../../reducers";
+import { DashboardState, selecters, State } from "../../reducers";
 import { Store } from "@ngrx/store";
+import { map, tap } from "rxjs/operators";
 
 @Component({
   selector: "tablk-session-list-item",
@@ -26,10 +23,16 @@ export class SessionListItemComponent implements OnChanges {
   // @Output() public click = new EventEmitter<Event>();
   public members$: Observable<Member[]>;
 
-  constructor(private store: Store<DashboardState>) {}
+  constructor(private store: Store<State>) {}
 
   ngOnChanges() {
-    this.members$ = this.store.select();
+    this.members$ = this.store
+      .select(selecters.dashboard.members.all)
+      .pipe(
+        map(members =>
+          members.filter(member => member.sessionId === this.session.id)
+        )
+      );
   }
 
   public emitClick(event: Event) {

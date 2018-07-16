@@ -3,15 +3,11 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { catchError, map, exhaustMap, tap } from "rxjs/operators";
-import {
-  LogIn,
-  AuthActionTypes,
-  LogInSuccess
-} from "../ngrx-actions/auth.actions";
+import { LogIn, AuthActionTypes, LogInSuccess } from "../reducers/auth.actions";
 import { DefaultService } from "../http";
 import { HttpErrorHandler } from "../providers/httpErrorHandler";
-import { RaiseError, ErrorActionTypes } from "../ngrx-actions/error.actions";
-import { Void } from "../ngrx-actions/void.action";
+import { RaiseError, ErrorActionTypes } from "../reducers/error.actions";
+import { Void } from "../reducers/void.action";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Time } from "../constants";
 import { ToastController } from "@ionic/angular";

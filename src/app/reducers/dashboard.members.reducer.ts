@@ -2,7 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 import {
   DashboardMembersActionTypes,
   DashboardMembersAction
-} from "../ngrx-actions/dashboard.members.action";
+} from "./dashboard.members.action";
 import { Member } from "../http";
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 
@@ -34,7 +34,6 @@ export function reducer(
   }
 }
 
-const featureSelectDashboard = createFeatureSelector<State>("dashboard");
 const featureSelectMembers = createFeatureSelector<State>("members");
 const {
   selectIds,
@@ -44,28 +43,12 @@ const {
 } = adapter.getSelectors();
 
 // select the dictionary of member entities
-export const entities = createSelector(
-  featureSelectDashboard,
-  featureSelectMembers,
-  selectEntities
-);
+export const entities = createSelector(featureSelectMembers, selectEntities);
 
 // select the array of members
-export const all = createSelector(
-  featureSelectDashboard,
-  featureSelectMembers,
-  selectAll
-);
+export const all = createSelector(featureSelectMembers, selectAll);
 
 // select the total member count
-export const total = createSelector(
-  featureSelectDashboard,
-  featureSelectMembers,
-  selectTotal
-);
+export const total = createSelector(featureSelectMembers, selectTotal);
 
-export const ids = createSelector(
-  featureSelectDashboard,
-  featureSelectMembers,
-  selectIds
-);
+export const ids = createSelector(featureSelectMembers, selectIds);

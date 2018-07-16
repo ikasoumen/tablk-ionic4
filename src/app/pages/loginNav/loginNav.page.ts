@@ -12,7 +12,7 @@ import { NgForm } from "@angular/forms";
 import { AppDispatcher } from "../../app.dispatcher";
 import { Store } from "@ngrx/store";
 import * as fromAuth from "../../reducers/auth.reducer";
-import { LogIn } from "../../ngrx-actions/auth.actions";
+import { LogIn } from "../../reducers/auth.actions";
 
 /**
  * Login と Signup を modal 上で切り替えるための nav を持ったページ

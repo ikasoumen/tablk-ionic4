@@ -12,7 +12,7 @@ import { storeFreeze } from "ngrx-store-freeze";
 import * as fromRouter from "@ngrx/router-store";
 import * as fromLayout from "./layout.reducer";
 import * as fromAuth from "./auth.reducer";
-import * as fromSessions from "./sessions.reducer";
+import * as fromSessions from "./dashboard.sessions.reducer";
 import * as fromMembers from "./dashboard.members.reducer";
 
 export interface DashboardState {
@@ -66,18 +66,12 @@ export const featureSelectMembers = createFeatureSelector<fromMembers.State>(
   "members"
 );
 
-export const selectDashboardSessionsAll = createSelector(
-  featureSelectDashboard,
-  featureSelectSessions,
-  fromSessions.all
-);
-
 export const selectShowSidenav = createSelector(
   featureSelectLayout,
   fromLayout.getShowSidenav
 );
 
-export const select = {
+export const selecters = {
   dashboard: {
     sessions: {
       all: createSelector(

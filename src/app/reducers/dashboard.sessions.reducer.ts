@@ -2,7 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
 import {
   DashboardSessionsActionTypes,
   DashboardSessionsAction
-} from "../ngrx-actions/dashboard.sessions.action";
+} from "./dashboard.sessions.action";
 import { Session } from "../http";
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 

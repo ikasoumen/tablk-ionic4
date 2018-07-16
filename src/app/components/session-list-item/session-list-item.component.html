@@ -9,6 +9,7 @@
     <h2>{{session.name}}</h2>
     <p>{{session.catchphrase}}</p>
     <tablk-member-mini-list
+      [members$]="members$"
     ></tablk-member-mini-list>
   </ion-label>
 </ion-item>

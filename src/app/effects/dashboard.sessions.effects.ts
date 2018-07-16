@@ -14,18 +14,14 @@ import {
   switchMap,
   switchMapTo
 } from "rxjs/operators";
-import {
-  LogIn,
-  AuthActionTypes,
-  LogInSuccess
-} from "../ngrx-actions/auth.actions";
+import { LogIn, AuthActionTypes, LogInSuccess } from "../reducers/auth.actions";
 import { DefaultService } from "../http";
-import { RaiseError } from "../ngrx-actions/error.actions";
+import { RaiseError } from "../reducers/error.actions";
 import {
   DashboardSessionsActionTypes,
   DashboardSessionsAction
-} from "../ngrx-actions/dashboard.sessions.action";
-import { DashboardMembersAction } from "../ngrx-actions/dashboard.members.action";
+} from "../reducers/dashboard.sessions.action";
+import { DashboardMembersAction } from "../reducers/dashboard.members.action";
 
 @Injectable()
 export class DashboardSessionsEffects {

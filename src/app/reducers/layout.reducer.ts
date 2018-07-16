@@ -1,7 +1,4 @@
-import {
-  LayoutActionTypes,
-  LayoutActionsUnion
-} from "../ngrx-actions/layout.actions";
+import { LayoutActionTypes, LayoutActionsUnion } from "./layout.actions";
 
 export interface State {
   showSidenav: boolean;

@@ -1,7 +1,4 @@
-import {
-  AuthActionTypes,
-  AuthActionsUnion
-} from "../ngrx-actions/auth.actions";
+import { AuthActionTypes, AuthActionsUnion } from "./auth.actions";
 import { User } from "../http";
 import {
   getFromLocalStrage,
