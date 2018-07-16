@@ -25,6 +25,16 @@ export const dashboardReducer = combineReducers({
   members: fromMembers.reducer
 });
 
+export interface ChatState {
+  sessions: fromSessions.State;
+  members: fromMembers.State;
+}
+
+export const chatReducer = combineReducers({
+  sessions: fromSessions.reducer,
+  members: fromMembers.reducer
+});
+
 export interface State {
   layout: fromLayout.State;
   auth: fromAuth.State;
@@ -59,6 +69,7 @@ export const featureSelectLayout = createFeatureSelector<fromLayout.State>(
 export const featureSelectDashboard = createFeatureSelector<DashboardState>(
   "dashboard"
 );
+export const featureSelectChat = createFeatureSelector<ChatState>("chat");
 export const featureSelectSessions = createFeatureSelector<fromSessions.State>(
   "sessions"
 );
