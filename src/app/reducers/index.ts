@@ -56,16 +56,19 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 export const featureSelectLayout = createFeatureSelector<fromLayout.State>(
   "layout"
 );
-export const featureSelectDashboard = createFeatureSelector<fromLayout.State>(
+export const featureSelectDashboard = createFeatureSelector<DashboardState>(
   "dashboard"
 );
-export const featureSelectSession = createFeatureSelector<fromLayout.State>(
-  "session"
+export const featureSelectSessions = createFeatureSelector<fromSessions.State>(
+  "sessions"
+);
+export const featureSelectMembers = createFeatureSelector<fromMembers.State>(
+  "members"
 );
 
 export const selectDashboardSessionsAll = createSelector(
   featureSelectDashboard,
-  featureSelectSession,
+  featureSelectSessions,
   fromSessions.all
 );
 
@@ -73,3 +76,22 @@ export const selectShowSidenav = createSelector(
   featureSelectLayout,
   fromLayout.getShowSidenav
 );
+
+export const select = {
+  dashboard: {
+    sessions: {
+      all: createSelector(
+        featureSelectDashboard,
+        featureSelectSessions,
+        fromSessions.all
+      )
+    },
+    members: {
+      all: createSelector(
+        featureSelectDashboard,
+        featureSelectMembers,
+        fromMembers.all
+      )
+    }
+  }
+};

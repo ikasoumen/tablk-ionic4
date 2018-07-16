@@ -11,6 +11,8 @@ import { SessionsStore } from "../../stores/sessions.store";
 import { of, Observable } from "rxjs";
 import { Session, Member } from "../../http";
 import { NavController } from "@ionic/angular";
+import { DashboardState } from "../../reducers";
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: "tablk-session-list-item",
@@ -24,10 +26,10 @@ export class SessionListItemComponent implements OnChanges {
   // @Output() public click = new EventEmitter<Event>();
   public members$: Observable<Member[]>;
 
-  constructor() {}
+  constructor(private store: Store<DashboardState>) {}
 
   ngOnChanges() {
-    this.members$ = of();
+    this.members$ = this.store.select();
   }
 
   public emitClick(event: Event) {
