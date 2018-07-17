@@ -39,6 +39,7 @@ export interface State {
   layout: fromLayout.State;
   auth: fromAuth.State;
   dashboard: DashboardState;
+  chat: ChatState;
   router: fromRouter.RouterReducerState;
 }
 
@@ -46,6 +47,7 @@ export const reducers: ActionReducerMap<State> = {
   layout: fromLayout.reducer,
   auth: fromAuth.reducer,
   dashboard: dashboardReducer,
+  chat: chatReducer,
   router: fromRouter.routerReducer
 };
 
@@ -84,6 +86,22 @@ export const selectShowSidenav = createSelector(
 
 export const selecters = {
   dashboard: {
+    sessions: {
+      all: createSelector(
+        featureSelectDashboard,
+        featureSelectSessions,
+        fromSessions.all
+      )
+    },
+    members: {
+      all: createSelector(
+        featureSelectDashboard,
+        featureSelectMembers,
+        fromMembers.all
+      )
+    }
+  },
+  chat: {
     sessions: {
       all: createSelector(
         featureSelectDashboard,

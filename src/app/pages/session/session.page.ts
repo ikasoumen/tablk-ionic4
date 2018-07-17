@@ -8,7 +8,7 @@ import { SessionsStore } from "../../stores/sessions.store";
 import { Observable, of } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Session } from "../../http";
-import { InputChangeEvent, ActionSheetOptions } from "@ionic/core";
+import { ActionSheetOptions } from "@ionic/core";
 import { SessionActions } from "../../actions/sessions.actions";
 import { AppDispatcher } from "../../app.dispatcher";
 import {
