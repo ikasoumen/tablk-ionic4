@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Member } from "../../http";
+import { Member } from "app/http";
 
 export enum MembersActionTypes {
   AddMany = "[Members] AddMany"

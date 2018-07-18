@@ -12,7 +12,7 @@ import { AppStore } from "./app.store";
 
 // ngrx
 import { StoreModule } from "@ngrx/store";
-import { reducers, metaReducers } from "./reducers";
+import { fromRoot } from "./reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { AppearancesStore } from "./stores/appearances.store";
@@ -41,14 +41,12 @@ import { PagesStore } from "./stores/pages.store";
 import { GroupsStore } from "./stores/groups.store";
 import { MessageStore } from "./stores/message.store";
 import { CableManager } from "./providers/cableManager";
-import { MenuMemberListComponent } from "./components/menu-member-list/menu-member-list.component";
-import { MenuMemberListItemComponent } from "./components/menu-member-list-item/menu-member-list-item.component";
 import { MenuMemberListComponentModule } from "./components/menu-member-list/menu-member-list.component.module";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./effects/auth.effects";
 import { ErrorEffects } from "./effects/error.effects";
-import { DashboardSessionsEffects } from "./reducers/dashboard/sessions.effects";
+import { DashboardModule } from "./reducers/dashboard/dashboard.module";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -71,7 +69,9 @@ export function apiConfigFactory(): Configuration {
     ApiModule.forRoot(apiConfigFactory),
 
     // ngrx
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(fromRoot.reducers, {
+      metaReducers: fromRoot.metaReducers
+    }),
     StoreRouterConnectingModule.forRoot({
       stateKey: "router" // name of reducer key
     }),
@@ -79,11 +79,8 @@ export function apiConfigFactory(): Configuration {
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([
-      AuthEffects,
-      ErrorEffects,
-      DashboardSessionsEffects
-    ]),
+    EffectsModule.forRoot([AuthEffects, ErrorEffects]),
+    DashboardModule,
 
     // Components
     MenuMemberListComponentModule

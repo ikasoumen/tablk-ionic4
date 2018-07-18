@@ -5,12 +5,12 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { SessionsEffects } from "./sessions.effects";
 
-import { reducers } from "./reducers";
+import { fromDashboard } from "./reducers";
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature("dashboard", reducers),
+    StoreModule.forFeature("dashboard", fromDashboard.reducers),
     EffectsModule.forFeature([SessionsEffects])
   ]
 })

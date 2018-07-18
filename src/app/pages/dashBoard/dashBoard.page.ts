@@ -5,12 +5,11 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { Store, select } from "@ngrx/store";
-import * as fromSessions from "../../reducers/dashboard/sessions.reducer";
 import { Session } from "../../http";
 import { Observable } from "rxjs";
-import { DashboardSessionsAction } from "../../reducers/dashboard.sessions.action";
 import { InputChangeEvent } from "@ionic/core";
-import { selecters, State } from "../../reducers";
+import { fromRoot } from "app/reducers";
+import { fromDashboard } from "../../reducers/dashboard/reducers";
 
 @Component({
   selector: "tablk-page-joined-sessions",
@@ -24,22 +23,22 @@ export class DashBoardPage implements OnInit {
   public queryText: string;
   public sessions$: Observable<Session[]>;
 
-  constructor(private store: Store<State>) {
-    this.sessions$ = store.pipe(select(selecters.dashboard.sessions.all));
+  constructor(private store: Store<fromRoot.State>) {
+    this.sessions$ = store.pipe(select(fromDashboard.getAllSession));
     this.sessions$.subscribe(sessions => console.log(sessions));
 
-    store
-      .pipe(select(selecters.dashboard.members.all))
-      .subscribe(sessions => console.log("members:", sessions));
+    // store
+    //   .pipe(select(selecters.dashboard.members.all))
+    //   .subscribe(sessions => console.log("members:", sessions));
   }
 
   public ngOnInit() {
-    this.store.dispatch(new DashboardSessionsAction.GetAll());
+    // this.store.dispatch(new fromSessions.GetAll());
   }
 
   public updateQuery(event: InputChangeEvent) {
-    this.store.dispatch(
-      new DashboardSessionsAction.SetQuery({ query: event.value })
-    );
+    // this.store.dispatch(
+    //   new DashboardSessionsAction.SetQuery({ query: event.value })
+    // );
   }
 }

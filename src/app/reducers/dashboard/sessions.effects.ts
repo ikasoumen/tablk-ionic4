@@ -6,10 +6,9 @@ import { catchError, exhaustMap, switchMap } from "rxjs/operators";
 import { DefaultService } from "../../http";
 import { RaiseError } from "../error.actions";
 import {
-  DashboardSessionsActionTypes,
-  DashboardSessionsAction
-} from "../dashboard.sessions.action";
-import { MembersAction } from "./members.actions";
+  SessionsAction,
+  SessionsActionTypes
+} from "app/reducers/dashboard/actions/sessions.actions";
 
 @Injectable()
 export class SessionsEffects {
@@ -22,10 +21,10 @@ export class SessionsEffects {
           from([
             new SessionsAction.AddMany({
               sessions: Object.values(response.sessions)
-            }),
-            new MembersAction.AddMany({
-              members: Object.values(response.members)
             })
+            // new MembersAction.AddMany({
+            //   members: Object.values(response.members)
+            // })
           ])
         ),
         catchError(error => of(new RaiseError(error)))

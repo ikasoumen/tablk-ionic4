@@ -7,7 +7,7 @@ import {
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { Session, Member } from "../../http";
-import { DashboardState, selecters, State } from "../../reducers";
+import { fromRoot } from "../../reducers";
 import { Store } from "@ngrx/store";
 import { map, tap } from "rxjs/operators";
 
@@ -23,16 +23,16 @@ export class SessionListItemComponent implements OnChanges {
   // @Output() public click = new EventEmitter<Event>();
   public members$: Observable<Member[]>;
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   ngOnChanges() {
-    this.members$ = this.store
-      .select(selecters.dashboard.members.all)
-      .pipe(
-        map(members =>
-          members.filter(member => member.sessionId === this.session.id)
-        )
-      );
+    // this.members$ = this.store
+    //   .select(selecters.dashboard.members.all)
+    //   .pipe(
+    //     map(members =>
+    //       members.filter(member => member.sessionId === this.session.id)
+    //     )
+    //   );
   }
 
   public emitClick(event: Event) {
