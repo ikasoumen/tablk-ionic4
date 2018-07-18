@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Session } from "app/http";
+import { Session } from "../../../http";
 
 export enum SessionsActionTypes {
   GetAll = "[Sessions] GetAll",

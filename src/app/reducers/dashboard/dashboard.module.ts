@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
-import { SessionsEffects } from "./sessions.effects";
+import { SessionsEffects } from "./effects/sessions.effects";
 
 import { fromDashboard } from "./reducers";
 

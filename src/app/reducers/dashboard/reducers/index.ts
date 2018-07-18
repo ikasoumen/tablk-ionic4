@@ -4,8 +4,8 @@ import {
   ActionReducerMap
 } from "@ngrx/store";
 import { fromSessions } from "./sessions.reducer";
-import { fromRoot } from "app/reducers";
-import { Statement } from "../../../../../node_modules/@angular/compiler";
+import { fromRoot } from "../..";
+import { Statement } from "@angular/compiler";
 
 export namespace fromDashboard {
   export interface DashboardState {

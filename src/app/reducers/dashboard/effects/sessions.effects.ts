@@ -3,12 +3,12 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { Observable, of, from } from "rxjs";
 import { catchError, exhaustMap, switchMap } from "rxjs/operators";
-import { DefaultService } from "../../http";
-import { RaiseError } from "../error.actions";
+import { DefaultService } from "../../../http";
+import { RaiseError } from "../../error.actions";
 import {
   SessionsAction,
   SessionsActionTypes
-} from "app/reducers/dashboard/actions/sessions.actions";
+} from "../actions/sessions.actions";
 
 @Injectable()
 export class SessionsEffects {

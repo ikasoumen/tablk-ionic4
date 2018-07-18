@@ -8,8 +8,9 @@ import { Store, select } from "@ngrx/store";
 import { Session } from "../../http";
 import { Observable } from "rxjs";
 import { InputChangeEvent } from "@ionic/core";
-import { fromRoot } from "app/reducers";
+import { fromRoot } from "../../reducers";
 import { fromDashboard } from "../../reducers/dashboard/reducers";
+import { SessionsAction } from "app/reducers/dashboard/actions/sessions.actions";
 
 @Component({
   selector: "tablk-page-joined-sessions",
@@ -33,7 +34,7 @@ export class DashBoardPage implements OnInit {
   }
 
   public ngOnInit() {
-    // this.store.dispatch(new fromSessions.GetAll());
+    this.store.dispatch(new SessionsAction.GetAll());
   }
 
   public updateQuery(event: InputChangeEvent) {
