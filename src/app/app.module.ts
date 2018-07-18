@@ -48,7 +48,7 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./effects/auth.effects";
 import { ErrorEffects } from "./effects/error.effects";
-import { DashboardSessionsEffects } from "./effects/dashboard.sessions.effects";
+import { DashboardSessionsEffects } from "./reducers/dashboard/sessions.effects";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {

@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy
 } from "@angular/core";
 import { Store, select } from "@ngrx/store";
-import * as fromSessions from "../../reducers/dashboard.sessions.reducer";
+import * as fromSessions from "../../reducers/dashboard/sessions.reducer";
 import { Session } from "../../http";
 import { Observable } from "rxjs";
 import { DashboardSessionsAction } from "../../reducers/dashboard.sessions.action";

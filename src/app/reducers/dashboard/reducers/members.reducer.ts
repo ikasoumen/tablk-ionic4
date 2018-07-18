@@ -1,9 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
-import {
-  DashboardMembersActionTypes,
-  DashboardMembersAction
-} from "./dashboard.members.action";
-import { Member } from "../http";
+import { MembersActionTypes, MembersAction } from "../actions/members.actions";
+import { Member } from "../../../http";
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 
 export interface State extends EntityState<Member> {
@@ -21,10 +18,10 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(
   state = initialState,
-  action: DashboardMembersAction.Union
+  action: MembersAction.Union
 ): State {
   switch (action.type) {
-    case DashboardMembersActionTypes.AddMany: {
+    case MembersActionTypes.AddMany: {
       return adapter.addMany(action.payload.members, state);
     }
     // noop
