@@ -2,9 +2,9 @@ import { Action } from "@ngrx/store";
 import { Session } from "../../../http";
 
 export enum SessionsActionTypes {
-  GetAll = "[Sessions] GetAll",
-  AddMany = "[Sessions] AddMany",
-  SetQuery = "[Sessions] SetQuery"
+  GetAll = "[Dashboard/Sessions] GetAll",
+  AddMany = "[Dashboard/Sessions] AddMany",
+  SetQuery = "[Dashboard/Sessions] SetQuery"
 }
 
 export namespace SessionsAction {

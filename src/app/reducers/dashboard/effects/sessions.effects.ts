@@ -9,6 +9,7 @@ import {
   SessionsAction,
   SessionsActionTypes
 } from "../actions/sessions.actions";
+import { MembersAction } from "../actions/members.actions";
 
 @Injectable()
 export class SessionsEffects {
@@ -21,10 +22,10 @@ export class SessionsEffects {
           from([
             new SessionsAction.AddMany({
               sessions: Object.values(response.sessions)
+            }),
+            new MembersAction.AddMany({
+              members: Object.values(response.members)
             })
-            // new MembersAction.AddMany({
-            //   members: Object.values(response.members)
-            // })
           ])
         ),
         catchError(error => of(new RaiseError(error)))

@@ -10,6 +10,7 @@ import { Session, Member } from "../../http";
 import { fromRoot } from "../../reducers";
 import { Store } from "@ngrx/store";
 import { map, tap } from "rxjs/operators";
+import { fromDashboard } from "../../reducers/dashboard/reducers";
 
 @Component({
   selector: "tablk-session-list-item",
@@ -26,13 +27,13 @@ export class SessionListItemComponent implements OnChanges {
   constructor(private store: Store<fromRoot.State>) {}
 
   ngOnChanges() {
-    // this.members$ = this.store
-    //   .select(selecters.dashboard.members.all)
-    //   .pipe(
-    //     map(members =>
-    //       members.filter(member => member.sessionId === this.session.id)
-    //     )
-    //   );
+    this.members$ = this.store
+      .select(fromDashboard.getAllMember)
+      .pipe(
+        map(members =>
+          members.filter(member => member.sessionId === this.session.id)
+        )
+      );
   }
 
   public emitClick(event: Event) {

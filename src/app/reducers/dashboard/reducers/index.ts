@@ -5,11 +5,12 @@ import {
 } from "@ngrx/store";
 import { fromSessions } from "./sessions.reducer";
 import { fromRoot } from "../..";
-import { Statement } from "@angular/compiler";
+import { fromMembers } from "./members.reducer";
 
 export namespace fromDashboard {
   export interface DashboardState {
     sessions: fromSessions.State;
+    members: fromMembers.State;
   }
 
   export interface State extends fromRoot.State {
@@ -17,7 +18,8 @@ export namespace fromDashboard {
   }
 
   export const reducers: ActionReducerMap<DashboardState> = {
-    sessions: fromSessions.reducer
+    sessions: fromSessions.reducer,
+    members: fromMembers.reducer
   };
 
   export const getDashboardState = createFeatureSelector<DashboardState>(
@@ -27,6 +29,10 @@ export namespace fromDashboard {
     getDashboardState,
     state => state.sessions
   );
+  export const getMembersState = createSelector(
+    getDashboardState,
+    state => state.members
+  );
 
   export const {
     selectIds: getSessionIds,
@@ -34,4 +40,11 @@ export namespace fromDashboard {
     selectAll: getAllSession,
     selectTotal: getTotalSession
   } = fromSessions.adapter.getSelectors(getSessionsState);
+
+  export const {
+    selectIds: getMemberIds,
+    selectEntities: getMemberEntities,
+    selectAll: getAllMember,
+    selectTotal: getTotalMember
+  } = fromMembers.adapter.getSelectors(getMembersState);
 }

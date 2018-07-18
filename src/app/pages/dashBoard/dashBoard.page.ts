@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 import { InputChangeEvent } from "@ionic/core";
 import { fromRoot } from "../../reducers";
 import { fromDashboard } from "../../reducers/dashboard/reducers";
-import { SessionsAction } from "app/reducers/dashboard/actions/sessions.actions";
+import { SessionsAction } from "../../reducers/dashboard/actions/sessions.actions";
 
 @Component({
   selector: "tablk-page-joined-sessions",
@@ -26,7 +26,6 @@ export class DashBoardPage implements OnInit {
 
   constructor(private store: Store<fromRoot.State>) {
     this.sessions$ = store.pipe(select(fromDashboard.getAllSession));
-    this.sessions$.subscribe(sessions => console.log(sessions));
 
     // store
     //   .pipe(select(selecters.dashboard.members.all))
