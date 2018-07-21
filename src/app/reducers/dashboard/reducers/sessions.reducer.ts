@@ -28,6 +28,12 @@ export namespace fromSessions {
       case SessionsActionTypes.AddMany: {
         return adapter.addMany(action.payload.sessions, state);
       }
+      case SessionsActionTypes.SelectChat: {
+        return {
+          ...state,
+          selectedSessionId: action.payload.sessionId
+        };
+      }
       // noop
       case SessionsActionTypes.GetAll:
       default: {
@@ -35,23 +41,4 @@ export namespace fromSessions {
       }
     }
   }
-
-  const featureSelectSessions = createFeatureSelector<State>("sessions");
-  const {
-    selectIds,
-    selectEntities,
-    selectAll,
-    selectTotal
-  } = adapter.getSelectors();
-
-  // select the dictionary of session entities
-  export const entites = createSelector(featureSelectSessions, selectEntities);
-
-  // select the array of sessions
-  export const all = createSelector(featureSelectSessions, selectAll);
-
-  // select the total session count
-  export const total = createSelector(featureSelectSessions, selectTotal);
-
-  export const ids = createSelector(featureSelectSessions, selectIds);
 }

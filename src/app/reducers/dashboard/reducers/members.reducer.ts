@@ -31,23 +31,4 @@ export namespace fromMembers {
       }
     }
   }
-
-  const featureSelectMembers = createFeatureSelector<State>("members");
-  const {
-    selectIds,
-    selectEntities,
-    selectAll,
-    selectTotal
-  } = adapter.getSelectors();
-
-  // select the dictionary of member entities
-  export const entities = createSelector(featureSelectMembers, selectEntities);
-
-  // select the array of members
-  export const all = createSelector(featureSelectMembers, selectAll);
-
-  // select the total member count
-  export const total = createSelector(featureSelectMembers, selectTotal);
-
-  export const ids = createSelector(featureSelectMembers, selectIds);
 }

@@ -2,13 +2,14 @@ import { Action } from "@ngrx/store";
 import { Session } from "../../../http";
 
 export enum SessionsActionTypes {
-  GetAll = "[Dashboard/Sessions] GetAll",
-  AddMany = "[Dashboard/Sessions] AddMany",
-  SetQuery = "[Dashboard/Sessions] SetQuery"
+  GetAll = "[Sessions] GetAll",
+  AddMany = "[Sessions] AddMany",
+  SelectChat = "[Sessions] SelectChat",
+  SetQuery = "[Sessions] SetQuery"
 }
 
 export namespace SessionsAction {
-  export type Union = GetAll | AddMany | SetQuery;
+  export type Union = GetAll | AddMany | SetQuery | SelectChat;
 
   export class GetAll implements Action {
     readonly type = SessionsActionTypes.GetAll;
@@ -17,6 +18,11 @@ export namespace SessionsAction {
   export class AddMany implements Action {
     readonly type = SessionsActionTypes.AddMany;
     constructor(public payload: { sessions: Session[] }) {}
+  }
+
+  export class SelectChat implements Action {
+    readonly type = SessionsActionTypes.SelectChat;
+    constructor(public payload: { sessionId: string }) {}
   }
 
   export class SetQuery implements Action {

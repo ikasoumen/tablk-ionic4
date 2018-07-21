@@ -1,20 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { AppearancesStore } from "../../stores/appearances.store";
 import { Session, Group } from "../../http";
-import { GroupActions } from "../../actions/groups.actions";
 import { ActivatedRoute } from "@angular/router";
 import { Observable, of } from "rxjs";
-import { SessionsStore } from "../../stores/sessions.store";
-import { AppDispatcher } from "../../app.dispatcher";
-import { SessionActions } from "../../actions/sessions.actions";
-import { GroupsStore } from "../../stores/groups.store";
 import { map, first } from "rxjs/operators";
-import { MessageActions } from "../../actions/messages.actions";
 import { CableManager } from "../../providers/cableManager";
-import { AppearancesActions } from "../../actions/appearances.actions";
-import { Pages } from "../../constants";
-import { PagesActions } from "../../actions/pages.actions";
-import { PagesStore } from "../../stores/pages.store";
+import { Store, select } from "@ngrx/store";
+import { fromRoot } from "app/reducers";
+import { SessionsAction } from "app/reducers/dashboard/actions/sessions.actions";
+import { fromDashboard } from "app/reducers/dashboard/reducers";
 
 enum segments {
   Talk = "Talk",
@@ -30,45 +24,46 @@ export class SessionChatTabsPage implements OnInit {
   public session$: Observable<Session>;
   public selectedSegment: segments = segments.Talk;
   public groups$: Observable<Group[]>;
-  private sessionId: string;
+  private sessionId: string | undefined;
   private currentGroupId: string;
 
   constructor(
     public appearnce: AppearancesStore,
     private route: ActivatedRoute,
-    private groupActions: GroupActions,
-    private groups: GroupsStore,
-    private sessionActions: SessionActions,
-    private messageActions: MessageActions,
-    private appearnceActions: AppearancesActions,
-    private pageActions: PagesActions,
-    private pages: PagesStore,
-    private sessions: SessionsStore,
-    private dispatcher: AppDispatcher,
+    private store: Store<fromRoot.State>,
     private cable: CableManager
   ) {}
 
   public ngOnInit() {
-    this.dispatcher.emit(this.appearnceActions.setCurrentPage(Pages.chat));
+    this.session$ = this.store.pipe(
+      select(fromDashboard.getSessionEntities),
+      map(sessions => sessions[this.sessionId])
+    );
+
+    this.groups$ = this.store.pipe(select(fromDashboard.getAllGroup));
+
+    // Group が select されたら DB から取得する
+    this.groups$.pipe(first()).subscribe(groups => {
+      const mainGroup = groups.filter(group => group.type === "Main")[0];
+      // this.dispatcher.emit(this.messageActions.getMessages(mainGroup.id));
+      this.store.dispatch(
+        new SessionsAction.SelectChat({ sessionId: this.sessionId })
+      );
+      this.cable.connectGroup(mainGroup.id);
+    });
 
     this.route.params.subscribe(async (params: SessionChatTabsPage.Params) => {
       this.sessionId = params.id;
-      this.dispatcher.emit(
-        this.pageActions.chatTabs_setSessionId(this.sessionId)
+      this.store.dispatch(
+        new SessionsAction.SelectChat({ sessionId: this.sessionId })
       );
-      this.session$ = this.sessions.readOne$(of(this.sessionId));
-      this.groups$ = this.groups.readSome$_bySession$(this.session$);
-      this.groups$.pipe(first()).subscribe(groups => {
-        const mainGroup = groups.filter(group => group.type === "Main")[0];
-        this.dispatcher.emit(this.messageActions.getMessages(mainGroup.id));
-        this.cable.connectGroup(mainGroup.id);
-      });
+
       try {
-        this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
-        this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
-        this.dispatcher.emit(
-          this.pageActions.chatTabs_getOnlineMemberIds(this.sessionId)
-        );
+        // this.dispatcher.emit(this.sessionActions.getSessionOne(this.sessionId));
+        // this.dispatcher.emit(this.groupActions.getGroups(this.sessionId));
+        // this.dispatcher.emit(
+        //   this.pageActions.chatTabs_getOnlineMemberIds(this.sessionId)
+        // );
         await this.cable.init();
         this.cable.connectSession(this.sessionId);
       } catch (e) {
@@ -77,9 +72,9 @@ export class SessionChatTabsPage implements OnInit {
     });
 
     // get CurrentGroupId
-    this.pages
-      .chatTabs_currentGroupId$()
-      .subscribe(groupId => (this.currentGroupId = groupId));
+    // this.pages
+    //   .chatTabs_currentGroupId$()
+    //   .subscribe(groupId => (this.currentGroupId = groupId));
   }
 
   public get mainGroup$(): Observable<Group> {

@@ -47,7 +47,6 @@ import { EffectsModule } from "@ngrx/effects";
 import { AuthEffects } from "./effects/auth.effects";
 import { ErrorEffects } from "./effects/error.effects";
 import { DashboardModule } from "./reducers/dashboard/dashboard.module";
-import { ChatModule } from "./reducers/chat/chat.module";
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -82,7 +81,6 @@ export function apiConfigFactory(): Configuration {
     }),
     EffectsModule.forRoot([AuthEffects, ErrorEffects]),
     DashboardModule,
-    ChatModule,
 
     // Components
     MenuMemberListComponentModule
