@@ -4,13 +4,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from "@angular/core";
-import { SessionsStore } from "../../stores/sessions.store";
 import { Observable, of } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { Session } from "../../http";
 import { ActionSheetOptions } from "@ionic/core";
-import { SessionActions } from "../../actions/sessions.actions";
-import { AppDispatcher } from "../../app.dispatcher";
 import {
   ActionSheetController,
   ModalController,
@@ -20,6 +17,8 @@ import {
   SessionEditPage,
   SessionEditPageMode
 } from "../session-edit/session-edit.page";
+import { Store } from "@ngrx/store";
+import { fromRoot } from "app/reducers";
 
 enum segments {
   Description = "Description",
@@ -40,18 +39,16 @@ export class SessionPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sessionActions: SessionActions,
-    private sessions: SessionsStore,
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController,
-    private dispatcher: AppDispatcher,
+    private store: Store<fromRoot.State>,
     private navCtrl: NavController
   ) {}
 
   public ngOnInit() {
     this.route.params.subscribe((params: SessionPage.Params) => {
       this.id = params.id;
-      this.session$ = this.sessions.readOne$(of(this.id));
+      this.session$ = this.store.pipe();
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.id));
       } catch (e) {

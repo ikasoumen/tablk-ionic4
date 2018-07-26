@@ -71,6 +71,13 @@ export namespace fromDashboard {
     selectTotal: getTotalGroup
   } = fromGroups.adapter.getSelectors(getGroupsState);
 
+  /** 現在の Session を取得する */
+  export const getCurrentChatSession = createSelector(
+    getChatState,
+    getSessionsState,
+    state => state.groups
+  );
+
   /** 現在の Main Group を取得する */
   export const getCurrentChatMainGroup = createSelector(
     getDashboardState,
