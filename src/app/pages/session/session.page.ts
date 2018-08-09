@@ -17,8 +17,14 @@ import {
   SessionEditPage,
   SessionEditPageMode
 } from "../session-edit/session-edit.page";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { fromRoot } from "app/reducers";
+import { fromDashboard } from "../../reducers/dashboard/reducers";
+import { map } from "../../../../node_modules/rxjs/operators";
+import {
+  createDummySession,
+  DummySession
+} from "app/helpers/createDummyObjects";
 
 enum segments {
   Description = "Description",
@@ -33,7 +39,7 @@ enum segments {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SessionPage implements OnInit {
-  public session$: Observable<Session>;
+  public session$: Observable<Session | DummySession>;
   public selectedSegment: segments = segments.Description;
   private id: string;
 
@@ -48,7 +54,10 @@ export class SessionPage implements OnInit {
   public ngOnInit() {
     this.route.params.subscribe((params: SessionPage.Params) => {
       this.id = params.id;
-      this.session$ = this.store.pipe();
+      this.session$ = this.store.pipe(
+        select(fromDashboard.getAllSession),
+        map(sessions => sessions[this.id] || createDummySession())
+      );
       try {
         this.dispatcher.emit(this.sessionActions.getSessionOne(this.id));
       } catch (e) {
